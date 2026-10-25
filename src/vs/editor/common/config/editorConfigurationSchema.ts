@@ -10,6 +10,7 @@ import { EDITOR_MODEL_DEFAULTS } from '../core/misc/textModelDefaults.js';
 import * as nls from '../../../nls.js';
 import { ConfigurationScope, Extensions, IConfigurationNode, IConfigurationPropertySchema, IConfigurationRegistry } from '../../../platform/configuration/common/configurationRegistry.js';
 import { Registry } from '../../../platform/registry/common/platform.js';
+import product from '../../../platform/product/common/product.js';
 
 export const editorConfigurationBaseNode = Object.freeze<IConfigurationNode>({
 	id: 'editor',
@@ -115,6 +116,7 @@ const editorConfiguration: IConfigurationNode = {
 		},
 		'editor.experimental.treeSitterTelemetry': {
 			type: 'boolean',
+			included: product.enableTelemetry === true,
 			default: false,
 			markdownDescription: nls.localize('editor.experimental.treeSitterTelemetry', "Controls whether tree sitter parsing should be turned on and telemetry collected. Setting `#editor.experimental.preferTreeSitter#` for specific languages will take precedence."),
 			tags: ['experimental'],

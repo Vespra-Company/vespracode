@@ -98,6 +98,15 @@ if (args['crash-reporter-directory'] || (argvConfig['enable-crash-reporter'] && 
 }
 perf.mark('code/didStartCrashReporter');
 
+// Chromium's built-in spell checker downloads a Hunspell dictionary for the
+// system locale from Google's CDN the first time a session is created, even
+// though every window is created with `spellcheck: false`. Clearing the
+// dictionary list before that happens is the only way to stop the request.
+app.on('session-created', session => {
+	session.setSpellCheckerLanguages([]);
+	session.setSpellCheckerEnabled(false);
+});
+
 // Set logs path before app 'ready' event if running portable
 // to ensure that no 'logs' folder is created on disk at a
 // location outside of the portable directory
