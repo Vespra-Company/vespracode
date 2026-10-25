@@ -1471,6 +1471,20 @@
               "onExP"
             ]
           },
+          "markdown.editor.defaultMode": {
+            "type": "string",
+            "default": "edit",
+            "enum": [
+              "edit",
+              "readonly"
+            ],
+            "enumDescriptions": [
+              "%configuration.markdown.editor.defaultMode.edit%",
+              "%configuration.markdown.editor.defaultMode.readonly%"
+            ],
+            "markdownDescription": "%configuration.markdown.editor.defaultMode%",
+            "scope": "resource"
+          },
           "markdown.editor.highlightActiveBlock": {
             "type": "boolean",
             "default": true,
