@@ -193,6 +193,12 @@ import product from '../../platform/product/common/product.js';
 				'scope': ConfigurationScope.APPLICATION,
 				'description': localize('restoreWindows', "Controls how windows and editors within are being restored when opening.")
 			},
+			'window.openAgentsWindowOnStartup': {
+				'type': 'boolean',
+				'default': true,
+				'scope': ConfigurationScope.APPLICATION,
+				'markdownDescription': localize('openAgentsWindowOnStartup', "Controls whether the Agents window opens when {0} starts without a file, folder, or workspace to open. When disabled, the editor window opens and restores previous windows according to `#window.restoreWindows#`.", product.nameShort)
+			},
 			'window.restoreFullscreen': {
 				'type': 'boolean',
 				'default': false,

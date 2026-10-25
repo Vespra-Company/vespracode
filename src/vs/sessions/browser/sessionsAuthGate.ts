@@ -5,7 +5,6 @@
 
 import { Event } from '../../base/common/event.js';
 import { IObservable, observableFromEvent } from '../../base/common/observable.js';
-import { isWeb } from '../../base/common/platform.js';
 import { AgentHostAllowSignedOutWhenUsableSettingId } from '../../platform/agentHost/common/agentService.js';
 import type { IConfigurationService } from '../../platform/configuration/common/configuration.js';
 import { SessionTypeAuthRequirement } from '../services/sessions/common/session.js';
@@ -35,11 +34,12 @@ import { SessionTypeAuthRequirement } from '../services/sessions/common/session.
  */
 
 /**
- * Whether the `chat.agentHost.allowSignedOutWhenUsable` experimentation opt-in
- * is enabled in a desktop window. Web always requires sign-in.
+ * Whether `chat.agentHost.allowSignedOutWhenUsable` is enabled. Vespra Code
+ * enables it by default on desktop and web, so the Agents window never forces
+ * GitHub sign-in; turning it off restores the upstream gate.
  */
 export function isAllowSignedOutWhenUsableEnabled(configurationService: IConfigurationService): boolean {
-	return !isWeb && configurationService.getValue<boolean>(AgentHostAllowSignedOutWhenUsableSettingId) === true;
+	return configurationService.getValue<boolean>(AgentHostAllowSignedOutWhenUsableSettingId) !== false;
 }
 
 /**
@@ -57,18 +57,16 @@ export const enum SignedOutWindowGate {
 }
 
 export function resolveSignedOutWindowGate(allowSignedOutWhenUsable: boolean, authRequirements: readonly SessionTypeAuthRequirement[], canInitializeWithoutGitHub = false): SignedOutWindowGate {
+	// With the opt-in on, the window opens regardless of which session types are
+	// advertised (or whether any are yet). Each type still gates on its own
+	// credentials when selected, so a Copilot type prompts for GitHub on demand.
+	if (allowSignedOutWhenUsable) {
+		return SignedOutWindowGate.Proceed;
+	}
 	if (canInitializeWithoutGitHub) {
 		return authRequirements.length === 0 ? SignedOutWindowGate.Unresolved : SignedOutWindowGate.Proceed;
 	}
-	if (!allowSignedOutWhenUsable) {
-		return SignedOutWindowGate.ForceGitHubSignIn;
-	}
-	if (authRequirements.length === 0) {
-		return SignedOutWindowGate.Unresolved;
-	}
-	return authRequirements.some(requirement => requirement !== SessionTypeAuthRequirement.GitHub)
-		? SignedOutWindowGate.Proceed
-		: SignedOutWindowGate.ForceGitHubSignIn;
+	return SignedOutWindowGate.ForceGitHubSignIn;
 }
 
 /** Whether the GitHub workspace group should offer sign-in. */

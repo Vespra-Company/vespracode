@@ -1540,7 +1540,7 @@ export class CodeApplication extends Disposable {
 		const args = this.environmentMainService.args;
 
 		// Handle agents window first based on context
-		if (args['agents']) {
+		if (args['agents'] || this.shouldOpenAgentsWindowByDefault(args, initialProtocolUrls)) {
 			return windowsMainService.openAgentsWindow({
 				context,
 				cli: args,
@@ -1672,6 +1672,35 @@ export class CodeApplication extends Disposable {
 			forceProfile,
 			forceTempProfile
 		});
+	}
+
+	/**
+	 * Vespra Code opens the Agents window when launched with nothing to open
+	 * (no paths, URIs, protocol links, or window-shaping flags) unless the
+	 * `window.openAgentsWindowOnStartup` setting turns it off. Launching with a
+	 * file or folder still opens the editor window.
+	 */
+	private shouldOpenAgentsWindowByDefault(args: NativeParsedArgs, initialProtocolUrls: IInitialProtocolUrls | undefined): boolean {
+		if (this.configurationService.getValue<boolean>('window.openAgentsWindowOnStartup') === false) {
+			return false;
+		}
+		if (initialProtocolUrls && (initialProtocolUrls.urls.length > 0 || initialProtocolUrls.openables.length > 0)) {
+			return false;
+		}
+		const macOpenFiles: string[] = (global as { macOpenFiles?: string[] }).macOpenFiles ?? [];
+		if (macOpenFiles.length > 0) {
+			return false;
+		}
+		return args._.length === 0
+			&& !args['folder-uri']
+			&& !args['file-uri']
+			&& !args['new-window']
+			&& !args.profile
+			&& !args['profile-temp']
+			&& !args.diff
+			&& !args.merge
+			&& !args.wait
+			&& !args.remote;
 	}
 
 	private afterWindowOpen(instantiationService: IInstantiationService): void {
