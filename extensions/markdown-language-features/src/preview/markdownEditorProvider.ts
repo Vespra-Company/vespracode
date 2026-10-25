@@ -259,6 +259,8 @@ export class MarkdownEditorProvider extends Disposable implements vscode.CustomT
 	 * Memento key under which the last chosen edit/read-only mode is remembered.
 	 * The value is a single global default shared by every Markdown editor, so
 	 * flipping the lock in one editor becomes the initial mode for the next.
+	 * Until the lock is flipped for the first time, `markdown.editor.defaultMode`
+	 * decides the initial mode.
 	 */
 	static readonly #readonlyStateKey = 'markdown.editor.readonly';
 
@@ -377,7 +379,7 @@ export class MarkdownEditorProvider extends Disposable implements vscode.CustomT
 		let expectedWebviewContent: { readonly content: string; readonly epoch: number } | undefined;
 		let webviewText = document.getText();
 		let webviewReady = false;
-		let readonly = this.#globalState.get(MarkdownEditorProvider.#readonlyStateKey, true);
+		let readonly = this.#getInitialReadonly(document.uri);
 		let codeBlockEditorProviders: readonly CodeBlockEditorProviderDefinition[] | undefined;
 		let contributionUpdate = 0;
 		const resolveCancellation = new vscode.CancellationTokenSource();
@@ -1141,7 +1143,7 @@ export class MarkdownEditorProvider extends Disposable implements vscode.CustomT
 			content: document.getText(),
 			documentVersion: document.version,
 			editEpoch,
-			readonly: this.#globalState.get(MarkdownEditorProvider.#readonlyStateKey, true),
+			readonly: this.#getInitialReadonly(document.uri),
 			richLinksEnabled: vscode.workspace.getConfiguration('markdown').get<boolean>('experimental.richLinks.enabled', true),
 			linkPresentationRules: vscode.window.linkPresentationRules.map(rule => ({
 				id: rule.id,
@@ -1178,6 +1180,19 @@ export class MarkdownEditorProvider extends Disposable implements vscode.CustomT
 		return {
 			highlightActiveBlock: vscode.workspace.getConfiguration('markdown.editor', resource).get<boolean>('highlightActiveBlock', true),
 		};
+	}
+
+	/**
+	 * A mode the user has already picked via the lock toggle wins; otherwise the
+	 * `markdown.editor.defaultMode` setting decides whether a Markdown editor
+	 * opens read-only or ready for editing.
+	 */
+	#getInitialReadonly(resource: vscode.Uri): boolean {
+		const remembered = this.#globalState.get<boolean>(MarkdownEditorProvider.#readonlyStateKey);
+		if (typeof remembered === 'boolean') {
+			return remembered;
+		}
+		return vscode.workspace.getConfiguration('markdown.editor', resource).get<'edit' | 'readonly'>('defaultMode', 'edit') === 'readonly';
 	}
 }
 

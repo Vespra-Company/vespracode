@@ -120,7 +120,46 @@ suite('Markdown editor bridge', () => {
 			cancellation.dispose();
 		}
 	});
+
+	test('opens ready for editing unless a mode was remembered or configured', async () => {
+		const document = await vscode.workspace.openTextDocument({ language: 'markdown', content: '# Heading' });
+		const configuration = vscode.workspace.getConfiguration('markdown.editor');
+		const previousDefaultMode = configuration.inspect<string>('defaultMode')?.globalValue;
+		try {
+			assert.strictEqual(await resolveInitialReadonly(document, new TestMemento()), false, 'fresh state opens for editing');
+
+			const remembered = new TestMemento();
+			await remembered.update('markdown.editor.readonly', true);
+			assert.strictEqual(await resolveInitialReadonly(document, remembered), true, 'a remembered lock wins');
+
+			await configuration.update('defaultMode', 'readonly', vscode.ConfigurationTarget.Global);
+			assert.strictEqual(await resolveInitialReadonly(document, new TestMemento()), true, 'the setting applies when nothing was remembered');
+
+			const unlocked = new TestMemento();
+			await unlocked.update('markdown.editor.readonly', false);
+			assert.strictEqual(await resolveInitialReadonly(document, unlocked), false, 'a remembered unlock wins over the setting');
+		} finally {
+			await configuration.update('defaultMode', previousDefaultMode, vscode.ConfigurationTarget.Global);
+		}
+	});
 });
+
+async function resolveInitialReadonly(document: vscode.TextDocument, state: vscode.Memento): Promise<boolean> {
+	const panel = new TestPanel();
+	const provider = createProvider(state);
+	const cancellation = new vscode.CancellationTokenSource();
+	try {
+		await provider.resolveCustomTextEditor(document, panel, cancellation.token);
+		const encoded = /id="vscode-markdown-editor-initial-state" content="([^"]+)"/.exec(panel.webview.html)?.[1];
+		assert.ok(encoded, 'initial state is embedded in the webview html');
+		const initialState = JSON.parse(decodeURIComponent(encoded)) as { readonly: boolean };
+		return initialState.readonly;
+	} finally {
+		panel.dispose();
+		provider.dispose();
+		cancellation.dispose();
+	}
+}
 
 function createProvider(state: vscode.Memento): MarkdownEditorProvider {
 	const extensionUri = vscode.extensions.getExtension('vscode.markdown-language-features')!.extensionUri;
@@ -187,7 +226,9 @@ class TestMemento implements vscode.Memento {
 	keys(): readonly string[] { return [...this.values.keys()]; }
 	get<T>(key: string): T | undefined;
 	get<T>(key: string, defaultValue: T): T;
-	get<T>(_key: string, defaultValue?: T): T | undefined { return defaultValue; }
+	get<T>(key: string, defaultValue?: T): T | undefined {
+		return this.values.has(key) ? this.values.get(key) as T : defaultValue;
+	}
 	async update(key: string, value: unknown): Promise<void> {
 		this.values.set(key, value);
 	}
