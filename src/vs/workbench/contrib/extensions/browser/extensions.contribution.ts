@@ -251,7 +251,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration)
 			[EXTENSIONS_SUPPORT_AGENTS_WINDOW]: {
 				type: 'object',
 				scope: ConfigurationScope.APPLICATION,
-				markdownDescription: localize('extensions.supportAgentsWindow', "Override the Agents window support of an extension. Extensions using `true` will be enabled in the Agents window even when they would otherwise be disabled."),
+				markdownDescription: localize('extensions.supportAgentsWindow', "Override the Agents window support of an extension. Extensions using `false` will be disabled in the Agents window, and extensions using `true` will be enabled there even when they would otherwise be disabled."),
 				patternProperties: {
 					'([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$': {
 						type: 'boolean',

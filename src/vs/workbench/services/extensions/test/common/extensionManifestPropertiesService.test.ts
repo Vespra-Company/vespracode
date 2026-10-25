@@ -135,14 +135,15 @@ suite('ExtensionManifestPropertiesService - SessionsWindowSupport', () => {
 		return disposables.add(new ExtensionManifestPropertiesService(TestProductService, testConfigurationService, new TestWorkspaceTrustEnablementService(), new NullLogService()));
 	}
 
-	test('defaults to declarative extensions without executable code and supported contributions', () => {
+	test('defaults to allowing user extensions regardless of code or contributions', () => {
 		testObject = createTestObject();
 
 		assert.deepStrictEqual([
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ contributes: { themes: [] } })),
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ main: './out/extension.js', contributes: { themes: [] } })),
+			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ browser: './out/extension.js', contributes: { views: {} } })),
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ contributes: { commands: [] } })),
-		], [true, false, false]);
+		], [true, true, true, true]);
 	});
 
 	test('preserves built-in defaults when no agents window support is declared', () => {
@@ -194,7 +195,7 @@ suite('ExtensionManifestPropertiesService - SessionsWindowSupport', () => {
 		assert.deepStrictEqual([
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ main: './out/extension.js', enabledApiProposals: ['agentsWindowActivation'], capabilities: { agentsWindow: { supported: true } }, contributes: { commands: [] } })),
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ enabledApiProposals: ['agentsWindowActivation'], capabilities: { agentsWindow: { supported: false } }, contributes: { themes: [] } })),
-		], [false, true]);
+		], [true, true]);
 	});
 
 	test('uses declared agents window support when the experimental feature is enabled', async () => {
@@ -204,8 +205,8 @@ suite('ExtensionManifestPropertiesService - SessionsWindowSupport', () => {
 		assert.deepStrictEqual([
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ main: './out/extension.js', enabledApiProposals: ['agentsWindowActivation'], capabilities: { agentsWindow: { supported: true } }, contributes: { commands: [] } })),
 			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ enabledApiProposals: ['agentsWindowActivation'], capabilities: { agentsWindow: { supported: false } }, contributes: { themes: [] } })),
-			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ main: './out/extension.js', capabilities: { agentsWindow: { supported: true } }, contributes: { commands: [] } })),
-		], [true, false, false]);
+			testObject.canExecuteOnSessionsWindow(getExtensionManifest({ main: './out/extension.js', capabilities: { agentsWindow: { supported: false } }, contributes: { commands: [] } })),
+		], [true, false, true]);
 	});
 });
 
