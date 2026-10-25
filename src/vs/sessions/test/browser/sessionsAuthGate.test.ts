@@ -12,7 +12,7 @@ suite('Sessions - Auth Gate', () => {
 
 	ensureNoDisposablesAreLeakedInTestSuite();
 
-	test('blocking sign-in allows the opt-in or provider initialization without GitHub', () => {
+	test('the opt-in opens the window unconditionally; otherwise only provider initialization without GitHub does', () => {
 		assert.deepStrictEqual({
 			featureDisabled: resolveSignedOutWindowGate(false, [SessionTypeAuthRequirement.None]),
 			featureDisabledBeforeProviders: resolveSignedOutWindowGate(false, []),
@@ -27,8 +27,8 @@ suite('Sessions - Auth Gate', () => {
 			featureDisabledBeforeProviders: SignedOutWindowGate.ForceGitHubSignIn,
 			initializesWithoutGitHub: SignedOutWindowGate.Proceed,
 			initializationBeforeProviders: SignedOutWindowGate.Unresolved,
-			providersUnresolved: SignedOutWindowGate.Unresolved,
-			allRequireGitHub: SignedOutWindowGate.ForceGitHubSignIn,
+			providersUnresolved: SignedOutWindowGate.Proceed,
+			allRequireGitHub: SignedOutWindowGate.Proceed,
 			nativeProvider: SignedOutWindowGate.Proceed,
 			nativeProviderInitializing: SignedOutWindowGate.Proceed,
 		});

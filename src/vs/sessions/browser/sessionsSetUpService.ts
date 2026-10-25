@@ -451,7 +451,9 @@ class SessionsSetUpWidget extends Disposable {
 
 				await this._showWelcomeDialog();
 			} else {
-				if (this._canInitializeWithoutGitHub()) {
+				// First launch while signed out: open the window directly when the gate
+				// allows it instead of showing the sign-in dialog at all.
+				if (this._canInitializeWithoutGitHub() || this._allowSignedOutWhenUsable.get()) {
 					this.storageService.store(WELCOME_COMPLETE_KEY, true, StorageScope.APPLICATION, StorageTarget.MACHINE);
 					this.serviceMarkDone();
 					this.dialogRef.clear();
