@@ -8,6 +8,7 @@ import { EditTelemetryContribution } from './editTelemetryContribution.js';
 import { EDIT_TELEMETRY_SETTING_ID, AI_STATS_SETTING_ID } from './settingIds.js';
 import { Extensions as ConfigurationExtensions, IConfigurationRegistry } from '../../../../platform/configuration/common/configurationRegistry.js';
 import { localize } from '../../../../nls.js';
+import product from '../../../../platform/product/common/product.js';
 import { EDIT_TELEMETRY_DETAILS_SETTING_ID, EDIT_TELEMETRY_SHOW_DECORATIONS, EDIT_TELEMETRY_SHOW_STATUS_BAR } from './settings.js';
 import { registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
 import { InstantiationType, registerSingleton } from '../../../../platform/instantiation/common/extensions.js';
@@ -28,6 +29,7 @@ configurationRegistry.registerConfiguration({
 		[EDIT_TELEMETRY_SETTING_ID]: {
 			markdownDescription: localize('telemetry.editStats.enabled', "Controls whether to enable telemetry for edit statistics (only sends statistics if general telemetry is enabled)."),
 			type: 'boolean',
+			included: product.enableTelemetry === true,
 			default: false,
 			tags: ['experimental'],
 			experiment: {
@@ -47,6 +49,7 @@ configurationRegistry.registerConfiguration({
 		[EDIT_TELEMETRY_DETAILS_SETTING_ID]: {
 			markdownDescription: localize('telemetry.editStats.detailed.enabled', "Controls whether to enable telemetry for detailed edit statistics (only sends statistics if general telemetry is enabled)."),
 			type: 'boolean',
+			included: product.enableTelemetry === true,
 			default: false,
 			tags: ['experimental'],
 			experiment: {
@@ -56,12 +59,14 @@ configurationRegistry.registerConfiguration({
 		[EDIT_TELEMETRY_SHOW_STATUS_BAR]: {
 			markdownDescription: localize('telemetry.editStats.showStatusBar', "Controls whether to show the status bar for edit telemetry."),
 			type: 'boolean',
+			included: product.enableTelemetry === true,
 			default: false,
 			tags: ['experimental'],
 		},
 		[EDIT_TELEMETRY_SHOW_DECORATIONS]: {
 			markdownDescription: localize('telemetry.editStats.showDecorations', "Controls whether to show decorations for edit telemetry."),
 			type: 'boolean',
+			included: product.enableTelemetry === true,
 			default: false,
 			tags: ['experimental'],
 		},

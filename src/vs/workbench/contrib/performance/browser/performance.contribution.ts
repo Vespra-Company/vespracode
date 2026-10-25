@@ -20,6 +20,7 @@ import { IEditorService } from '../../../services/editor/common/editorService.js
 import { LifecyclePhase } from '../../../services/lifecycle/common/lifecycle.js';
 import { InputLatencyContrib } from './inputLatencyContrib.js';
 import { PerfviewContrib, PerfviewInput } from './perfviewEditor.js';
+import product from '../../../../platform/product/common/product.js';
 
 // -- startup performance view
 
@@ -150,6 +151,7 @@ Registry.as<IConfigurationRegistry>(ConfigExt.Configuration).registerConfigurati
 	properties: {
 		'telemetry.performance.inputLatencySamplingProbability': {
 			type: 'number',
+			included: product.enableTelemetry === true,
 			default: 0,
 			minimum: 0,
 			maximum: 1,
