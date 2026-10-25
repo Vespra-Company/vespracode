@@ -17,6 +17,7 @@ type ExtensionGalleryConfig = {
 	readonly extensionUrlTemplate: string;
 	readonly controlUrl: string;
 	readonly nlsBaseUrl: string;
+	readonly verifySignature?: boolean;
 };
 
 export class ExtensionGalleryManifestService extends Disposable implements IExtensionGalleryManifestService {
@@ -220,7 +221,8 @@ export class ExtensionGalleryManifestService extends Disposable implements IExte
 					flags,
 				},
 				signing: {
-					allPublicRepositorySigned: true,
+					// Signatures that cannot be verified must not be required either.
+					allPublicRepositorySigned: extensionsGallery.verifySignature !== false,
 				}
 			}
 		};

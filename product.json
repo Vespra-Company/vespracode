@@ -246,6 +246,19 @@
 		"GitHub.copilot-chat"
 	],
 	"sessionsWindowAllowedExtensions": [],
+	"extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"itemUrl": "https://open-vsx.org/vscode/item",
+		"publisherUrl": "https://open-vsx.org/namespace",
+		"resourceUrlTemplate": "https://open-vsx.org/vscode/unpkg/{publisher}/{name}/{version}/{path}",
+		"extensionUrlTemplate": "https://open-vsx.org/vscode/gallery/{publisher}/{name}/latest",
+		"controlUrl": "",
+		"nlsBaseUrl": "",
+		"verifySignature": false
+	},
+	"linkProtectionTrustedDomains": [
+		"https://open-vsx.org"
+	],
 	"enableTelemetry": false,
 	"enabledTelemetryLevels": {
 		"error": false,

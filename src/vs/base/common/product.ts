@@ -146,12 +146,22 @@ export interface IProductConfiguration {
 
 	readonly extensionsGallery?: {
 		readonly serviceUrl: string;
+		readonly itemUrl?: string;
+		readonly publisherUrl?: string;
 		readonly controlUrl: string;
 		readonly extensionUrlTemplate: string;
 		readonly resourceUrlTemplate: string;
 		readonly nlsBaseUrl: string;
 		readonly accessSKUs?: string[];
 		readonly accessScopes?: string[];
+		/**
+		 * Whether extension signatures from this gallery can be verified. Galleries
+		 * whose signatures are not issued by the Visual Studio Marketplace (for
+		 * example Open VSX) cannot be checked by `@vscode/vsce-sign`, so set this
+		 * to `false` to install from them without requiring a verified signature.
+		 * Defaults to `true`.
+		 */
+		readonly verifySignature?: boolean;
 	};
 
 	readonly agentSdks?: { readonly [packageId: string]: IAgentSdkProductConfig };
