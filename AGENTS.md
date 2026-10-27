@@ -4,6 +4,8 @@ This file provides instructions for AI coding agents working with the VS Code co
 
 For detailed project overview, architecture, coding guidelines, and validation steps, see the [Copilot Instructions](.github/copilot-instructions.md).
 
+This repository is Vespra Code, a fork of Code OSS. For everything fork-specific (how it differs from upstream, build and run, fork rules, workflow, decisions and roadmap), read [docs/vespra/AGENT_ONBOARDING.md](docs/vespra/AGENT_ONBOARDING.md) before starting work.
+
 ## Cloud Agent
 
 Agent shells put `/exec-daemon/node` (Node 22) ahead of the Node version pinned in `.nvmrc`. That toolchain lives in `/usr/local/bin`. Run `export PATH="/usr/local/bin:$PATH"` and check `node -v` before `npm` commands.
