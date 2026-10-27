@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IConfigurationService } from '../../../../platform/configuration/common/configuration.js';
-import { IExtensionManifest, ExtensionUntrustedWorkspaceSupportType, ExtensionVirtualWorkspaceSupportType, IExtensionIdentifier, ALL_EXTENSION_KINDS, ExtensionIdentifierMap, IExtensionContributions, EXTENSIONS_ENABLE_AGENTS_WINDOW_CAPABILITY } from '../../../../platform/extensions/common/extensions.js';
+import { IExtensionManifest, ExtensionUntrustedWorkspaceSupportType, ExtensionVirtualWorkspaceSupportType, IExtensionIdentifier, ALL_EXTENSION_KINDS, ExtensionIdentifierMap, EXTENSIONS_ENABLE_AGENTS_WINDOW_CAPABILITY } from '../../../../platform/extensions/common/extensions.js';
 import { ExtensionKind } from '../../../../platform/environment/common/environment.js';
 import { ExtensionsRegistry } from './extensionsRegistry.js';
 import { getGalleryExtensionId } from '../../../../platform/extensionManagement/common/extensionManagementUtil.js';
@@ -23,19 +23,6 @@ import { isWeb } from '../../../../base/common/platform.js';
 export const IExtensionManifestPropertiesService = createDecorator<IExtensionManifestPropertiesService>('extensionManifestPropertiesService');
 
 export const EXTENSIONS_SUPPORT_AGENTS_WINDOW = 'extensions.supportAgentsWindow';
-
-const SESSIONS_WINDOW_ALLOWED_CONTRIBUTION_POINTS: ReadonlySet<keyof IExtensionContributions> = new Set([
-	'themes',
-	'iconThemes',
-	'productIconThemes',
-	'colors',
-	'keybindings',
-	'jsonValidation',
-	'jsonValidationRegistry',
-	'localizations',
-	'grammars',
-	'languages',
-]);
 
 export interface IExtensionManifestPropertiesService {
 	readonly _serviceBrand: undefined;
@@ -112,14 +99,11 @@ export class ExtensionManifestPropertiesService extends Disposable implements IE
 			return !contributes?.debuggers && !contributes?.views && !contributes?.viewsContainers && !contributes?.walkthroughs;
 		}
 
-		// In the sessions window only extensions that have no code are currently allowed to run
-		if (manifest.main || manifest.browser) {
-			return false;
-		}
-
-		// Only allow extensions that contribute to themes and other declarative, non-executing contribution points
-		const contributionPoints = Object.keys(manifest.contributes || {}) as Array<keyof IExtensionContributions>;
-		return contributionPoints.every(point => SESSIONS_WINDOW_ALLOWED_CONTRIBUTION_POINTS.has(point));
+		// User-installed extensions run in the Agents window unless they opt out
+		// through `capabilities.agentsWindow` or the user disables them via the
+		// `extensions.supportAgentsWindow` setting. Views they contribute are
+		// simply not shown there.
+		return true;
 	}
 
 	prefersExecuteOnUI(manifest: IExtensionManifest): boolean {
