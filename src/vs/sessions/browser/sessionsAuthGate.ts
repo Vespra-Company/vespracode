@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { Event } from '../../base/common/event.js';
+import { isWeb } from '../../base/common/platform.js';
 import { IObservable, observableFromEvent } from '../../base/common/observable.js';
 import { AgentHostAllowSignedOutWhenUsableSettingId } from '../../platform/agentHost/common/agentService.js';
 import type { IConfigurationService } from '../../platform/configuration/common/configuration.js';
@@ -66,7 +67,15 @@ export function resolveSignedOutWindowGate(allowSignedOutWhenUsable: boolean, au
 	if (canInitializeWithoutGitHub) {
 		return authRequirements.length === 0 ? SignedOutWindowGate.Unresolved : SignedOutWindowGate.Proceed;
 	}
-	return SignedOutWindowGate.ForceGitHubSignIn;
+	if (isWeb) {
+		return SignedOutWindowGate.ForceGitHubSignIn;
+	}
+	if (authRequirements.length === 0) {
+		return SignedOutWindowGate.Unresolved;
+	}
+	return authRequirements.some(requirement => requirement !== SessionTypeAuthRequirement.GitHub)
+		? SignedOutWindowGate.Proceed
+		: SignedOutWindowGate.ForceGitHubSignIn;
 }
 
 /** Whether the GitHub workspace group should offer sign-in. */

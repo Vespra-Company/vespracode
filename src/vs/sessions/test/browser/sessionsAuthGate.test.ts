@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import assert from 'assert';
+import { isWeb } from '../../../base/common/platform.js';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../base/test/common/utils.js';
 import { ConditionalAuthState, conditionalAuthState, resolveSignedOutWindowGate, shouldShowGitHubWorkspaceGroupSignIn, SignedOutWindowGate } from '../../browser/sessionsAuthGate.js';
 import { SessionTypeAuthRequirement } from '../../services/sessions/common/session.js';
@@ -12,10 +13,11 @@ suite('Sessions - Auth Gate', () => {
 
 	ensureNoDisposablesAreLeakedInTestSuite();
 
-	test('the opt-in opens the window unconditionally; otherwise only provider initialization without GitHub does', () => {
+	test('the opt-in opens the window unconditionally; otherwise upstream native-provider rules apply', () => {
 		assert.deepStrictEqual({
-			featureDisabled: resolveSignedOutWindowGate(false, [SessionTypeAuthRequirement.None]),
+			featureDisabledNative: resolveSignedOutWindowGate(false, [SessionTypeAuthRequirement.None]),
 			featureDisabledBeforeProviders: resolveSignedOutWindowGate(false, []),
+			featureDisabledAllGitHub: resolveSignedOutWindowGate(false, [SessionTypeAuthRequirement.GitHub, SessionTypeAuthRequirement.GitHub]),
 			initializesWithoutGitHub: resolveSignedOutWindowGate(false, [SessionTypeAuthRequirement.GitHub], true),
 			initializationBeforeProviders: resolveSignedOutWindowGate(false, [], true),
 			providersUnresolved: resolveSignedOutWindowGate(true, []),
@@ -23,8 +25,9 @@ suite('Sessions - Auth Gate', () => {
 			nativeProvider: resolveSignedOutWindowGate(true, [SessionTypeAuthRequirement.GitHub, SessionTypeAuthRequirement.None]),
 			nativeProviderInitializing: resolveSignedOutWindowGate(true, [SessionTypeAuthRequirement.GitHub, SessionTypeAuthRequirement.Unusable]),
 		}, {
-			featureDisabled: SignedOutWindowGate.ForceGitHubSignIn,
-			featureDisabledBeforeProviders: SignedOutWindowGate.ForceGitHubSignIn,
+			featureDisabledNative: isWeb ? SignedOutWindowGate.ForceGitHubSignIn : SignedOutWindowGate.Proceed,
+			featureDisabledBeforeProviders: isWeb ? SignedOutWindowGate.ForceGitHubSignIn : SignedOutWindowGate.Unresolved,
+			featureDisabledAllGitHub: SignedOutWindowGate.ForceGitHubSignIn,
 			initializesWithoutGitHub: SignedOutWindowGate.Proceed,
 			initializationBeforeProviders: SignedOutWindowGate.Unresolved,
 			providersUnresolved: SignedOutWindowGate.Proceed,
