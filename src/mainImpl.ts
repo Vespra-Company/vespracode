@@ -469,6 +469,12 @@ function createDefaultArgvConfigSync(argvConfigPath: string): void {
 			'	// Use software rendering instead of hardware accelerated rendering.',
 			'	// This can help in cases where you see rendering issues in VS Code.',
 			'	// "disable-hardware-acceleration": true',
+			...(process.platform === 'linux' ? [
+				'',
+				'	// Prefer basic secret storage when no OS keyring is available (common on',
+				'	// headless / cloud Linux). Avoids the startup keyring dialog.',
+				'	"password-store": "basic"',
+			] : []),
 			'}'
 		];
 

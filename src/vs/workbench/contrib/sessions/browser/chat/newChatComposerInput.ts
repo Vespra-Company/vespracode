@@ -49,7 +49,7 @@ export function hasSendableNewChatContent(query: string, attachments: readonly I
 }
 
 /** The new-session composer's prompt placeholder. */
-export const NEW_SESSION_PROMPT_PLACEHOLDER = localize('sessionsChatInput.placeholder.pitchYourIdea', "Pitch your idea");
+export const NEW_SESSION_PROMPT_PLACEHOLDER = localize('sessionsChatInput.placeholder.describeBuild', "Describe what you want to build");
 
 /**
  * The labeled pickers in `container`, for responsive layouts that compact them

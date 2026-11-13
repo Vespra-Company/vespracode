@@ -24,22 +24,18 @@ function getDefaultWelcomePhrases(accountName: string | undefined): string[] {
 		? [
 			localize('newSession.welcome.named.building', "What are we building, {0}?", accountName),
 			// allow-any-unicode-next-line
-			localize('newSession.welcome.named.move', "What’s the move, {0}?", accountName),
-			// allow-any-unicode-next-line
-			localize('newSession.welcome.named.cook', "Let’s cook, {0}", accountName),
-			localize('newSession.welcome.named.lockIn', "Time to lock in, {0}", accountName),
-			// allow-any-unicode-next-line
-			localize('newSession.welcome.named.ship', "Let’s ship something, {0}", accountName),
+			localize('newSession.welcome.named.next', "What’s next, {0}?", accountName),
+			localize('newSession.welcome.named.start', "Where should we start, {0}?", accountName),
+			localize('newSession.welcome.named.ready', "Ready when you are, {0}", accountName),
+			localize('newSession.welcome.named.ship', "What should we ship, {0}?", accountName),
 		]
 		: [
 			localize('newSession.welcome.building', "What are we building?"),
 			// allow-any-unicode-next-line
-			localize('newSession.welcome.move', "What’s the move?"),
-			// allow-any-unicode-next-line
-			localize('newSession.welcome.cook', "Let’s cook"),
-			localize('newSession.welcome.lockIn', "Time to lock in"),
-			// allow-any-unicode-next-line
-			localize('newSession.welcome.ship', "Let’s ship something"),
+			localize('newSession.welcome.next', "What’s next?"),
+			localize('newSession.welcome.start', "Where should we start?"),
+			localize('newSession.welcome.ready', "Ready when you are"),
+			localize('newSession.welcome.ship', "What should we ship?"),
 		];
 }
 

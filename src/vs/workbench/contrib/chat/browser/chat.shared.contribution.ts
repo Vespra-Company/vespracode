@@ -628,6 +628,8 @@ configurationRegistry.registerConfiguration({
 			scope: ConfigurationScope.APPLICATION,
 			description: nls.localize('chat.tips.enabled', "Controls whether tips are shown above user messages in chat. New tips are added frequently, so this is a helpful way to stay up to date with the latest features."),
 			default: true,
+			// Keep the Agents window first paint uncluttered; editor chat still shows tips by default.
+			agentsWindow: { default: false },
 		},
 		'chat.upvoteAnimation': {
 			type: 'string',
