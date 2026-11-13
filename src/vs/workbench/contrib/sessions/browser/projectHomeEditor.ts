@@ -8,7 +8,9 @@ import * as dom from '../../../../base/browser/dom.js';
 import { Button } from '../../../../base/browser/ui/button/button.js';
 import { CancellationToken } from '../../../../base/common/cancellation.js';
 import { Codicon } from '../../../../base/common/codicons.js';
+import { fromNow } from '../../../../base/common/date.js';
 import { DisposableStore } from '../../../../base/common/lifecycle.js';
+import { autorun } from '../../../../base/common/observable.js';
 import { basename } from '../../../../base/common/resources.js';
 import { ThemeIcon } from '../../../../base/common/themables.js';
 import { URI } from '../../../../base/common/uri.js';
@@ -24,7 +26,10 @@ import { IEditorOpenContext } from '../../../common/editor.js';
 import { IEditorGroup } from '../../../services/editor/common/editorGroupsService.js';
 import { ADD_PROJECT_KNOWLEDGE_COMMAND_ID, DELETE_PROJECT_COMMAND_ID, NEW_CHAT_IN_PROJECT_COMMAND_ID, REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, RENAME_PROJECT_COMMAND_ID } from './projectCommands.js';
 import { ProjectHomeEditorInput } from './projectHomeEditorInput.js';
-import { IProjectsService, IVespraProject } from '../common/projects.js';
+import { ISessionsService } from './sessionsService.js';
+import { IProjectsService, IVespraProject, resolveProjectSessions } from '../common/projects.js';
+import { ISessionsManagementService } from '../common/sessionsManagement.js';
+import { ISession } from '../../../services/sessions/common/session.js';
 
 interface IProjectListItem {
 	readonly title: string;
@@ -33,11 +38,18 @@ interface IProjectListItem {
 	readonly action?: { readonly label: string; readonly run: () => void; readonly danger?: boolean };
 }
 
+interface IProjectListItemElements {
+	readonly title: HTMLElement;
+	readonly detail: HTMLElement | undefined;
+	readonly action: HTMLButtonElement | undefined;
+}
+
 export class ProjectHomeEditor extends EditorPane {
 	static readonly ID = 'sessions.editor.projectHome';
 
 	private root: HTMLElement | undefined;
 	private readonly renderDisposables = this._register(new DisposableStore());
+	private renderGeneration = 0;
 
 	constructor(
 		group: IEditorGroup,
@@ -46,9 +58,16 @@ export class ProjectHomeEditor extends EditorPane {
 		@IStorageService storageService: IStorageService,
 		@IProjectsService private readonly projectsService: IProjectsService,
 		@ICommandService private readonly commandService: ICommandService,
+		@ISessionsManagementService private readonly sessionsManagementService: ISessionsManagementService,
+		@ISessionsService private readonly sessionsService: ISessionsService,
 	) {
 		super(ProjectHomeEditor.ID, group, telemetryService, themeService, storageService);
 		this._register(this.projectsService.onDidChange(() => this.render()));
+		this._register(this.sessionsManagementService.onDidChangeSessions(e => {
+			if (this.affectsShownProject(e.added) || this.affectsShownProject(e.removed)) {
+				this.render();
+			}
+		}));
 	}
 
 	protected override createEditor(parent: HTMLElement): void {
@@ -66,10 +85,20 @@ export class ProjectHomeEditor extends EditorPane {
 		// The home view sizes with its content.
 	}
 
+	private affectsShownProject(sessions: readonly ISession[]): boolean {
+		const input = this.input;
+		if (sessions.length === 0 || !(input instanceof ProjectHomeEditorInput)) {
+			return false;
+		}
+		const members = new Set(this.projectsService.getSessionIds(input.projectId));
+		return sessions.some(session => members.has(session.sessionId) || session.previousIdentities?.some(previous => members.has(previous.sessionId)));
+	}
+
 	private render(): void {
 		if (!this.root) {
 			return;
 		}
+		this.renderGeneration++;
 		this.renderDisposables.clear();
 		dom.clearNode(this.root);
 		const input = this.input;
@@ -89,8 +118,10 @@ export class ProjectHomeEditor extends EditorPane {
 		if (!this.root) {
 			return;
 		}
+		const generation = this.renderGeneration;
 		const knowledge = await this.projectsService.listKnowledgeFiles(project);
-		if (!this.root || this.renderDisposables.isDisposed) {
+		// A newer render may have started while knowledge files were listed.
+		if (!this.root || this.renderDisposables.isDisposed || generation !== this.renderGeneration) {
 			return;
 		}
 
@@ -155,23 +186,7 @@ export class ProjectHomeEditor extends EditorPane {
 
 		this.renderKnowledge(sections, project, knowledge);
 
-		const sessionIds = this.projectsService.getSessionIds(project.id);
-		this.renderItems(
-			sections,
-			localize('project.sessions', "Sessions"),
-			Codicon.commentDiscussion,
-			sessionIds.map(id => ({
-				title: id,
-				icon: Codicon.comment,
-			})),
-			sessionIds.length === 0
-				? {
-					empty: localize('project.sessionsEmpty', "No chats in this project yet."),
-					actionLabel: localize('project.sessionsEmptyCta', "Start a chat"),
-					action: () => void this.commandService.executeCommand(NEW_CHAT_IN_PROJECT_COMMAND_ID, project.id),
-				}
-				: undefined,
-		);
+		this.renderSessions(sections, project);
 
 		if (project.mcpServerIds.length > 0) {
 			this.renderItems(sections, localize('project.mcp', "MCP"), Codicon.server, project.mcpServerIds.map(id => ({
@@ -209,6 +224,61 @@ export class ProjectHomeEditor extends EditorPane {
 		}
 	}
 
+	private renderSessions(container: HTMLElement, project: IVespraProject): void {
+		const { sessions, unresolvedIds } = resolveProjectSessions(this.projectsService.getSessionIds(project.id), this.sessionsManagementService.getSessions());
+		if (sessions.length === 0 && unresolvedIds.length === 0) {
+			this.renderItems(container, localize('project.sessions', "Sessions"), Codicon.commentDiscussion, [], {
+				empty: localize('project.sessionsEmpty', "No chats in this project yet."),
+				actionLabel: localize('project.sessionsEmptyCta', "Start a chat"),
+				action: () => void this.commandService.executeCommand(NEW_CHAT_IN_PROJECT_COMMAND_ID, project.id),
+			});
+			return;
+		}
+
+		const section = this.renderSection(container, localize('project.sessions', "Sessions"), Codicon.commentDiscussion);
+		if (sessions.length > 0) {
+			const list = dom.append(section, dom.$('ul'));
+			for (const session of sessions) {
+				const elements = this.renderItem(list, {
+					title: '',
+					detail: '',
+					icon: session.icon,
+					action: {
+						label: localize('project.openSession', "Open"),
+						run: () => void this.sessionsService.openSession(session.resource),
+					},
+				});
+				this.renderDisposables.add(autorun(reader => {
+					const title = session.title.read(reader) || localize('project.untitledSession', "Untitled Session");
+					const detail = session.isArchived.read(reader)
+						? localize('project.sessionArchived', "Archived")
+						: fromNow(session.updatedAt.read(reader), true);
+					elements.title.textContent = title;
+					elements.title.title = `${title} — ${detail}`;
+					if (elements.detail) {
+						elements.detail.textContent = detail;
+						elements.detail.title = detail;
+					}
+					elements.action?.setAttribute('aria-label', localize('project.openSessionAria', "Open {0}", title));
+				}));
+			}
+		}
+		if (unresolvedIds.length > 0) {
+			const unavailable = dom.append(section, dom.$('p.empty'));
+			unavailable.textContent = unresolvedIds.length === 1
+				? localize('project.sessionUnavailable', "1 session isn't available right now.")
+				: localize('project.sessionsUnavailable', "{0} sessions aren't available right now.", unresolvedIds.length);
+		}
+	}
+
+	private renderSection(container: HTMLElement, heading: string, icon: ThemeIcon): HTMLElement {
+		const section = dom.append(container, dom.$('section.vespra-project-section'));
+		const title = dom.append(section, dom.$('h2'));
+		dom.append(title, dom.$(ThemeIcon.asCSSSelector(icon)));
+		dom.append(title, dom.$('span')).textContent = heading;
+		return section;
+	}
+
 	private renderItems(
 		container: HTMLElement,
 		heading: string,
@@ -216,10 +286,7 @@ export class ProjectHomeEditor extends EditorPane {
 		items: readonly IProjectListItem[],
 		emptyState?: { readonly empty: string; readonly actionLabel?: string; readonly action?: () => void },
 	): void {
-		const section = dom.append(container, dom.$('section.vespra-project-section'));
-		const title = dom.append(section, dom.$('h2'));
-		dom.append(title, dom.$(ThemeIcon.asCSSSelector(icon)));
-		dom.append(title, dom.$('span')).textContent = heading;
+		const section = this.renderSection(container, heading, icon);
 
 		if (items.length === 0) {
 			if (emptyState?.action && emptyState.actionLabel) {
@@ -239,7 +306,7 @@ export class ProjectHomeEditor extends EditorPane {
 		}
 	}
 
-	private renderItem(list: HTMLElement, item: IProjectListItem): void {
+	private renderItem(list: HTMLElement, item: IProjectListItem): IProjectListItemElements {
 		const row = dom.append(list, dom.$('li'));
 		const icon = dom.append(row, dom.$(`${ThemeIcon.asCSSSelector(item.icon)}.item-icon`));
 		icon.setAttribute('aria-hidden', 'true');
@@ -247,17 +314,17 @@ export class ProjectHomeEditor extends EditorPane {
 		const title = dom.append(body, dom.$('span.item-title'));
 		title.textContent = item.title;
 		title.title = item.detail ? `${item.title} — ${item.detail}` : item.title;
-		if (item.detail) {
-			const detail = dom.append(body, dom.$('span.item-detail'));
+		let detail: HTMLElement | undefined;
+		if (item.detail !== undefined) {
+			detail = dom.append(body, dom.$('span.item-detail'));
 			detail.textContent = item.detail;
 			detail.title = item.detail;
 		}
-		if (item.action) {
-			this.renderAction(row, item.action.label, item.action.run, item.action.danger);
-		}
+		const action = item.action ? this.renderAction(row, item.action.label, item.action.run, item.action.danger) : undefined;
+		return { title, detail, action };
 	}
 
-	private renderAction(container: HTMLElement, label: string, run: () => void, danger = false): void {
+	private renderAction(container: HTMLElement, label: string, run: () => void, danger = false): HTMLButtonElement {
 		const button = dom.append(container, dom.$('button.vespra-project-action')) as HTMLButtonElement;
 		button.type = 'button';
 		button.textContent = label;
@@ -265,6 +332,7 @@ export class ProjectHomeEditor extends EditorPane {
 			button.classList.add('danger');
 		}
 		this.renderDisposables.add(dom.addDisposableListener(button, dom.EventType.CLICK, run));
+		return button;
 	}
 
 	private pathDetail(uri: URI): string | undefined {

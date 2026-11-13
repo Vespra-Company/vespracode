@@ -7,6 +7,7 @@ import { Event } from '../../../../base/common/event.js';
 import { joinPath } from '../../../../base/common/resources.js';
 import { URI } from '../../../../base/common/uri.js';
 import { createDecorator } from '../../../../platform/instantiation/common/instantiation.js';
+import { ISession } from '../../../services/sessions/common/session.js';
 import { IChatRequestVariableEntry } from '../../chat/common/attachments/chatVariableEntries.js';
 import { IEnablementModel } from '../../chat/common/enablement.js';
 
@@ -128,6 +129,47 @@ export function planPlaceholderGroupMigration(groups: readonly IPlaceholderGroup
 		}
 	}
 	return migrations;
+}
+
+export type IProjectSessionCandidate = Pick<ISession, 'sessionId' | 'previousIdentities' | 'updatedAt'>;
+
+export interface IResolvedProjectSessions<T extends IProjectSessionCandidate> {
+	/** Loaded member sessions, most recently updated first. */
+	readonly sessions: readonly T[];
+	/** Member ids that no loaded session claims, for example while a provider is still starting. */
+	readonly unresolvedIds: readonly string[];
+}
+
+/**
+ * Matches project membership ids to loaded sessions. Membership is keyed by
+ * session id, so a session that was re-identified still matches through
+ * its previous identities.
+ */
+export function resolveProjectSessions<T extends IProjectSessionCandidate>(sessionIds: readonly string[], loaded: readonly T[]): IResolvedProjectSessions<T> {
+	const byId = new Map<string, T>();
+	for (const session of loaded) {
+		byId.set(session.sessionId, session);
+	}
+	for (const session of loaded) {
+		for (const previous of session.previousIdentities ?? []) {
+			if (!byId.has(previous.sessionId)) {
+				byId.set(previous.sessionId, session);
+			}
+		}
+	}
+
+	const sessions: T[] = [];
+	const unresolvedIds: string[] = [];
+	for (const id of sessionIds) {
+		const session = byId.get(id);
+		if (!session) {
+			unresolvedIds.push(id);
+		} else if (!sessions.includes(session)) {
+			sessions.push(session);
+		}
+	}
+	sessions.sort((a, b) => b.updatedAt.get().getTime() - a.updatedAt.get().getTime());
+	return { sessions, unresolvedIds };
 }
 
 export function serializeProjectManifest(project: IVespraProject, workspace: URI): string {

@@ -37,11 +37,13 @@ New feature branches: `cursor/<name>-cab8` off the preferred base for that run (
 
 ## Cursor Project setup checklist
 
-1. **Environment** — Use the existing Vespra Cloud Agent environment for this repo (Node from `/usr/local/bin`, 16G swap for `npm run compile`). Confirm:
+1. **Environment** — Use the existing Vespra Cloud Agent environment for this repo (16G swap for the 8GB compile heap). Use the Node version pinned in `.nvmrc` and pnpm only (never npm or yarn); `package.json` pins the pnpm version through corepack. `/usr/local/bin` may hold an older Node than `.nvmrc`, so prefer nvm:
    ```bash
-   export PATH="/usr/local/bin:$PATH"
-   node -v   # expect Node 22+ from /usr/local/bin, not only .nvmrc
+   export NVM_DIR="$HOME/.nvm"; . "$NVM_DIR/nvm.sh"; nvm install "$(cat .nvmrc)"
+   export COREPACK_ENABLE_DOWNLOAD_PROMPT=0; corepack enable
+   node -v; pnpm -v   # must match .nvmrc and package.json "packageManager"
    ```
+   Run `pnpm install` when `node_modules` is missing, was installed by npm (no `node_modules/.modules.yaml`), or the lockfile changed.
 2. **Branch** — Fetch and check out the polish tip:
    ```bash
    git fetch origin cursor/vespra-projects-polish-cab8
@@ -62,7 +64,7 @@ New feature branches: `cursor/<name>-cab8` off the preferred base for that run (
      --remote-debugging-port=47901 \
      --password-store=basic
    ```
-5. **Drive UI** — Playwright over CDP (`http://127.0.0.1:47901`) or the launch skill under `.claude/skills/launch/` for throwaway profiles.
+5. **Drive UI** — Playwright over CDP (`http://127.0.0.1:47901`) or the tracked launch skill under `.agents/skills/launch/` for throwaway profiles (`.claude/skills/launch` is only a symlink that `pnpm install` creates). Skip that skill's GitHub sign-in step; the Agents window opens without sign-in.
 
 Leave Agents running after verification so a human or follow-up agent can continue from the same window. Kill only by concrete PID, never `pkill -f`.
 
@@ -78,7 +80,7 @@ Leave Agents running after verification so a human or follow-up agent can contin
 | Commands | `src/vs/workbench/contrib/sessions/browser/projectCommands.ts` |
 | Contribution / actions | `src/vs/sessions/contrib/sessions/browser/projects.contribution.ts` |
 | Mount in Agents sidebar | `src/vs/workbench/contrib/sessions/browser/views/sessionsView.ts` (`.agent-sessions-projects`) |
-| Unit tests | `src/vs/workbench/contrib/sessions/test/common/projects.test.ts` |
+| Unit tests | `src/vs/workbench/contrib/sessions/test/browser/projects.test.ts` |
 
 Profile storage key: `sessions.projects.relayContexts` (`StorageScope.PROFILE`).
 
@@ -100,22 +102,22 @@ Workspace companion files (when a folder is linked):
 - Knowledge listed as **files** (not folder path); Remove deletes the file under a tracked folder
 - Home: title + Rename/Delete meta, primary New chat, secondary Customizations, section cards
 - Sidebar: quieter New, folder icon, session count badge, active selection, empty CTA
+- Home Sessions: live session titles and last-updated time from `ISessionsManagementService`, newest first, with Open; ids no loaded session claims collapse into one "not available" line
 - Tests: `./scripts/test.sh --runGlob '**/projects.test.js'`
 
 ## Good next work in this Cursor Project
 
 Prioritize product gaps over more CSS:
 
-1. **Session list quality** — Home Sessions section still shows raw session ids; resolve titles from `ISessionsManagementService`.
-2. **Re-link workspace** — Creating without a folder leaves Workspace empty; add “Choose folder” on the home card.
-3. **Merge Relay theme** — Land #19 (or rebase) so Projects polish and Relay defaults ship together in one Agents profile.
-4. **Context menu on sidebar rows** — Rename / Delete / Open without opening home first.
-5. **Gateway sync path** — Still future; see discussion doc “Integrations to build on top”.
+1. **Re-link workspace** — Creating without a folder leaves Workspace empty; add “Choose Folder” on the home card.
+2. **Merge Relay theme** — Land #19 (or rebase) so Projects polish and Relay defaults ship together in one Agents profile.
+3. **Context menu on sidebar rows** — Rename / Delete / Open without opening home first.
+4. **Gateway sync path** — Still future; see discussion doc “Integrations to build on top”.
 
 ## Verification recipe (Cloud Agent)
 
 ```bash
-export PATH="/usr/local/bin:$PATH"
+nvm use "$(cat .nvmrc)"
 NODE_OPTIONS='--max-old-space-size=8192' pnpm run compile-client
 ./scripts/test.sh --runGlob '**/projects.test.js'
 # Launch Agents (see above), create or seed a project with /tmp/vespra-project-demo

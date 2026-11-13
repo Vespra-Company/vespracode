@@ -5,6 +5,7 @@
 
 import assert from 'assert';
 import { VSBuffer } from '../../../../../base/common/buffer.js';
+import { constObservable } from '../../../../../base/common/observable.js';
 import { joinPath } from '../../../../../base/common/resources.js';
 import { URI } from '../../../../../base/common/uri.js';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/test/common/utils.js';
@@ -13,7 +14,7 @@ import { InMemoryStorageService } from '../../../../../platform/storage/common/s
 import { ContributionEnablementState, IEnablementModel } from '../../../chat/common/enablement.js';
 import { ITextFileService } from '../../../../services/textfile/common/textfiles.js';
 import { ProjectsService } from '../../browser/projectsService.js';
-import { manifestToProject, parseProjectManifest, planPlaceholderGroupMigration, PROJECT_INSTRUCTIONS_PATH, PROJECT_KNOWLEDGE_DIR, serializeProjectManifest } from '../../common/projects.js';
+import { manifestToProject, parseProjectManifest, planPlaceholderGroupMigration, PROJECT_INSTRUCTIONS_PATH, PROJECT_KNOWLEDGE_DIR, resolveProjectSessions, serializeProjectManifest } from '../../common/projects.js';
 
 suite('Vespra Projects', () => {
 
@@ -39,6 +40,29 @@ suite('Vespra Projects', () => {
 		], new Set());
 		assert.strictEqual(flat[0]?.projectName, 'projects');
 		assert.deepStrictEqual([...flat[0].sessionIds], ['s3']);
+	});
+
+	test('resolves member sessions newest first and reports ids that are not loaded', () => {
+		const session = (sessionId: string, updatedAt: number, previousIds: string[] = []) => ({
+			sessionId,
+			updatedAt: constObservable(new Date(updatedAt)),
+			previousIdentities: previousIds.map(id => ({ sessionId: id, resource: URI.parse(`test:/${id}`) })),
+		});
+		const loaded = [
+			session('local:old', 10),
+			session('local:new', 30),
+			session('agent:renamed', 20, ['cli:legacy', 'local:old']),
+			session('local:other', 40),
+		];
+
+		const resolved = resolveProjectSessions(['local:old', 'cli:legacy', 'missing:1', 'local:new', 'agent:renamed'], loaded);
+		assert.deepStrictEqual({
+			sessions: resolved.sessions.map(item => item.sessionId),
+			unresolvedIds: resolved.unresolvedIds,
+		}, {
+			sessions: ['local:new', 'agent:renamed', 'local:old'],
+			unresolvedIds: ['missing:1'],
+		});
 	});
 
 	test('round-trips a workspace manifest with relative knowledge paths', () => {
