@@ -37,6 +37,7 @@ import { ISessionComparisonService } from '../../common/sessionComparison.js';
 import { ISessionsProvidersService } from '../sessionsProvidersService.js';
 import { getSessionFilterOptions, ISessionFilterOption, sessionFilterKey } from './sessionsListFilters.js';
 import { AICustomizationShortcutsWidget } from '../aiCustomizationShortcutsWidget.js';
+import { ProjectsSidebarWidget } from '../projectsSidebarWidget.js';
 import { AgentHostShortcutsWidget } from '../agentHostShortcutsWidget.js';
 import { Action2, IMenuService, MenuRegistry, registerAction2, SubmenuItemAction } from '../../../../../platform/actions/common/actions.js';
 import { getFlatContextMenuActions, SubmenuEntryActionViewItem } from '../../../../../platform/actions/browser/menuEntryActionViewItem.js';
@@ -314,6 +315,9 @@ export class SessionsView extends ViewPane {
 		const filterChipsContainer = isPhoneLayout(this.layoutService)
 			? DOM.append(sessionsContent, $('.mobile-session-filter-chips-slot'))
 			: undefined;
+
+		const projectsContainer = DOM.append(sessionsContent, $('.agent-sessions-projects'));
+		this._register(this.instantiationService.createInstance(ProjectsSidebarWidget, projectsContainer));
 
 		// Sessions List Control
 		this.sessionsControlContainer = DOM.append(sessionsContent, $('.agent-sessions-control-container'));
