@@ -1,0 +1,1125 @@
+{
+  "iconDefinitions": {
+    "typescript": {
+      "iconPath": "../icons/files/typescript.svg"
+    },
+    "javascript": {
+      "iconPath": "../icons/files/javascript.svg"
+    },
+    "react": {
+      "iconPath": "../icons/files/react.svg"
+    },
+    "python": {
+      "iconPath": "../icons/files/python.svg"
+    },
+    "rust": {
+      "iconPath": "../icons/files/rust.svg"
+    },
+    "go": {
+      "iconPath": "../icons/files/go.svg"
+    },
+    "java": {
+      "iconPath": "../icons/files/java.svg"
+    },
+    "c": {
+      "iconPath": "../icons/files/c.svg"
+    },
+    "cpp": {
+      "iconPath": "../icons/files/cpp.svg"
+    },
+    "csharp": {
+      "iconPath": "../icons/files/csharp.svg"
+    },
+    "ruby": {
+      "iconPath": "../icons/files/ruby.svg"
+    },
+    "php": {
+      "iconPath": "../icons/files/php.svg"
+    },
+    "swift": {
+      "iconPath": "../icons/files/swift.svg"
+    },
+    "kotlin": {
+      "iconPath": "../icons/files/kotlin.svg"
+    },
+    "dart": {
+      "iconPath": "../icons/files/dart.svg"
+    },
+    "lua": {
+      "iconPath": "../icons/files/lua.svg"
+    },
+    "r": {
+      "iconPath": "../icons/files/r.svg"
+    },
+    "shell": {
+      "iconPath": "../icons/files/shell.svg"
+    },
+    "powershell": {
+      "iconPath": "../icons/files/powershell.svg"
+    },
+    "html": {
+      "iconPath": "../icons/files/html.svg"
+    },
+    "css": {
+      "iconPath": "../icons/files/css.svg"
+    },
+    "sass": {
+      "iconPath": "../icons/files/sass.svg"
+    },
+    "vue": {
+      "iconPath": "../icons/files/vue.svg"
+    },
+    "svelte": {
+      "iconPath": "../icons/files/svelte.svg"
+    },
+    "json": {
+      "iconPath": "../icons/files/json.svg"
+    },
+    "yaml": {
+      "iconPath": "../icons/files/yaml.svg"
+    },
+    "toml": {
+      "iconPath": "../icons/files/toml.svg"
+    },
+    "xml": {
+      "iconPath": "../icons/files/xml.svg"
+    },
+    "markdown": {
+      "iconPath": "../icons/files/markdown.svg"
+    },
+    "text": {
+      "iconPath": "../icons/files/text.svg"
+    },
+    "sql": {
+      "iconPath": "../icons/files/sql.svg"
+    },
+    "graphql": {
+      "iconPath": "../icons/files/graphql.svg"
+    },
+    "docker": {
+      "iconPath": "../icons/files/docker.svg"
+    },
+    "terraform": {
+      "iconPath": "../icons/files/terraform.svg"
+    },
+    "git": {
+      "iconPath": "../icons/files/git.svg"
+    },
+    "config": {
+      "iconPath": "../icons/files/config.svg"
+    },
+    "env": {
+      "iconPath": "../icons/files/env.svg"
+    },
+    "lockfile": {
+      "iconPath": "../icons/files/lockfile.svg"
+    },
+    "image": {
+      "iconPath": "../icons/files/image.svg"
+    },
+    "vector": {
+      "iconPath": "../icons/files/vector.svg"
+    },
+    "audio": {
+      "iconPath": "../icons/files/audio.svg"
+    },
+    "video": {
+      "iconPath": "../icons/files/video.svg"
+    },
+    "font": {
+      "iconPath": "../icons/files/font.svg"
+    },
+    "pdf": {
+      "iconPath": "../icons/files/pdf.svg"
+    },
+    "archive": {
+      "iconPath": "../icons/files/archive.svg"
+    },
+    "binary": {
+      "iconPath": "../icons/files/binary.svg"
+    },
+    "test": {
+      "iconPath": "../icons/files/test.svg"
+    },
+    "notebook": {
+      "iconPath": "../icons/files/notebook.svg"
+    },
+    "data": {
+      "iconPath": "../icons/files/data.svg"
+    },
+    "agent": {
+      "iconPath": "../icons/files/agent.svg"
+    },
+    "prompt": {
+      "iconPath": "../icons/files/prompt.svg"
+    },
+    "instructions": {
+      "iconPath": "../icons/files/instructions.svg"
+    },
+    "model": {
+      "iconPath": "../icons/files/model.svg"
+    },
+    "proto": {
+      "iconPath": "../icons/files/proto.svg"
+    },
+    "prisma": {
+      "iconPath": "../icons/files/prisma.svg"
+    },
+    "nix": {
+      "iconPath": "../icons/files/nix.svg"
+    },
+    "elixir": {
+      "iconPath": "../icons/files/elixir.svg"
+    },
+    "scala": {
+      "iconPath": "../icons/files/scala.svg"
+    },
+    "clojure": {
+      "iconPath": "../icons/files/clojure.svg"
+    },
+    "ocaml": {
+      "iconPath": "../icons/files/ocaml.svg"
+    },
+    "make": {
+      "iconPath": "../icons/files/make.svg"
+    },
+    "assembly": {
+      "iconPath": "../icons/files/assembly.svg"
+    },
+    "certificate": {
+      "iconPath": "../icons/files/certificate.svg"
+    },
+    "license": {
+      "iconPath": "../icons/files/license.svg"
+    },
+    "package": {
+      "iconPath": "../icons/files/package.svg"
+    },
+    "mcp": {
+      "iconPath": "../icons/files/mcp.svg"
+    },
+    "file": {
+      "iconPath": "../icons/files/file.svg"
+    },
+    "folder": {
+      "iconPath": "../icons/files/folder.svg"
+    },
+    "folder-open": {
+      "iconPath": "../icons/files/folder-open.svg"
+    },
+    "folder-src": {
+      "iconPath": "../icons/files/folder-src.svg"
+    },
+    "folder-components": {
+      "iconPath": "../icons/files/folder-components.svg"
+    },
+    "folder-tests": {
+      "iconPath": "../icons/files/folder-tests.svg"
+    },
+    "folder-agents": {
+      "iconPath": "../icons/files/folder-agents.svg"
+    },
+    "folder-prompts": {
+      "iconPath": "../icons/files/folder-prompts.svg"
+    },
+    "folder-skills": {
+      "iconPath": "../icons/files/folder-skills.svg"
+    },
+    "folder-tools": {
+      "iconPath": "../icons/files/folder-tools.svg"
+    },
+    "folder-mcp": {
+      "iconPath": "../icons/files/folder-mcp.svg"
+    },
+    "folder-assets": {
+      "iconPath": "../icons/files/folder-assets.svg"
+    },
+    "folder-docs": {
+      "iconPath": "../icons/files/folder-docs.svg"
+    },
+    "folder-config": {
+      "iconPath": "../icons/files/folder-config.svg"
+    },
+    "folder-git": {
+      "iconPath": "../icons/files/folder-git.svg"
+    },
+    "folder-models": {
+      "iconPath": "../icons/files/folder-models.svg"
+    },
+    "typescript-light": {
+      "iconPath": "../icons/files/typescript-light.svg"
+    },
+    "javascript-light": {
+      "iconPath": "../icons/files/javascript-light.svg"
+    },
+    "react-light": {
+      "iconPath": "../icons/files/react-light.svg"
+    },
+    "python-light": {
+      "iconPath": "../icons/files/python-light.svg"
+    },
+    "rust-light": {
+      "iconPath": "../icons/files/rust-light.svg"
+    },
+    "go-light": {
+      "iconPath": "../icons/files/go-light.svg"
+    },
+    "java-light": {
+      "iconPath": "../icons/files/java-light.svg"
+    },
+    "c-light": {
+      "iconPath": "../icons/files/c-light.svg"
+    },
+    "cpp-light": {
+      "iconPath": "../icons/files/cpp-light.svg"
+    },
+    "csharp-light": {
+      "iconPath": "../icons/files/csharp-light.svg"
+    },
+    "ruby-light": {
+      "iconPath": "../icons/files/ruby-light.svg"
+    },
+    "php-light": {
+      "iconPath": "../icons/files/php-light.svg"
+    },
+    "swift-light": {
+      "iconPath": "../icons/files/swift-light.svg"
+    },
+    "kotlin-light": {
+      "iconPath": "../icons/files/kotlin-light.svg"
+    },
+    "dart-light": {
+      "iconPath": "../icons/files/dart-light.svg"
+    },
+    "lua-light": {
+      "iconPath": "../icons/files/lua-light.svg"
+    },
+    "r-light": {
+      "iconPath": "../icons/files/r-light.svg"
+    },
+    "shell-light": {
+      "iconPath": "../icons/files/shell-light.svg"
+    },
+    "powershell-light": {
+      "iconPath": "../icons/files/powershell-light.svg"
+    },
+    "html-light": {
+      "iconPath": "../icons/files/html-light.svg"
+    },
+    "css-light": {
+      "iconPath": "../icons/files/css-light.svg"
+    },
+    "sass-light": {
+      "iconPath": "../icons/files/sass-light.svg"
+    },
+    "vue-light": {
+      "iconPath": "../icons/files/vue-light.svg"
+    },
+    "svelte-light": {
+      "iconPath": "../icons/files/svelte-light.svg"
+    },
+    "json-light": {
+      "iconPath": "../icons/files/json-light.svg"
+    },
+    "yaml-light": {
+      "iconPath": "../icons/files/yaml-light.svg"
+    },
+    "toml-light": {
+      "iconPath": "../icons/files/toml-light.svg"
+    },
+    "xml-light": {
+      "iconPath": "../icons/files/xml-light.svg"
+    },
+    "markdown-light": {
+      "iconPath": "../icons/files/markdown-light.svg"
+    },
+    "text-light": {
+      "iconPath": "../icons/files/text-light.svg"
+    },
+    "sql-light": {
+      "iconPath": "../icons/files/sql-light.svg"
+    },
+    "graphql-light": {
+      "iconPath": "../icons/files/graphql-light.svg"
+    },
+    "docker-light": {
+      "iconPath": "../icons/files/docker-light.svg"
+    },
+    "terraform-light": {
+      "iconPath": "../icons/files/terraform-light.svg"
+    },
+    "git-light": {
+      "iconPath": "../icons/files/git-light.svg"
+    },
+    "config-light": {
+      "iconPath": "../icons/files/config-light.svg"
+    },
+    "env-light": {
+      "iconPath": "../icons/files/env-light.svg"
+    },
+    "lockfile-light": {
+      "iconPath": "../icons/files/lockfile-light.svg"
+    },
+    "image-light": {
+      "iconPath": "../icons/files/image-light.svg"
+    },
+    "vector-light": {
+      "iconPath": "../icons/files/vector-light.svg"
+    },
+    "audio-light": {
+      "iconPath": "../icons/files/audio-light.svg"
+    },
+    "video-light": {
+      "iconPath": "../icons/files/video-light.svg"
+    },
+    "font-light": {
+      "iconPath": "../icons/files/font-light.svg"
+    },
+    "pdf-light": {
+      "iconPath": "../icons/files/pdf-light.svg"
+    },
+    "archive-light": {
+      "iconPath": "../icons/files/archive-light.svg"
+    },
+    "binary-light": {
+      "iconPath": "../icons/files/binary-light.svg"
+    },
+    "test-light": {
+      "iconPath": "../icons/files/test-light.svg"
+    },
+    "notebook-light": {
+      "iconPath": "../icons/files/notebook-light.svg"
+    },
+    "data-light": {
+      "iconPath": "../icons/files/data-light.svg"
+    },
+    "agent-light": {
+      "iconPath": "../icons/files/agent-light.svg"
+    },
+    "prompt-light": {
+      "iconPath": "../icons/files/prompt-light.svg"
+    },
+    "instructions-light": {
+      "iconPath": "../icons/files/instructions-light.svg"
+    },
+    "model-light": {
+      "iconPath": "../icons/files/model-light.svg"
+    },
+    "proto-light": {
+      "iconPath": "../icons/files/proto-light.svg"
+    },
+    "prisma-light": {
+      "iconPath": "../icons/files/prisma-light.svg"
+    },
+    "nix-light": {
+      "iconPath": "../icons/files/nix-light.svg"
+    },
+    "elixir-light": {
+      "iconPath": "../icons/files/elixir-light.svg"
+    },
+    "scala-light": {
+      "iconPath": "../icons/files/scala-light.svg"
+    },
+    "clojure-light": {
+      "iconPath": "../icons/files/clojure-light.svg"
+    },
+    "ocaml-light": {
+      "iconPath": "../icons/files/ocaml-light.svg"
+    },
+    "make-light": {
+      "iconPath": "../icons/files/make-light.svg"
+    },
+    "assembly-light": {
+      "iconPath": "../icons/files/assembly-light.svg"
+    },
+    "certificate-light": {
+      "iconPath": "../icons/files/certificate-light.svg"
+    },
+    "license-light": {
+      "iconPath": "../icons/files/license-light.svg"
+    },
+    "package-light": {
+      "iconPath": "../icons/files/package-light.svg"
+    },
+    "mcp-light": {
+      "iconPath": "../icons/files/mcp-light.svg"
+    },
+    "file-light": {
+      "iconPath": "../icons/files/file-light.svg"
+    },
+    "folder-light": {
+      "iconPath": "../icons/files/folder-light.svg"
+    },
+    "folder-open-light": {
+      "iconPath": "../icons/files/folder-open-light.svg"
+    },
+    "folder-src-light": {
+      "iconPath": "../icons/files/folder-src-light.svg"
+    },
+    "folder-components-light": {
+      "iconPath": "../icons/files/folder-components-light.svg"
+    },
+    "folder-tests-light": {
+      "iconPath": "../icons/files/folder-tests-light.svg"
+    },
+    "folder-agents-light": {
+      "iconPath": "../icons/files/folder-agents-light.svg"
+    },
+    "folder-prompts-light": {
+      "iconPath": "../icons/files/folder-prompts-light.svg"
+    },
+    "folder-skills-light": {
+      "iconPath": "../icons/files/folder-skills-light.svg"
+    },
+    "folder-tools-light": {
+      "iconPath": "../icons/files/folder-tools-light.svg"
+    },
+    "folder-mcp-light": {
+      "iconPath": "../icons/files/folder-mcp-light.svg"
+    },
+    "folder-assets-light": {
+      "iconPath": "../icons/files/folder-assets-light.svg"
+    },
+    "folder-docs-light": {
+      "iconPath": "../icons/files/folder-docs-light.svg"
+    },
+    "folder-config-light": {
+      "iconPath": "../icons/files/folder-config-light.svg"
+    },
+    "folder-git-light": {
+      "iconPath": "../icons/files/folder-git-light.svg"
+    },
+    "folder-models-light": {
+      "iconPath": "../icons/files/folder-models-light.svg"
+    }
+  },
+  "file": "file",
+  "folder": "folder",
+  "folderExpanded": "folder-open",
+  "rootFolder": "folder",
+  "rootFolderExpanded": "folder-open",
+  "fileExtensions": {
+    "ts": "typescript",
+    "mts": "typescript",
+    "cts": "typescript",
+    "js": "javascript",
+    "mjs": "javascript",
+    "cjs": "javascript",
+    "jsx": "react",
+    "tsx": "react",
+    "py": "python",
+    "pyi": "python",
+    "pyw": "python",
+    "rs": "rust",
+    "go": "go",
+    "java": "java",
+    "jar": "java",
+    "c": "c",
+    "h": "c",
+    "cpp": "cpp",
+    "cc": "cpp",
+    "cxx": "cpp",
+    "hpp": "cpp",
+    "cs": "csharp",
+    "csx": "csharp",
+    "rb": "ruby",
+    "erb": "ruby",
+    "php": "php",
+    "swift": "swift",
+    "kt": "kotlin",
+    "kts": "kotlin",
+    "dart": "dart",
+    "lua": "lua",
+    "r": "r",
+    "R": "r",
+    "sh": "shell",
+    "bash": "shell",
+    "zsh": "shell",
+    "fish": "shell",
+    "ps1": "powershell",
+    "psm1": "powershell",
+    "html": "html",
+    "htm": "html",
+    "css": "css",
+    "scss": "sass",
+    "sass": "sass",
+    "less": "sass",
+    "vue": "vue",
+    "svelte": "svelte",
+    "json": "json",
+    "jsonc": "json",
+    "json5": "json",
+    "yaml": "yaml",
+    "yml": "yaml",
+    "toml": "toml",
+    "xml": "xml",
+    "xsl": "xml",
+    "svg": "vector",
+    "md": "markdown",
+    "mdx": "markdown",
+    "markdown": "markdown",
+    "txt": "text",
+    "text": "text",
+    "log": "text",
+    "sql": "sql",
+    "sqlite": "sql",
+    "db": "sql",
+    "graphql": "graphql",
+    "gql": "graphql",
+    "dockerfile": "docker",
+    "tf": "terraform",
+    "tfvars": "terraform",
+    "gitignore": "git",
+    "gitattributes": "git",
+    "gitmodules": "git",
+    "ini": "config",
+    "cfg": "config",
+    "conf": "config",
+    "properties": "config",
+    "editorconfig": "config",
+    "env": "env",
+    "lock": "lockfile",
+    "png": "image",
+    "jpg": "image",
+    "jpeg": "image",
+    "gif": "image",
+    "webp": "image",
+    "avif": "image",
+    "ico": "image",
+    "bmp": "image",
+    "tiff": "image",
+    "eps": "vector",
+    "ai": "vector",
+    "wav": "audio",
+    "mp3": "audio",
+    "aiff": "audio",
+    "flac": "audio",
+    "ogg": "audio",
+    "mp4": "video",
+    "mov": "video",
+    "webm": "video",
+    "avi": "video",
+    "ttf": "font",
+    "otf": "font",
+    "woff": "font",
+    "woff2": "font",
+    "pdf": "pdf",
+    "zip": "archive",
+    "tar": "archive",
+    "gz": "archive",
+    "tgz": "archive",
+    "7z": "archive",
+    "rar": "archive",
+    "bin": "binary",
+    "exe": "binary",
+    "dll": "binary",
+    "so": "binary",
+    "dylib": "binary",
+    "wasm": "binary",
+    "test.ts": "test",
+    "test.js": "test",
+    "spec.ts": "test",
+    "spec.js": "test",
+    "test.tsx": "test",
+    "spec.tsx": "test",
+    "ipynb": "notebook",
+    "csv": "data",
+    "tsv": "data",
+    "parquet": "data",
+    "arrow": "data",
+    "agent.md": "agent",
+    "prompt.md": "prompt",
+    "instructions.md": "instructions",
+    "onnx": "model",
+    "safetensors": "model",
+    "gguf": "model",
+    "pt": "model",
+    "pth": "model",
+    "h5": "model",
+    "proto": "proto",
+    "prisma": "prisma",
+    "nix": "nix",
+    "ex": "elixir",
+    "exs": "elixir",
+    "scala": "scala",
+    "sc": "scala",
+    "clj": "clojure",
+    "cljs": "clojure",
+    "cljc": "clojure",
+    "ml": "ocaml",
+    "mli": "ocaml",
+    "mk": "make",
+    "cmake": "make",
+    "asm": "assembly",
+    "s": "assembly",
+    "pem": "certificate",
+    "crt": "certificate",
+    "cer": "certificate",
+    "key": "certificate",
+    "license": "license",
+    "vsix": "package",
+    "deb": "package",
+    "rpm": "package",
+    "mcp.json": "mcp"
+  },
+  "fileNames": {
+    "package.json": "package",
+    "package-lock.json": "lockfile",
+    "pnpm-lock.yaml": "lockfile",
+    "yarn.lock": "lockfile",
+    "bun.lock": "lockfile",
+    "bun.lockb": "lockfile",
+    "Dockerfile": "docker",
+    "docker-compose.yml": "docker",
+    "compose.yaml": "docker",
+    "Cargo.toml": "rust",
+    "Cargo.lock": "lockfile",
+    "go.mod": "go",
+    "go.sum": "lockfile",
+    "requirements.txt": "python",
+    "pyproject.toml": "python",
+    "uv.lock": "lockfile",
+    "tsconfig.json": "typescript",
+    "jsconfig.json": "javascript",
+    "README.md": "markdown",
+    "LICENSE": "license",
+    "LICENSE.md": "license",
+    "AGENTS.md": "agent",
+    "CLAUDE.md": "instructions",
+    "GEMINI.md": "instructions",
+    "SKILL.md": "prompt",
+    "copilot-instructions.md": "instructions",
+    ".env": "env",
+    ".env.local": "env",
+    ".env.production": "env",
+    ".gitignore": "git",
+    ".gitattributes": "git",
+    ".editorconfig": "config",
+    "mcp.json": "mcp",
+    ".mcp.json": "mcp",
+    "Makefile": "make",
+    "CMakeLists.txt": "make"
+  },
+  "languageIds": {
+    "typescript": "typescript",
+    "javascript": "javascript",
+    "javascriptreact": "react",
+    "typescriptreact": "react",
+    "python": "python",
+    "rust": "rust",
+    "go": "go",
+    "java": "java",
+    "c": "c",
+    "cpp": "cpp",
+    "csharp": "csharp",
+    "ruby": "ruby",
+    "php": "php",
+    "swift": "swift",
+    "kotlin": "kotlin",
+    "dart": "dart",
+    "lua": "lua",
+    "r": "r",
+    "shellscript": "shell",
+    "powershell": "powershell",
+    "html": "html",
+    "css": "css",
+    "scss": "sass",
+    "sass": "sass",
+    "less": "sass",
+    "vue": "vue",
+    "svelte": "svelte",
+    "json": "json",
+    "jsonc": "json",
+    "yaml": "yaml",
+    "toml": "toml",
+    "xml": "xml",
+    "markdown": "markdown",
+    "mdx": "markdown",
+    "plaintext": "text",
+    "log": "text",
+    "sql": "sql",
+    "graphql": "graphql",
+    "dockerfile": "docker",
+    "terraform": "terraform",
+    "git-commit": "git",
+    "git-rebase": "git",
+    "ignore": "git",
+    "ini": "config",
+    "properties": "config",
+    "dotenv": "env",
+    "jupyter": "notebook",
+    "csv": "data",
+    "proto3": "proto",
+    "prisma": "prisma",
+    "nix": "nix",
+    "elixir": "elixir",
+    "scala": "scala",
+    "clojure": "clojure",
+    "ocaml": "ocaml",
+    "makefile": "make",
+    "cmake": "make",
+    "asm": "assembly"
+  },
+  "folderNames": {
+    "src": "folder-src",
+    "components": "folder-components",
+    "tests": "folder-tests",
+    "agents": "folder-agents",
+    "prompts": "folder-prompts",
+    "skills": "folder-skills",
+    "tools": "folder-tools",
+    "mcp": "folder-mcp",
+    "assets": "folder-assets",
+    "docs": "folder-docs",
+    "config": "folder-config",
+    "models": "folder-models",
+    ".git": "folder-git",
+    ".github": "folder-git",
+    ".vscode": "folder-config",
+    ".claude": "folder-agents",
+    ".codex": "folder-agents",
+    "__tests__": "folder-tests",
+    "test": "folder-tests",
+    "node_modules": "folder-components",
+    "public": "folder-assets"
+  },
+  "folderNamesExpanded": {
+    "src": "folder-src",
+    "components": "folder-components",
+    "tests": "folder-tests",
+    "agents": "folder-agents",
+    "prompts": "folder-prompts",
+    "skills": "folder-skills",
+    "tools": "folder-tools",
+    "mcp": "folder-mcp",
+    "assets": "folder-assets",
+    "docs": "folder-docs",
+    "config": "folder-config",
+    "models": "folder-models",
+    ".git": "folder-git",
+    ".github": "folder-git",
+    ".vscode": "folder-config",
+    ".claude": "folder-agents",
+    ".codex": "folder-agents",
+    "__tests__": "folder-tests",
+    "test": "folder-tests",
+    "node_modules": "folder-components",
+    "public": "folder-assets"
+  },
+  "hidesExplorerArrows": false,
+  "light": {
+    "file": "file-light",
+    "folder": "folder-light",
+    "folderExpanded": "folder-open-light",
+    "rootFolder": "folder-light",
+    "rootFolderExpanded": "folder-open-light",
+    "fileExtensions": {
+      "ts": "typescript-light",
+      "mts": "typescript-light",
+      "cts": "typescript-light",
+      "js": "javascript-light",
+      "mjs": "javascript-light",
+      "cjs": "javascript-light",
+      "jsx": "react-light",
+      "tsx": "react-light",
+      "py": "python-light",
+      "pyi": "python-light",
+      "pyw": "python-light",
+      "rs": "rust-light",
+      "go": "go-light",
+      "java": "java-light",
+      "jar": "java-light",
+      "c": "c-light",
+      "h": "c-light",
+      "cpp": "cpp-light",
+      "cc": "cpp-light",
+      "cxx": "cpp-light",
+      "hpp": "cpp-light",
+      "cs": "csharp-light",
+      "csx": "csharp-light",
+      "rb": "ruby-light",
+      "erb": "ruby-light",
+      "php": "php-light",
+      "swift": "swift-light",
+      "kt": "kotlin-light",
+      "kts": "kotlin-light",
+      "dart": "dart-light",
+      "lua": "lua-light",
+      "r": "r-light",
+      "R": "r-light",
+      "sh": "shell-light",
+      "bash": "shell-light",
+      "zsh": "shell-light",
+      "fish": "shell-light",
+      "ps1": "powershell-light",
+      "psm1": "powershell-light",
+      "html": "html-light",
+      "htm": "html-light",
+      "css": "css-light",
+      "scss": "sass-light",
+      "sass": "sass-light",
+      "less": "sass-light",
+      "vue": "vue-light",
+      "svelte": "svelte-light",
+      "json": "json-light",
+      "jsonc": "json-light",
+      "json5": "json-light",
+      "yaml": "yaml-light",
+      "yml": "yaml-light",
+      "toml": "toml-light",
+      "xml": "xml-light",
+      "xsl": "xml-light",
+      "svg": "vector-light",
+      "md": "markdown-light",
+      "mdx": "markdown-light",
+      "markdown": "markdown-light",
+      "txt": "text-light",
+      "text": "text-light",
+      "log": "text-light",
+      "sql": "sql-light",
+      "sqlite": "sql-light",
+      "db": "sql-light",
+      "graphql": "graphql-light",
+      "gql": "graphql-light",
+      "dockerfile": "docker-light",
+      "tf": "terraform-light",
+      "tfvars": "terraform-light",
+      "gitignore": "git-light",
+      "gitattributes": "git-light",
+      "gitmodules": "git-light",
+      "ini": "config-light",
+      "cfg": "config-light",
+      "conf": "config-light",
+      "properties": "config-light",
+      "editorconfig": "config-light",
+      "env": "env-light",
+      "lock": "lockfile-light",
+      "png": "image-light",
+      "jpg": "image-light",
+      "jpeg": "image-light",
+      "gif": "image-light",
+      "webp": "image-light",
+      "avif": "image-light",
+      "ico": "image-light",
+      "bmp": "image-light",
+      "tiff": "image-light",
+      "eps": "vector-light",
+      "ai": "vector-light",
+      "wav": "audio-light",
+      "mp3": "audio-light",
+      "aiff": "audio-light",
+      "flac": "audio-light",
+      "ogg": "audio-light",
+      "mp4": "video-light",
+      "mov": "video-light",
+      "webm": "video-light",
+      "avi": "video-light",
+      "ttf": "font-light",
+      "otf": "font-light",
+      "woff": "font-light",
+      "woff2": "font-light",
+      "pdf": "pdf-light",
+      "zip": "archive-light",
+      "tar": "archive-light",
+      "gz": "archive-light",
+      "tgz": "archive-light",
+      "7z": "archive-light",
+      "rar": "archive-light",
+      "bin": "binary-light",
+      "exe": "binary-light",
+      "dll": "binary-light",
+      "so": "binary-light",
+      "dylib": "binary-light",
+      "wasm": "binary-light",
+      "test.ts": "test-light",
+      "test.js": "test-light",
+      "spec.ts": "test-light",
+      "spec.js": "test-light",
+      "test.tsx": "test-light",
+      "spec.tsx": "test-light",
+      "ipynb": "notebook-light",
+      "csv": "data-light",
+      "tsv": "data-light",
+      "parquet": "data-light",
+      "arrow": "data-light",
+      "agent.md": "agent-light",
+      "prompt.md": "prompt-light",
+      "instructions.md": "instructions-light",
+      "onnx": "model-light",
+      "safetensors": "model-light",
+      "gguf": "model-light",
+      "pt": "model-light",
+      "pth": "model-light",
+      "h5": "model-light",
+      "proto": "proto-light",
+      "prisma": "prisma-light",
+      "nix": "nix-light",
+      "ex": "elixir-light",
+      "exs": "elixir-light",
+      "scala": "scala-light",
+      "sc": "scala-light",
+      "clj": "clojure-light",
+      "cljs": "clojure-light",
+      "cljc": "clojure-light",
+      "ml": "ocaml-light",
+      "mli": "ocaml-light",
+      "mk": "make-light",
+      "cmake": "make-light",
+      "asm": "assembly-light",
+      "s": "assembly-light",
+      "pem": "certificate-light",
+      "crt": "certificate-light",
+      "cer": "certificate-light",
+      "key": "certificate-light",
+      "license": "license-light",
+      "vsix": "package-light",
+      "deb": "package-light",
+      "rpm": "package-light",
+      "mcp.json": "mcp-light"
+    },
+    "fileNames": {
+      "package.json": "package-light",
+      "package-lock.json": "lockfile-light",
+      "pnpm-lock.yaml": "lockfile-light",
+      "yarn.lock": "lockfile-light",
+      "bun.lock": "lockfile-light",
+      "bun.lockb": "lockfile-light",
+      "Dockerfile": "docker-light",
+      "docker-compose.yml": "docker-light",
+      "compose.yaml": "docker-light",
+      "Cargo.toml": "rust-light",
+      "Cargo.lock": "lockfile-light",
+      "go.mod": "go-light",
+      "go.sum": "lockfile-light",
+      "requirements.txt": "python-light",
+      "pyproject.toml": "python-light",
+      "uv.lock": "lockfile-light",
+      "tsconfig.json": "typescript-light",
+      "jsconfig.json": "javascript-light",
+      "README.md": "markdown-light",
+      "LICENSE": "license-light",
+      "LICENSE.md": "license-light",
+      "AGENTS.md": "agent-light",
+      "CLAUDE.md": "instructions-light",
+      "GEMINI.md": "instructions-light",
+      "SKILL.md": "prompt-light",
+      "copilot-instructions.md": "instructions-light",
+      ".env": "env-light",
+      ".env.local": "env-light",
+      ".env.production": "env-light",
+      ".gitignore": "git-light",
+      ".gitattributes": "git-light",
+      ".editorconfig": "config-light",
+      "mcp.json": "mcp-light",
+      ".mcp.json": "mcp-light",
+      "Makefile": "make-light",
+      "CMakeLists.txt": "make-light"
+    },
+    "languageIds": {
+      "typescript": "typescript-light",
+      "javascript": "javascript-light",
+      "javascriptreact": "react-light",
+      "typescriptreact": "react-light",
+      "python": "python-light",
+      "rust": "rust-light",
+      "go": "go-light",
+      "java": "java-light",
+      "c": "c-light",
+      "cpp": "cpp-light",
+      "csharp": "csharp-light",
+      "ruby": "ruby-light",
+      "php": "php-light",
+      "swift": "swift-light",
+      "kotlin": "kotlin-light",
+      "dart": "dart-light",
+      "lua": "lua-light",
+      "r": "r-light",
+      "shellscript": "shell-light",
+      "powershell": "powershell-light",
+      "html": "html-light",
+      "css": "css-light",
+      "scss": "sass-light",
+      "sass": "sass-light",
+      "less": "sass-light",
+      "vue": "vue-light",
+      "svelte": "svelte-light",
+      "json": "json-light",
+      "jsonc": "json-light",
+      "yaml": "yaml-light",
+      "toml": "toml-light",
+      "xml": "xml-light",
+      "markdown": "markdown-light",
+      "mdx": "markdown-light",
+      "plaintext": "text-light",
+      "log": "text-light",
+      "sql": "sql-light",
+      "graphql": "graphql-light",
+      "dockerfile": "docker-light",
+      "terraform": "terraform-light",
+      "git-commit": "git-light",
+      "git-rebase": "git-light",
+      "ignore": "git-light",
+      "ini": "config-light",
+      "properties": "config-light",
+      "dotenv": "env-light",
+      "jupyter": "notebook-light",
+      "csv": "data-light",
+      "proto3": "proto-light",
+      "prisma": "prisma-light",
+      "nix": "nix-light",
+      "elixir": "elixir-light",
+      "scala": "scala-light",
+      "clojure": "clojure-light",
+      "ocaml": "ocaml-light",
+      "makefile": "make-light",
+      "cmake": "make-light",
+      "asm": "assembly-light"
+    },
+    "folderNames": {
+      "src": "folder-src-light",
+      "components": "folder-components-light",
+      "tests": "folder-tests-light",
+      "agents": "folder-agents-light",
+      "prompts": "folder-prompts-light",
+      "skills": "folder-skills-light",
+      "tools": "folder-tools-light",
+      "mcp": "folder-mcp-light",
+      "assets": "folder-assets-light",
+      "docs": "folder-docs-light",
+      "config": "folder-config-light",
+      "models": "folder-models-light",
+      ".git": "folder-git-light",
+      ".github": "folder-git-light",
+      ".vscode": "folder-config-light",
+      ".claude": "folder-agents-light",
+      ".codex": "folder-agents-light",
+      "__tests__": "folder-tests-light",
+      "test": "folder-tests-light",
+      "node_modules": "folder-components-light",
+      "public": "folder-assets-light"
+    },
+    "folderNamesExpanded": {
+      "src": "folder-src-light",
+      "components": "folder-components-light",
+      "tests": "folder-tests-light",
+      "agents": "folder-agents-light",
+      "prompts": "folder-prompts-light",
+      "skills": "folder-skills-light",
+      "tools": "folder-tools-light",
+      "mcp": "folder-mcp-light",
+      "assets": "folder-assets-light",
+      "docs": "folder-docs-light",
+      "config": "folder-config-light",
+      "models": "folder-models-light",
+      ".git": "folder-git-light",
+      ".github": "folder-git-light",
+      ".vscode": "folder-config-light",
+      ".claude": "folder-agents-light",
+      ".codex": "folder-agents-light",
+      "__tests__": "folder-tests-light",
+      "test": "folder-tests-light",
+      "node_modules": "folder-components-light",
+      "public": "folder-assets-light"
+    }
+  }
+}
