@@ -776,6 +776,9 @@ export class NewChatWidget extends Disposable {
 		const chatWidgetContainer = dom.append(element, dom.$('.new-chat-widget-container'));
 		const chatWidgetContent = this._inputContentElement = dom.append(chatWidgetContainer, dom.$(`.new-chat-widget-content.${chatInputStackClass}`));
 		const welcomeMessage = dom.append(chatWidgetContent, dom.$('.new-session-welcome-message'));
+		const welcomeBrand = dom.append(welcomeMessage, dom.$('div.new-session-welcome-brand'));
+		welcomeBrand.textContent = localize('newSession.welcome.brand', "Vespra");
+		welcomeBrand.setAttribute('aria-hidden', 'true');
 		const welcomeMessageTitle = dom.append(welcomeMessage, dom.$('h2.new-session-welcome-message-title'));
 		this._welcomeMessageTitle = welcomeMessageTitle;
 		this._welcomePetPlatform = dom.append(welcomeMessage, dom.$('span.new-session-welcome-pet-platform', { 'aria-hidden': 'true' }));

@@ -2679,18 +2679,18 @@ suite('NewChatWidget', () => {
 			empty: render(true, [], 0),
 		}, {
 			phrases: [
+				'Welcome to Vespra',
 				'What are we building?',
 				'What\u2019s next?',
 				'Where should we start?',
 				'Ready when you are',
-				'What should we ship?',
 			],
 			namedPhrases: [
+				'Welcome to Vespra, Megan',
 				'What are we building, Megan?',
 				'What\u2019s next, Megan?',
 				'Where should we start, Megan?',
 				'Ready when you are, Megan',
-				'What should we ship, Megan?',
 			],
 			hidden: { text: '', hidden: true },
 			wrapped: 'Two',
