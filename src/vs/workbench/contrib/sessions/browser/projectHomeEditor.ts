@@ -5,12 +5,17 @@
 
 import './media/projectsSidebar.css';
 import * as dom from '../../../../base/browser/dom.js';
+import { Button } from '../../../../base/browser/ui/button/button.js';
 import { CancellationToken } from '../../../../base/common/cancellation.js';
+import { Codicon } from '../../../../base/common/codicons.js';
 import { DisposableStore } from '../../../../base/common/lifecycle.js';
+import { basename } from '../../../../base/common/resources.js';
+import { ThemeIcon } from '../../../../base/common/themables.js';
 import { URI } from '../../../../base/common/uri.js';
 import { localize } from '../../../../nls.js';
 import { ICommandService } from '../../../../platform/commands/common/commands.js';
 import { ITelemetryService } from '../../../../platform/telemetry/common/telemetry.js';
+import { defaultButtonStyles } from '../../../../platform/theme/browser/defaultStyles.js';
 import { IThemeService } from '../../../../platform/theme/common/themeService.js';
 import { IStorageService } from '../../../../platform/storage/common/storage.js';
 import { EditorPane } from '../../../browser/parts/editor/editorPane.js';
@@ -20,6 +25,13 @@ import { IEditorGroup } from '../../../services/editor/common/editorGroupsServic
 import { ADD_PROJECT_KNOWLEDGE_COMMAND_ID, DELETE_PROJECT_COMMAND_ID, NEW_CHAT_IN_PROJECT_COMMAND_ID, REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, RENAME_PROJECT_COMMAND_ID } from './projectCommands.js';
 import { ProjectHomeEditorInput } from './projectHomeEditorInput.js';
 import { IProjectsService, IVespraProject } from '../common/projects.js';
+
+interface IProjectListItem {
+	readonly title: string;
+	readonly detail?: string;
+	readonly icon: ThemeIcon;
+	readonly action?: { readonly label: string; readonly run: () => void; readonly danger?: boolean };
+}
 
 export class ProjectHomeEditor extends EditorPane {
 	static readonly ID = 'sessions.editor.projectHome';
@@ -66,7 +78,8 @@ export class ProjectHomeEditor extends EditorPane {
 		}
 		const project = this.projectsService.getProject(input.projectId);
 		if (!project) {
-			this.root.textContent = localize('project.missing', "This project is no longer available.");
+			const missing = dom.append(this.root, dom.$('.vespra-project-home-missing'));
+			missing.textContent = localize('project.missing', "This project is no longer available.");
 			return;
 		}
 		void this.renderProject(project);
@@ -80,93 +93,186 @@ export class ProjectHomeEditor extends EditorPane {
 		if (!this.root || this.renderDisposables.isDisposed) {
 			return;
 		}
-		const heading = dom.append(this.root, dom.$('h1'));
+
+		const inner = dom.append(this.root, dom.$('.vespra-project-home-inner'));
+		const header = dom.append(inner, dom.$('.vespra-project-home-header'));
+		const titleRow = dom.append(header, dom.$('.vespra-project-home-title-row'));
+		const heading = dom.append(titleRow, dom.$('h1'));
 		const title = dom.append(heading, dom.$('span.name'));
 		title.textContent = project.name;
-		this.renderButton(heading, localize('project.rename', "Rename"), () => {
+		title.title = project.name;
+
+		const meta = dom.append(titleRow, dom.$('.vespra-project-home-meta'));
+		this.renderAction(meta, localize('project.rename', "Rename"), () => {
 			void this.commandService.executeCommand(RENAME_PROJECT_COMMAND_ID, project.id);
 		});
-		const summary = dom.append(this.root, dom.$('p'));
+		this.renderAction(meta, localize('project.delete', "Delete"), () => {
+			void this.commandService.executeCommand(DELETE_PROJECT_COMMAND_ID, project.id);
+		}, true);
+
+		const summary = dom.append(header, dom.$('p.vespra-project-home-lede'));
 		summary.textContent = localize('project.summary', "Sessions in this project share its workspace, instructions, and knowledge.");
 
-		const actions = dom.append(this.root, dom.$('.actions'));
-		const chat = dom.append(actions, dom.$('a.monaco-button.monaco-text-button'));
-		chat.textContent = localize('project.newChat', "New chat in this project");
-		chat.tabIndex = 0;
-		this.renderDisposables.add(dom.addDisposableListener(chat, dom.EventType.CLICK, () => {
+		const actions = dom.append(inner, dom.$('.actions'));
+		const chat = this.renderDisposables.add(new Button(actions, defaultButtonStyles));
+		chat.label = localize('project.newChat', "New chat in this project");
+		this.renderDisposables.add(chat.onDidClick(() => {
 			void this.commandService.executeCommand(NEW_CHAT_IN_PROJECT_COMMAND_ID, project.id);
 		}));
-		const customizations = dom.append(actions, dom.$('a.monaco-button.monaco-text-button'));
-		customizations.textContent = localize('project.customizations', "Open Customizations");
-		customizations.tabIndex = 0;
-		this.renderDisposables.add(dom.addDisposableListener(customizations, dom.EventType.CLICK, () => {
+		const customizations = this.renderDisposables.add(new Button(actions, { ...defaultButtonStyles, secondary: true }));
+		customizations.label = localize('project.customizations', "Open Customizations");
+		this.renderDisposables.add(customizations.onDidClick(() => {
 			void this.commandService.executeCommand('aiCustomization.openManagementEditor');
 		}));
-		const deleteButton = dom.append(actions, dom.$('a.monaco-button.monaco-text-button'));
-		deleteButton.textContent = localize('project.delete', "Delete Project");
-		deleteButton.tabIndex = 0;
-		this.renderDisposables.add(dom.addDisposableListener(deleteButton, dom.EventType.CLICK, () => {
-			void this.commandService.executeCommand(DELETE_PROJECT_COMMAND_ID, project.id);
-		}));
 
-		this.renderList(localize('project.workspace', "Workspace"), project.workspaceUris.map(uri => uri.fsPath || uri.toString()));
-		this.renderList(localize('project.instructions', "Instructions"), [project.instructionsUri?.fsPath || project.instructionsUri?.toString() || localize('project.instructionsDefault', "AGENTS.md or .vespra/INSTRUCTIONS.md")]);
-		this.renderKnowledge(project, knowledge);
-		this.renderList(localize('project.sessions', "Sessions"), this.projectsService.getSessionIds(project.id));
+		const sections = dom.append(inner, dom.$('.vespra-project-home-sections'));
+		this.renderItems(
+			sections,
+			localize('project.workspace', "Workspace"),
+			Codicon.folderOpened,
+			project.workspaceUris.map(uri => ({
+				title: basename(uri) || uri.toString(),
+				detail: this.pathDetail(uri),
+				icon: Codicon.folder,
+			})),
+			{
+				empty: localize('project.workspaceEmpty', "No folder linked yet. Create a project with a folder to pin the workspace."),
+			},
+		);
+
+		const instructionsItems: IProjectListItem[] = project.instructionsUri
+			? [{
+				title: basename(project.instructionsUri),
+				detail: this.pathDetail(project.instructionsUri),
+				icon: Codicon.markdown,
+			}]
+			: [{
+				title: localize('project.instructionsDefault', "AGENTS.md or .vespra/INSTRUCTIONS.md"),
+				detail: localize('project.instructionsHint', "Created with the project workspace"),
+				icon: Codicon.markdown,
+			}];
+		this.renderItems(sections, localize('project.instructions', "Instructions"), Codicon.book, instructionsItems);
+
+		this.renderKnowledge(sections, project, knowledge);
+
+		const sessionIds = this.projectsService.getSessionIds(project.id);
+		this.renderItems(
+			sections,
+			localize('project.sessions', "Sessions"),
+			Codicon.commentDiscussion,
+			sessionIds.map(id => ({
+				title: id,
+				icon: Codicon.comment,
+			})),
+			sessionIds.length === 0
+				? {
+					empty: localize('project.sessionsEmpty', "No chats in this project yet."),
+					actionLabel: localize('project.sessionsEmptyCta', "Start a chat"),
+					action: () => void this.commandService.executeCommand(NEW_CHAT_IN_PROJECT_COMMAND_ID, project.id),
+				}
+				: undefined,
+		);
+
 		if (project.mcpServerIds.length > 0) {
-			this.renderList(localize('project.mcp', "MCP"), project.mcpServerIds);
+			this.renderItems(sections, localize('project.mcp', "MCP"), Codicon.server, project.mcpServerIds.map(id => ({
+				title: id,
+				icon: Codicon.serverProcess,
+			})));
 		}
 	}
 
-	private renderKnowledge(project: IVespraProject, files: readonly URI[]): void {
-		if (!this.root) {
-			return;
-		}
-		const section = dom.append(this.root, dom.$('section'));
+	private renderKnowledge(container: HTMLElement, project: IVespraProject, files: readonly URI[]): void {
+		const section = dom.append(container, dom.$('section.vespra-project-section'));
 		const heading = dom.append(section, dom.$('h2'));
-		heading.textContent = localize('project.knowledge', "Knowledge");
-		this.renderButton(heading, localize('project.addKnowledge', "Add"), () => {
+		dom.append(heading, dom.$(ThemeIcon.asCSSSelector(Codicon.library)));
+		dom.append(heading, dom.$('span')).textContent = localize('project.knowledge', "Knowledge");
+		this.renderAction(heading, localize('project.addKnowledge', "Add"), () => {
 			void this.commandService.executeCommand(ADD_PROJECT_KNOWLEDGE_COMMAND_ID, project.id);
 		});
-		const list = dom.append(section, dom.$('ul'));
+
 		if (files.length === 0) {
-			const empty = dom.append(list, dom.$('li'));
-			empty.textContent = localize('project.none', "None yet");
+			const empty = dom.append(section, dom.$('p.empty'));
+			empty.textContent = localize('project.knowledgeEmpty', "Add notes or docs every chat in this project can use.");
 			return;
 		}
+
+		const list = dom.append(section, dom.$('ul'));
 		for (const file of files) {
-			const row = dom.append(list, dom.$('li'));
-			const label = dom.append(row, dom.$('span'));
-			label.textContent = file.path.split('/').pop() ?? file.toString();
-			this.renderButton(row, localize('project.removeKnowledge', "Remove"), () => {
-				void this.commandService.executeCommand(REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, project.id, file.toString());
+			this.renderItem(list, {
+				title: basename(file) || file.toString(),
+				icon: Codicon.file,
+				action: {
+					label: localize('project.removeKnowledge', "Remove"),
+					run: () => void this.commandService.executeCommand(REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, project.id, file.toString()),
+				},
 			});
 		}
 	}
 
-	private renderButton(container: HTMLElement, label: string, run: () => void): void {
+	private renderItems(
+		container: HTMLElement,
+		heading: string,
+		icon: ThemeIcon,
+		items: readonly IProjectListItem[],
+		emptyState?: { readonly empty: string; readonly actionLabel?: string; readonly action?: () => void },
+	): void {
+		const section = dom.append(container, dom.$('section.vespra-project-section'));
+		const title = dom.append(section, dom.$('h2'));
+		dom.append(title, dom.$(ThemeIcon.asCSSSelector(icon)));
+		dom.append(title, dom.$('span')).textContent = heading;
+
+		if (items.length === 0) {
+			if (emptyState?.action && emptyState.actionLabel) {
+				const row = dom.append(section, dom.$('.empty-row'));
+				dom.append(row, dom.$('p.empty')).textContent = emptyState.empty;
+				this.renderAction(row, emptyState.actionLabel, emptyState.action);
+			} else {
+				const empty = dom.append(section, dom.$('p.empty'));
+				empty.textContent = emptyState?.empty ?? localize('project.none', "None yet");
+			}
+			return;
+		}
+
+		const list = dom.append(section, dom.$('ul'));
+		for (const item of items) {
+			this.renderItem(list, item);
+		}
+	}
+
+	private renderItem(list: HTMLElement, item: IProjectListItem): void {
+		const row = dom.append(list, dom.$('li'));
+		const icon = dom.append(row, dom.$(`${ThemeIcon.asCSSSelector(item.icon)}.item-icon`));
+		icon.setAttribute('aria-hidden', 'true');
+		const body = dom.append(row, dom.$('.item-body'));
+		const title = dom.append(body, dom.$('span.item-title'));
+		title.textContent = item.title;
+		title.title = item.detail ? `${item.title} — ${item.detail}` : item.title;
+		if (item.detail) {
+			const detail = dom.append(body, dom.$('span.item-detail'));
+			detail.textContent = item.detail;
+			detail.title = item.detail;
+		}
+		if (item.action) {
+			this.renderAction(row, item.action.label, item.action.run, item.action.danger);
+		}
+	}
+
+	private renderAction(container: HTMLElement, label: string, run: () => void, danger = false): void {
 		const button = dom.append(container, dom.$('button.vespra-project-action')) as HTMLButtonElement;
 		button.type = 'button';
 		button.textContent = label;
+		if (danger) {
+			button.classList.add('danger');
+		}
 		this.renderDisposables.add(dom.addDisposableListener(button, dom.EventType.CLICK, run));
 	}
 
-	private renderList(heading: string, items: readonly string[]): void {
-		if (!this.root) {
-			return;
+	private pathDetail(uri: URI): string | undefined {
+		const full = uri.fsPath || uri.toString();
+		const name = basename(uri);
+		if (!name || full === name) {
+			return undefined;
 		}
-		const section = dom.append(this.root, dom.$('section'));
-		const title = dom.append(section, dom.$('h2'));
-		title.textContent = heading;
-		if (items.length === 0) {
-			const empty = dom.append(section, dom.$('p'));
-			empty.textContent = localize('project.none', "None yet");
-			return;
-		}
-		const list = dom.append(section, dom.$('ul'));
-		for (const item of items) {
-			const row = dom.append(list, dom.$('li'));
-			row.textContent = item;
-		}
+		return full;
 	}
 }
