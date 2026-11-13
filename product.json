@@ -206,27 +206,27 @@
 	],
 	"onboardingThemes": [
 		{
+			"id": "vespra-relay-dark",
+			"label": "Vespra Relay Dark",
+			"themeId": "Vespra Relay Dark",
+			"type": "dark"
+		},
+		{
+			"id": "vespra-relay-contrast",
+			"label": "Vespra Relay Contrast",
+			"themeId": "Vespra Relay Contrast",
+			"type": "hcDark"
+		},
+		{
 			"id": "dark-2026",
 			"label": "Dark 2026",
 			"themeId": "Dark 2026",
 			"type": "dark"
 		},
 		{
-			"id": "hc-dark",
-			"label": "Dark High Contrast",
-			"themeId": "Default High Contrast",
-			"type": "hcDark"
-		},
-		{
-			"id": "solarized-dark",
-			"label": "Solarized Dark",
-			"themeId": "Solarized Dark",
-			"type": "dark"
-		},
-		{
-			"id": "light-2026",
-			"label": "Light 2026",
-			"themeId": "Light 2026",
+			"id": "vespra-relay-light",
+			"label": "Vespra Relay Light",
+			"themeId": "Vespra Relay Light",
 			"type": "light"
 		},
 		{
@@ -236,9 +236,9 @@
 			"type": "hcLight"
 		},
 		{
-			"id": "solarized-light",
-			"label": "Solarized Light",
-			"themeId": "Solarized Light",
+			"id": "light-2026",
+			"label": "Light 2026",
+			"themeId": "Light 2026",
 			"type": "light"
 		}
 	],

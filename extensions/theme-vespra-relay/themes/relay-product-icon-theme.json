@@ -1,0 +1,2548 @@
+{
+  "fonts": [
+    {
+      "id": "vespra",
+      "src": [
+        {
+          "path": "../fonts/relay-refined.woff",
+          "format": "woff"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    },
+    {
+      "id": "codicon-fallback",
+      "src": [
+        {
+          "path": "../fonts/codicon.woff",
+          "format": "woff"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    }
+  ],
+  "iconDefinitions": {
+    "zoom-out": {
+      "fontCharacter": "\\eb82",
+      "fontId": "codicon-fallback"
+    },
+    "zoom-in": {
+      "fontCharacter": "\\eb81",
+      "fontId": "codicon-fallback"
+    },
+    "worktree": {
+      "fontCharacter": "\\ec7e",
+      "fontId": "codicon-fallback"
+    },
+    "worktree-small": {
+      "fontCharacter": "\\ec7d",
+      "fontId": "codicon-fallback"
+    },
+    "worktree-compact": {
+      "fontCharacter": "\\ecbd",
+      "fontId": "codicon-fallback"
+    },
+    "workspace-untrusted": {
+      "fontCharacter": "\\e056",
+      "fontId": "vespra"
+    },
+    "workspace-unknown": {
+      "fontCharacter": "\\e05c",
+      "fontId": "vespra"
+    },
+    "workspace-trusted": {
+      "fontCharacter": "\\e055",
+      "fontId": "vespra"
+    },
+    "word-wrap": {
+      "fontCharacter": "\\eb80",
+      "fontId": "codicon-fallback"
+    },
+    "window": {
+      "fontCharacter": "\\e05e",
+      "fontId": "vespra"
+    },
+    "window-compact": {
+      "fontCharacter": "\\ec97",
+      "fontId": "codicon-fallback"
+    },
+    "window-active": {
+      "fontCharacter": "\\ec72",
+      "fontId": "codicon-fallback"
+    },
+    "whole-word": {
+      "fontCharacter": "\\eb7e",
+      "fontId": "codicon-fallback"
+    },
+    "whitespace": {
+      "fontCharacter": "\\eb7d",
+      "fontId": "codicon-fallback"
+    },
+    "watch": {
+      "fontCharacter": "\\e057",
+      "fontId": "vespra"
+    },
+    "warning": {
+      "fontCharacter": "\\e06e",
+      "fontId": "vespra"
+    },
+    "warning-compact": {
+      "fontCharacter": "\\ec99",
+      "fontId": "codicon-fallback"
+    },
+    "wand": {
+      "fontCharacter": "\\e060",
+      "fontId": "vespra"
+    },
+    "vscode": {
+      "fontCharacter": "\\ec29",
+      "fontId": "codicon-fallback"
+    },
+    "vscode-outline": {
+      "fontCharacter": "\\ecca",
+      "fontId": "codicon-fallback"
+    },
+    "vscode-insiders": {
+      "fontCharacter": "\\ec2a",
+      "fontId": "codicon-fallback"
+    },
+    "vscode-insiders-outline": {
+      "fontCharacter": "\\ecc9",
+      "fontId": "codicon-fallback"
+    },
+    "vr": {
+      "fontCharacter": "\\ec18",
+      "fontId": "codicon-fallback"
+    },
+    "voice-mode": {
+      "fontCharacter": "\\eccb",
+      "fontId": "codicon-fallback"
+    },
+    "voice-mode-download": {
+      "fontCharacter": "\\eccf",
+      "fontId": "codicon-fallback"
+    },
+    "voice-mode-download-compact": {
+      "fontCharacter": "\\ecd0",
+      "fontId": "codicon-fallback"
+    },
+    "voice-mode-compact": {
+      "fontCharacter": "\\eccc",
+      "fontId": "codicon-fallback"
+    },
+    "vm": {
+      "fontCharacter": "\\ea7a",
+      "fontId": "codicon-fallback"
+    },
+    "vm-small": {
+      "fontCharacter": "\\ec79",
+      "fontId": "codicon-fallback"
+    },
+    "vm-running": {
+      "fontCharacter": "\\eb7b",
+      "fontId": "codicon-fallback"
+    },
+    "vm-pending": {
+      "fontCharacter": "\\ecbc",
+      "fontId": "codicon-fallback"
+    },
+    "vm-outline": {
+      "fontCharacter": "\\eb7a",
+      "fontId": "codicon-fallback"
+    },
+    "vm-connect": {
+      "fontCharacter": "\\eba9",
+      "fontId": "codicon-fallback"
+    },
+    "vm-compact": {
+      "fontCharacter": "\\ecc3",
+      "fontId": "codicon-fallback"
+    },
+    "vm-active": {
+      "fontCharacter": "\\eb79",
+      "fontId": "codicon-fallback"
+    },
+    "versions": {
+      "fontCharacter": "\\eb23",
+      "fontId": "codicon-fallback"
+    },
+    "verified": {
+      "fontCharacter": "\\e055",
+      "fontId": "vespra"
+    },
+    "verified-filled": {
+      "fontCharacter": "\\ebe9",
+      "fontId": "codicon-fallback"
+    },
+    "variable-group": {
+      "fontCharacter": "\\ebb8",
+      "fontId": "codicon-fallback"
+    },
+    "unverified": {
+      "fontCharacter": "\\eb76",
+      "fontId": "codicon-fallback"
+    },
+    "unpin": {
+      "fontCharacter": "\\ec9e",
+      "fontId": "codicon-fallback"
+    },
+    "unmute": {
+      "fontCharacter": "\\eb75",
+      "fontId": "codicon-fallback"
+    },
+    "unlock": {
+      "fontCharacter": "\\e044",
+      "fontId": "vespra"
+    },
+    "ungroup-by-ref-type": {
+      "fontCharacter": "\\eb98",
+      "fontId": "codicon-fallback"
+    },
+    "unfold": {
+      "fontCharacter": "\\eb73",
+      "fontId": "codicon-fallback"
+    },
+    "unarchive": {
+      "fontCharacter": "\\ec76",
+      "fontId": "codicon-fallback"
+    },
+    "type-hierarchy": {
+      "fontCharacter": "\\ebb9",
+      "fontId": "codicon-fallback"
+    },
+    "type-hierarchy-super": {
+      "fontCharacter": "\\ebbb",
+      "fontId": "codicon-fallback"
+    },
+    "type-hierarchy-sub": {
+      "fontCharacter": "\\ebba",
+      "fontId": "codicon-fallback"
+    },
+    "twitter": {
+      "fontCharacter": "\\eb72",
+      "fontId": "codicon-fallback"
+    },
+    "triangle-up": {
+      "fontCharacter": "\\eb71",
+      "fontId": "codicon-fallback"
+    },
+    "triangle-right": {
+      "fontCharacter": "\\eb70",
+      "fontId": "codicon-fallback"
+    },
+    "triangle-left": {
+      "fontCharacter": "\\eb6f",
+      "fontId": "codicon-fallback"
+    },
+    "triangle-down": {
+      "fontCharacter": "\\eb6e",
+      "fontId": "codicon-fallback"
+    },
+    "trash": {
+      "fontCharacter": "\\e023",
+      "fontId": "vespra"
+    },
+    "tools": {
+      "fontCharacter": "\\e04e",
+      "fontId": "vespra"
+    },
+    "thumbsup": {
+      "fontCharacter": "\\eb6c",
+      "fontId": "codicon-fallback"
+    },
+    "thumbsup-filled": {
+      "fontCharacter": "\\ec14",
+      "fontId": "codicon-fallback"
+    },
+    "thumbsdown": {
+      "fontCharacter": "\\eb6b",
+      "fontId": "codicon-fallback"
+    },
+    "thumbsdown-filled": {
+      "fontCharacter": "\\ec13",
+      "fontId": "codicon-fallback"
+    },
+    "three-bars": {
+      "fontCharacter": "\\eb6a",
+      "fontId": "codicon-fallback"
+    },
+    "thinking": {
+      "fontCharacter": "\\ec59",
+      "fontId": "codicon-fallback"
+    },
+    "text-size": {
+      "fontCharacter": "\\eb69",
+      "fontId": "codicon-fallback"
+    },
+    "terminal": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "terminal-ubuntu": {
+      "fontCharacter": "\\ebc9",
+      "fontId": "codicon-fallback"
+    },
+    "terminal-tmux": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "terminal-secure": {
+      "fontCharacter": "\\ec85",
+      "fontId": "codicon-fallback"
+    },
+    "terminal-powershell": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "terminal-linux": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "terminal-git-bash": {
+      "fontCharacter": "\\ec71",
+      "fontId": "codicon-fallback"
+    },
+    "terminal-debian": {
+      "fontCharacter": "\\ebc5",
+      "fontId": "codicon-fallback"
+    },
+    "terminal-compact": {
+      "fontCharacter": "\\ecbb",
+      "fontId": "codicon-fallback"
+    },
+    "terminal-cmd": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "terminal-bash": {
+      "fontCharacter": "\\e026",
+      "fontId": "vespra"
+    },
+    "telescope": {
+      "fontCharacter": "\\eb68",
+      "fontId": "codicon-fallback"
+    },
+    "tasklist": {
+      "fontCharacter": "\\eb67",
+      "fontId": "codicon-fallback"
+    },
+    "target": {
+      "fontCharacter": "\\ebf8",
+      "fontId": "codicon-fallback"
+    },
+    "tag": {
+      "fontCharacter": "\\e078",
+      "fontId": "vespra"
+    },
+    "table": {
+      "fontCharacter": "\\e076",
+      "fontId": "vespra"
+    },
+    "sync": {
+      "fontCharacter": "\\e012",
+      "fontId": "vespra"
+    },
+    "sync-ignored": {
+      "fontCharacter": "\\eb9f",
+      "fontId": "codicon-fallback"
+    },
+    "sync-compact": {
+      "fontCharacter": "\\ecba",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-variable": {
+      "fontCharacter": "\\ea88",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-structure": {
+      "fontCharacter": "\\ea91",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-string": {
+      "fontCharacter": "\\ea93",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-snippet": {
+      "fontCharacter": "\\eb66",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-ruler": {
+      "fontCharacter": "\\ea96",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-property": {
+      "fontCharacter": "\\eb65",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-parameter": {
+      "fontCharacter": "\\ea92",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-operator": {
+      "fontCharacter": "\\eb64",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-numeric": {
+      "fontCharacter": "\\ea90",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-namespace": {
+      "fontCharacter": "\\ea8b",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-misc": {
+      "fontCharacter": "\\eb63",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-method": {
+      "fontCharacter": "\\ea8c",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-method-arrow": {
+      "fontCharacter": "\\ec41",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-keyword": {
+      "fontCharacter": "\\eb62",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-interface": {
+      "fontCharacter": "\\eb61",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-file": {
+      "fontCharacter": "\\ea7b",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-field": {
+      "fontCharacter": "\\eb5f",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-event": {
+      "fontCharacter": "\\ea86",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-enum": {
+      "fontCharacter": "\\ea95",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-enum-member": {
+      "fontCharacter": "\\eb5e",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-constant": {
+      "fontCharacter": "\\e063",
+      "fontId": "vespra"
+    },
+    "symbol-color": {
+      "fontCharacter": "\\eb5c",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-color-compact": {
+      "fontCharacter": "\\ec96",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-class": {
+      "fontCharacter": "\\e051",
+      "fontId": "vespra"
+    },
+    "symbol-boolean": {
+      "fontCharacter": "\\ea8f",
+      "fontId": "codicon-fallback"
+    },
+    "symbol-array": {
+      "fontCharacter": "\\e027",
+      "fontId": "vespra"
+    },
+    "surround-with": {
+      "fontCharacter": "\\ec24",
+      "fontId": "codicon-fallback"
+    },
+    "strikethrough": {
+      "fontCharacter": "\\ec64",
+      "fontId": "codicon-fallback"
+    },
+    "stop-circle": {
+      "fontCharacter": "\\e030",
+      "fontId": "vespra"
+    },
+    "star-half": {
+      "fontCharacter": "\\eb5a",
+      "fontId": "codicon-fallback"
+    },
+    "star-full": {
+      "fontCharacter": "\\e07a",
+      "fontId": "vespra"
+    },
+    "star-empty": {
+      "fontCharacter": "\\ea6a",
+      "fontId": "codicon-fallback"
+    },
+    "squirrel": {
+      "fontCharacter": "\\eb58",
+      "fontId": "codicon-fallback"
+    },
+    "split-vertical": {
+      "fontCharacter": "\\eb57",
+      "fontId": "codicon-fallback"
+    },
+    "split-horizontal": {
+      "fontCharacter": "\\e037",
+      "fontId": "vespra"
+    },
+    "sparkle": {
+      "fontCharacter": "\\e07e",
+      "fontId": "vespra"
+    },
+    "sparkle-filled": {
+      "fontCharacter": "\\ec21",
+      "fontId": "codicon-fallback"
+    },
+    "sparkle-compact": {
+      "fontCharacter": "\\ec95",
+      "fontId": "codicon-fallback"
+    },
+    "source-control": {
+      "fontCharacter": "\\e028",
+      "fontId": "vespra"
+    },
+    "sort-precedence": {
+      "fontCharacter": "\\e011",
+      "fontId": "vespra"
+    },
+    "snake": {
+      "fontCharacter": "\\ec16",
+      "fontId": "codicon-fallback"
+    },
+    "smiley": {
+      "fontCharacter": "\\eb54",
+      "fontId": "codicon-fallback"
+    },
+    "skip": {
+      "fontCharacter": "\\ec6a",
+      "fontId": "codicon-fallback"
+    },
+    "sign-out": {
+      "fontCharacter": "\\ea6e",
+      "fontId": "codicon-fallback"
+    },
+    "sign-in": {
+      "fontCharacter": "\\ea6f",
+      "fontId": "codicon-fallback"
+    },
+    "shield": {
+      "fontCharacter": "\\e042",
+      "fontId": "vespra"
+    },
+    "shield-compact": {
+      "fontCharacter": "\\ec94",
+      "fontId": "codicon-fallback"
+    },
+    "share": {
+      "fontCharacter": "\\ec25",
+      "fontId": "codicon-fallback"
+    },
+    "share-window": {
+      "fontCharacter": "\\ec88",
+      "fontId": "codicon-fallback"
+    },
+    "settings": {
+      "fontCharacter": "\\e039",
+      "fontId": "vespra"
+    },
+    "settings-gear": {
+      "fontCharacter": "\\e038",
+      "fontId": "vespra"
+    },
+    "settings-compact": {
+      "fontCharacter": "\\ecc2",
+      "fontId": "codicon-fallback"
+    },
+    "session-in-progress": {
+      "fontCharacter": "\\ec77",
+      "fontId": "codicon-fallback"
+    },
+    "session-in-progress-compact": {
+      "fontCharacter": "\\ecb9",
+      "fontId": "codicon-fallback"
+    },
+    "server": {
+      "fontCharacter": "\\e03b",
+      "fontId": "vespra"
+    },
+    "server-process": {
+      "fontCharacter": "\\eba2",
+      "fontId": "codicon-fallback"
+    },
+    "server-environment": {
+      "fontCharacter": "\\eba3",
+      "fontId": "codicon-fallback"
+    },
+    "send": {
+      "fontCharacter": "\\ec0f",
+      "fontId": "codicon-fallback"
+    },
+    "send-to-remote-agent": {
+      "fontCharacter": "\\ec53",
+      "fontId": "codicon-fallback"
+    },
+    "search": {
+      "fontCharacter": "\\e00d",
+      "fontId": "vespra"
+    },
+    "search-stop": {
+      "fontCharacter": "\\eb4e",
+      "fontId": "codicon-fallback"
+    },
+    "search-sparkle": {
+      "fontCharacter": "\\ec50",
+      "fontId": "codicon-fallback"
+    },
+    "search-large": {
+      "fontCharacter": "\\ec70",
+      "fontId": "codicon-fallback"
+    },
+    "search-fuzzy": {
+      "fontCharacter": "\\e00d",
+      "fontId": "vespra"
+    },
+    "search-compact": {
+      "fontCharacter": "\\ecb8",
+      "fontId": "codicon-fallback"
+    },
+    "screen-normal": {
+      "fontCharacter": "\\eb4d",
+      "fontId": "codicon-fallback"
+    },
+    "screen-full": {
+      "fontCharacter": "\\eb4c",
+      "fontId": "codicon-fallback"
+    },
+    "screen-cut": {
+      "fontCharacter": "\\ec7f",
+      "fontId": "codicon-fallback"
+    },
+    "save": {
+      "fontCharacter": "\\e01f",
+      "fontId": "vespra"
+    },
+    "save-as": {
+      "fontCharacter": "\\eb4a",
+      "fontId": "codicon-fallback"
+    },
+    "save-all": {
+      "fontCharacter": "\\e01f",
+      "fontId": "vespra"
+    },
+    "run-with-deps": {
+      "fontCharacter": "\\ec62",
+      "fontId": "codicon-fallback"
+    },
+    "run-errors": {
+      "fontCharacter": "\\ebde",
+      "fontId": "codicon-fallback"
+    },
+    "run-coverage": {
+      "fontCharacter": "\\ec2c",
+      "fontId": "codicon-fallback"
+    },
+    "run-compact": {
+      "fontCharacter": "\\ecc4",
+      "fontId": "codicon-fallback"
+    },
+    "run-below": {
+      "fontCharacter": "\\ebbe",
+      "fontId": "codicon-fallback"
+    },
+    "run-all": {
+      "fontCharacter": "\\eb9e",
+      "fontId": "codicon-fallback"
+    },
+    "run-all-coverage": {
+      "fontCharacter": "\\ec2d",
+      "fontId": "codicon-fallback"
+    },
+    "run-above": {
+      "fontCharacter": "\\e058",
+      "fontId": "vespra"
+    },
+    "ruby": {
+      "fontCharacter": "\\eb48",
+      "fontId": "codicon-fallback"
+    },
+    "rss": {
+      "fontCharacter": "\\eb47",
+      "fontId": "codicon-fallback"
+    },
+    "root-folder": {
+      "fontCharacter": "\\eb46",
+      "fontId": "codicon-fallback"
+    },
+    "root-folder-opened": {
+      "fontCharacter": "\\eb45",
+      "fontId": "codicon-fallback"
+    },
+    "rocket": {
+      "fontCharacter": "\\e07f",
+      "fontId": "vespra"
+    },
+    "rocket-compact": {
+      "fontCharacter": "\\ec9d",
+      "fontId": "codicon-fallback"
+    },
+    "robot": {
+      "fontCharacter": "\\e04a",
+      "fontId": "vespra"
+    },
+    "right-panel-show": {
+      "fontCharacter": "\\ecc8",
+      "fontId": "codicon-fallback"
+    },
+    "right-panel-hide": {
+      "fontCharacter": "\\ecc7",
+      "fontId": "codicon-fallback"
+    },
+    "request-changes": {
+      "fontCharacter": "\\eb43",
+      "fontId": "codicon-fallback"
+    },
+    "report": {
+      "fontCharacter": "\\eb42",
+      "fontId": "codicon-fallback"
+    },
+    "repo": {
+      "fontCharacter": "\\ea62",
+      "fontId": "codicon-fallback"
+    },
+    "repo-selected": {
+      "fontCharacter": "\\ec69",
+      "fontId": "codicon-fallback"
+    },
+    "repo-push": {
+      "fontCharacter": "\\eb41",
+      "fontId": "codicon-fallback"
+    },
+    "repo-pull": {
+      "fontCharacter": "\\eb40",
+      "fontId": "codicon-fallback"
+    },
+    "repo-pinned": {
+      "fontCharacter": "\\ec43",
+      "fontId": "codicon-fallback"
+    },
+    "repo-forked": {
+      "fontCharacter": "\\ea63",
+      "fontId": "codicon-fallback"
+    },
+    "repo-forked-compact": {
+      "fontCharacter": "\\ec92",
+      "fontId": "codicon-fallback"
+    },
+    "repo-force-push": {
+      "fontCharacter": "\\eb3f",
+      "fontId": "codicon-fallback"
+    },
+    "repo-fetch": {
+      "fontCharacter": "\\ec1d",
+      "fontId": "codicon-fallback"
+    },
+    "repo-compact": {
+      "fontCharacter": "\\ec93",
+      "fontId": "codicon-fallback"
+    },
+    "repo-clone": {
+      "fontCharacter": "\\eb3e",
+      "fontId": "codicon-fallback"
+    },
+    "reply": {
+      "fontCharacter": "\\ea7d",
+      "fontId": "codicon-fallback"
+    },
+    "replace": {
+      "fontCharacter": "\\eb3d",
+      "fontId": "codicon-fallback"
+    },
+    "replace-all": {
+      "fontCharacter": "\\eb3c",
+      "fontId": "codicon-fallback"
+    },
+    "rename": {
+      "fontCharacter": "\\ec61",
+      "fontId": "codicon-fallback"
+    },
+    "remove": {
+      "fontCharacter": "\\eb3b",
+      "fontId": "codicon-fallback"
+    },
+    "remove-small": {
+      "fontCharacter": "\\ec7c",
+      "fontId": "codicon-fallback"
+    },
+    "remote": {
+      "fontCharacter": "\\eb3a",
+      "fontId": "codicon-fallback"
+    },
+    "remote-explorer": {
+      "fontCharacter": "\\eb39",
+      "fontId": "codicon-fallback"
+    },
+    "remote-compact": {
+      "fontCharacter": "\\ec91",
+      "fontId": "codicon-fallback"
+    },
+    "regex": {
+      "fontCharacter": "\\eb38",
+      "fontId": "codicon-fallback"
+    },
+    "refresh": {
+      "fontCharacter": "\\e012",
+      "fontId": "vespra"
+    },
+    "refresh-compact": {
+      "fontCharacter": "\\ecb7",
+      "fontId": "codicon-fallback"
+    },
+    "references": {
+      "fontCharacter": "\\e050",
+      "fontId": "vespra"
+    },
+    "redo": {
+      "fontCharacter": "\\e014",
+      "fontId": "vespra"
+    },
+    "record": {
+      "fontCharacter": "\\eba7",
+      "fontId": "codicon-fallback"
+    },
+    "record-small": {
+      "fontCharacter": "\\ebfa",
+      "fontId": "codicon-fallback"
+    },
+    "record-keys": {
+      "fontCharacter": "\\ea65",
+      "fontId": "codicon-fallback"
+    },
+    "record-keys-compact": {
+      "fontCharacter": "\\ec90",
+      "fontId": "codicon-fallback"
+    },
+    "reactions": {
+      "fontCharacter": "\\eb35",
+      "fontId": "codicon-fallback"
+    },
+    "radio-tower": {
+      "fontCharacter": "\\eb34",
+      "fontId": "codicon-fallback"
+    },
+    "quotes": {
+      "fontCharacter": "\\ec60",
+      "fontId": "codicon-fallback"
+    },
+    "quote": {
+      "fontCharacter": "\\eb33",
+      "fontId": "codicon-fallback"
+    },
+    "question": {
+      "fontCharacter": "\\e070",
+      "fontId": "vespra"
+    },
+    "python": {
+      "fontCharacter": "\\ec39",
+      "fontId": "codicon-fallback"
+    },
+    "pulse": {
+      "fontCharacter": "\\e048",
+      "fontId": "vespra"
+    },
+    "project": {
+      "fontCharacter": "\\eb30",
+      "fontId": "codicon-fallback"
+    },
+    "project-compact": {
+      "fontCharacter": "\\ecb6",
+      "fontId": "codicon-fallback"
+    },
+    "primitive-square": {
+      "fontCharacter": "\\ea72",
+      "fontId": "codicon-fallback"
+    },
+    "preview": {
+      "fontCharacter": "\\eb2f",
+      "fontId": "codicon-fallback"
+    },
+    "preserve-case": {
+      "fontCharacter": "\\eb2e",
+      "fontId": "codicon-fallback"
+    },
+    "plug": {
+      "fontCharacter": "\\e080",
+      "fontId": "vespra"
+    },
+    "play": {
+      "fontCharacter": "\\e02e",
+      "fontId": "vespra"
+    },
+    "play-circle": {
+      "fontCharacter": "\\e02e",
+      "fontId": "vespra"
+    },
+    "pinned": {
+      "fontCharacter": "\\e06a",
+      "fontId": "vespra"
+    },
+    "pinned-dirty": {
+      "fontCharacter": "\\ebb2",
+      "fontId": "codicon-fallback"
+    },
+    "pin": {
+      "fontCharacter": "\\e06a",
+      "fontId": "vespra"
+    },
+    "pie-chart": {
+      "fontCharacter": "\\ebe4",
+      "fontId": "codicon-fallback"
+    },
+    "piano": {
+      "fontCharacter": "\\ec1a",
+      "fontId": "codicon-fallback"
+    },
+    "person": {
+      "fontCharacter": "\\e064",
+      "fontId": "vespra"
+    },
+    "person-voice": {
+      "fontCharacter": "\\ece4",
+      "fontId": "codicon-fallback"
+    },
+    "person-voice-filled": {
+      "fontCharacter": "\\ece6",
+      "fontId": "codicon-fallback"
+    },
+    "person-voice-filled-compact": {
+      "fontCharacter": "\\ece7",
+      "fontId": "codicon-fallback"
+    },
+    "person-voice-compact": {
+      "fontCharacter": "\\ece5",
+      "fontId": "codicon-fallback"
+    },
+    "person-add": {
+      "fontCharacter": "\\ebcd",
+      "fontId": "codicon-fallback"
+    },
+    "percentage": {
+      "fontCharacter": "\\ec33",
+      "fontId": "codicon-fallback"
+    },
+    "pass": {
+      "fontCharacter": "\\e004",
+      "fontId": "vespra"
+    },
+    "pass-filled": {
+      "fontCharacter": "\\ebb3",
+      "fontId": "codicon-fallback"
+    },
+    "pass-filled-compact": {
+      "fontCharacter": "\\ecb5",
+      "fontId": "codicon-fallback"
+    },
+    "pass-compact": {
+      "fontCharacter": "\\ec9a",
+      "fontId": "codicon-fallback"
+    },
+    "paintcan": {
+      "fontCharacter": "\\eb2a",
+      "fontId": "codicon-fallback"
+    },
+    "package": {
+      "fontCharacter": "\\e040",
+      "fontId": "vespra"
+    },
+    "output": {
+      "fontCharacter": "\\eb9d",
+      "fontId": "codicon-fallback"
+    },
+    "organization": {
+      "fontCharacter": "\\e065",
+      "fontId": "vespra"
+    },
+    "openai": {
+      "fontCharacter": "\\ec81",
+      "fontId": "codicon-fallback"
+    },
+    "open-preview": {
+      "fontCharacter": "\\eb28",
+      "fontId": "codicon-fallback"
+    },
+    "open-in-window": {
+      "fontCharacter": "\\ec83",
+      "fontId": "codicon-fallback"
+    },
+    "open-in-product": {
+      "fontCharacter": "\\ec65",
+      "fontId": "codicon-fallback"
+    },
+    "octoface": {
+      "fontCharacter": "\\eb27",
+      "fontId": "codicon-fallback"
+    },
+    "notebook": {
+      "fontCharacter": "\\e077",
+      "fontId": "vespra"
+    },
+    "notebook-template": {
+      "fontCharacter": "\\ebbf",
+      "fontId": "codicon-fallback"
+    },
+    "note": {
+      "fontCharacter": "\\e074",
+      "fontId": "vespra"
+    },
+    "no-newline": {
+      "fontCharacter": "\\eb25",
+      "fontId": "codicon-fallback"
+    },
+    "newline": {
+      "fontCharacter": "\\ebea",
+      "fontId": "codicon-fallback"
+    },
+    "new-session": {
+      "fontCharacter": "\\e05d",
+      "fontId": "vespra"
+    },
+    "new-folder": {
+      "fontCharacter": "\\e001",
+      "fontId": "vespra"
+    },
+    "new-file": {
+      "fontCharacter": "\\e001",
+      "fontId": "vespra"
+    },
+    "new-collection": {
+      "fontCharacter": "\\ec58",
+      "fontId": "codicon-fallback"
+    },
+    "mute": {
+      "fontCharacter": "\\eb24",
+      "fontId": "codicon-fallback"
+    },
+    "music": {
+      "fontCharacter": "\\ec1b",
+      "fontId": "codicon-fallback"
+    },
+    "move": {
+      "fontCharacter": "\\eb22",
+      "fontId": "codicon-fallback"
+    },
+    "mortar-board": {
+      "fontCharacter": "\\eb21",
+      "fontId": "codicon-fallback"
+    },
+    "mirror": {
+      "fontCharacter": "\\ea69",
+      "fontId": "codicon-fallback"
+    },
+    "milestone": {
+      "fontCharacter": "\\eb20",
+      "fontId": "codicon-fallback"
+    },
+    "microsoft": {
+      "fontCharacter": "\\ecd3",
+      "fontId": "codicon-fallback"
+    },
+    "mic": {
+      "fontCharacter": "\\e072",
+      "fontId": "vespra"
+    },
+    "mic-filled": {
+      "fontCharacter": "\\ec1c",
+      "fontId": "codicon-fallback"
+    },
+    "mic-download": {
+      "fontCharacter": "\\eccd",
+      "fontId": "codicon-fallback"
+    },
+    "mic-download-compact": {
+      "fontCharacter": "\\ecce",
+      "fontId": "codicon-fallback"
+    },
+    "merge": {
+      "fontCharacter": "\\ebab",
+      "fontId": "codicon-fallback"
+    },
+    "merge-into": {
+      "fontCharacter": "\\ec6b",
+      "fontId": "codicon-fallback"
+    },
+    "menu": {
+      "fontCharacter": "\\e00f",
+      "fontId": "vespra"
+    },
+    "mention": {
+      "fontCharacter": "\\eb1f",
+      "fontId": "codicon-fallback"
+    },
+    "megaphone": {
+      "fontCharacter": "\\eb1e",
+      "fontId": "codicon-fallback"
+    },
+    "mcp": {
+      "fontCharacter": "\\e052",
+      "fontId": "vespra"
+    },
+    "markdown": {
+      "fontCharacter": "\\eb1d",
+      "fontId": "codicon-fallback"
+    },
+    "map": {
+      "fontCharacter": "\\ec05",
+      "fontId": "codicon-fallback"
+    },
+    "map-vertical": {
+      "fontCharacter": "\\ec30",
+      "fontId": "codicon-fallback"
+    },
+    "map-vertical-filled": {
+      "fontCharacter": "\\ec31",
+      "fontId": "codicon-fallback"
+    },
+    "map-filled": {
+      "fontCharacter": "\\ec06",
+      "fontId": "codicon-fallback"
+    },
+    "mail": {
+      "fontCharacter": "\\e067",
+      "fontId": "vespra"
+    },
+    "mail-read": {
+      "fontCharacter": "\\eb1b",
+      "fontId": "codicon-fallback"
+    },
+    "magnet": {
+      "fontCharacter": "\\ebae",
+      "fontId": "codicon-fallback"
+    },
+    "lock": {
+      "fontCharacter": "\\e043",
+      "fontId": "vespra"
+    },
+    "lock-small": {
+      "fontCharacter": "\\e043",
+      "fontId": "vespra"
+    },
+    "location": {
+      "fontCharacter": "\\eb1a",
+      "fontId": "codicon-fallback"
+    },
+    "loading": {
+      "fontCharacter": "\\e059",
+      "fontId": "vespra"
+    },
+    "loading-compact": {
+      "fontCharacter": "\\ecb4",
+      "fontId": "codicon-fallback"
+    },
+    "live-share": {
+      "fontCharacter": "\\eb18",
+      "fontId": "codicon-fallback"
+    },
+    "list-unordered": {
+      "fontCharacter": "\\eb17",
+      "fontId": "codicon-fallback"
+    },
+    "list-tree": {
+      "fontCharacter": "\\e085",
+      "fontId": "vespra"
+    },
+    "list-selection": {
+      "fontCharacter": "\\eb85",
+      "fontId": "codicon-fallback"
+    },
+    "list-ordered": {
+      "fontCharacter": "\\e04d",
+      "fontId": "vespra"
+    },
+    "list-flat": {
+      "fontCharacter": "\\e085",
+      "fontId": "vespra"
+    },
+    "list-filter": {
+      "fontCharacter": "\\eb83",
+      "fontId": "codicon-fallback"
+    },
+    "link": {
+      "fontCharacter": "\\e016",
+      "fontId": "vespra"
+    },
+    "link-external": {
+      "fontCharacter": "\\e015",
+      "fontId": "vespra"
+    },
+    "lightbulb": {
+      "fontCharacter": "\\e07d",
+      "fontId": "vespra"
+    },
+    "lightbulb-sparkle": {
+      "fontCharacter": "\\ec1f",
+      "fontId": "codicon-fallback"
+    },
+    "lightbulb-compact": {
+      "fontCharacter": "\\ecb3",
+      "fontId": "codicon-fallback"
+    },
+    "lightbulb-autofix": {
+      "fontCharacter": "\\eb13",
+      "fontId": "codicon-fallback"
+    },
+    "library": {
+      "fontCharacter": "\\eb9c",
+      "fontId": "codicon-fallback"
+    },
+    "library-compact": {
+      "fontCharacter": "\\ec8f",
+      "fontId": "codicon-fallback"
+    },
+    "layout": {
+      "fontCharacter": "\\e036",
+      "fontId": "vespra"
+    },
+    "layout-statusbar": {
+      "fontCharacter": "\\ebf5",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-right": {
+      "fontCharacter": "\\ebf4",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-right-off": {
+      "fontCharacter": "\\ec00",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-right-dock": {
+      "fontCharacter": "\\ec4b",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-left": {
+      "fontCharacter": "\\ebf3",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-left-off": {
+      "fontCharacter": "\\ec02",
+      "fontId": "codicon-fallback"
+    },
+    "layout-sidebar-left-dock": {
+      "fontCharacter": "\\ec4a",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel": {
+      "fontCharacter": "\\e036",
+      "fontId": "vespra"
+    },
+    "layout-panel-right": {
+      "fontCharacter": "\\ebf1",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel-off": {
+      "fontCharacter": "\\ec01",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel-left": {
+      "fontCharacter": "\\ebee",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel-justify": {
+      "fontCharacter": "\\ebf0",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel-dock": {
+      "fontCharacter": "\\ec49",
+      "fontId": "codicon-fallback"
+    },
+    "layout-panel-center": {
+      "fontCharacter": "\\ebef",
+      "fontId": "codicon-fallback"
+    },
+    "layout-menubar": {
+      "fontCharacter": "\\ebf6",
+      "fontId": "codicon-fallback"
+    },
+    "layout-centered": {
+      "fontCharacter": "\\ebf7",
+      "fontId": "codicon-fallback"
+    },
+    "layout-activitybar-right": {
+      "fontCharacter": "\\ebed",
+      "fontId": "codicon-fallback"
+    },
+    "layout-activitybar-left": {
+      "fontCharacter": "\\e086",
+      "fontId": "vespra"
+    },
+    "layers": {
+      "fontCharacter": "\\ebd2",
+      "fontId": "codicon-fallback"
+    },
+    "layers-dot": {
+      "fontCharacter": "\\ebd3",
+      "fontId": "codicon-fallback"
+    },
+    "layers-active": {
+      "fontCharacter": "\\ebd4",
+      "fontId": "codicon-fallback"
+    },
+    "law": {
+      "fontCharacter": "\\eb12",
+      "fontId": "codicon-fallback"
+    },
+    "kimi": {
+      "fontCharacter": "\\ecd2",
+      "fontId": "codicon-fallback"
+    },
+    "keyboard-tab": {
+      "fontCharacter": "\\ec3c",
+      "fontId": "codicon-fallback"
+    },
+    "keyboard-tab-below": {
+      "fontCharacter": "\\ec45",
+      "fontId": "codicon-fallback"
+    },
+    "keyboard-tab-above": {
+      "fontCharacter": "\\ec44",
+      "fontId": "codicon-fallback"
+    },
+    "key": {
+      "fontCharacter": "\\e045",
+      "fontId": "vespra"
+    },
+    "kebab-vertical": {
+      "fontCharacter": "\\eb10",
+      "fontId": "codicon-fallback"
+    },
+    "jersey": {
+      "fontCharacter": "\\eb0e",
+      "fontId": "codicon-fallback"
+    },
+    "italic": {
+      "fontCharacter": "\\eb0d",
+      "fontId": "codicon-fallback"
+    },
+    "issues": {
+      "fontCharacter": "\\eb0c",
+      "fontId": "codicon-fallback"
+    },
+    "issue-reopened": {
+      "fontCharacter": "\\eb0b",
+      "fontId": "codicon-fallback"
+    },
+    "issue-draft": {
+      "fontCharacter": "\\ebd9",
+      "fontId": "codicon-fallback"
+    },
+    "inspect": {
+      "fontCharacter": "\\ebd1",
+      "fontId": "codicon-fallback"
+    },
+    "insert": {
+      "fontCharacter": "\\ec11",
+      "fontId": "codicon-fallback"
+    },
+    "info": {
+      "fontCharacter": "\\e06d",
+      "fontId": "vespra"
+    },
+    "index-zero": {
+      "fontCharacter": "\\ec66",
+      "fontId": "codicon-fallback"
+    },
+    "indent": {
+      "fontCharacter": "\\ebf9",
+      "fontId": "codicon-fallback"
+    },
+    "inbox": {
+      "fontCharacter": "\\e084",
+      "fontId": "vespra"
+    },
+    "important": {
+      "fontCharacter": "\\ec9b",
+      "fontId": "codicon-fallback"
+    },
+    "important-compact": {
+      "fontCharacter": "\\ec9c",
+      "fontId": "codicon-fallback"
+    },
+    "hubot": {
+      "fontCharacter": "\\e04a",
+      "fontId": "vespra"
+    },
+    "horizontal-rule": {
+      "fontCharacter": "\\eb07",
+      "fontId": "codicon-fallback"
+    },
+    "home": {
+      "fontCharacter": "\\e07b",
+      "fontId": "vespra"
+    },
+    "history": {
+      "fontCharacter": "\\e02d",
+      "fontId": "vespra"
+    },
+    "heart": {
+      "fontCharacter": "\\e079",
+      "fontId": "vespra"
+    },
+    "heart-filled": {
+      "fontCharacter": "\\e079",
+      "fontId": "vespra"
+    },
+    "group-by-ref-type": {
+      "fontCharacter": "\\eb97",
+      "fontId": "codicon-fallback"
+    },
+    "gripper": {
+      "fontCharacter": "\\eb04",
+      "fontId": "codicon-fallback"
+    },
+    "graph": {
+      "fontCharacter": "\\e047",
+      "fontId": "vespra"
+    },
+    "graph-scatter": {
+      "fontCharacter": "\\ebe3",
+      "fontId": "codicon-fallback"
+    },
+    "graph-line": {
+      "fontCharacter": "\\e047",
+      "fontId": "vespra"
+    },
+    "graph-left": {
+      "fontCharacter": "\\ebad",
+      "fontId": "codicon-fallback"
+    },
+    "grabber": {
+      "fontCharacter": "\\eb02",
+      "fontId": "codicon-fallback"
+    },
+    "google-gemini": {
+      "fontCharacter": "\\ecd1",
+      "fontId": "codicon-fallback"
+    },
+    "go-to-search": {
+      "fontCharacter": "\\ec32",
+      "fontId": "codicon-fallback"
+    },
+    "go-to-file": {
+      "fontCharacter": "\\ea94",
+      "fontId": "codicon-fallback"
+    },
+    "go-to-editing-session": {
+      "fontCharacter": "\\ec35",
+      "fontId": "codicon-fallback"
+    },
+    "globe": {
+      "fontCharacter": "\\e041",
+      "fontId": "vespra"
+    },
+    "github": {
+      "fontCharacter": "\\ea84",
+      "fontId": "codicon-fallback"
+    },
+    "github-project": {
+      "fontCharacter": "\\ec2f",
+      "fontId": "codicon-fallback"
+    },
+    "github-inverted": {
+      "fontCharacter": "\\eba1",
+      "fontId": "codicon-fallback"
+    },
+    "github-alt": {
+      "fontCharacter": "\\eb00",
+      "fontId": "codicon-fallback"
+    },
+    "github-action": {
+      "fontCharacter": "\\eaff",
+      "fontId": "codicon-fallback"
+    },
+    "git-stash": {
+      "fontCharacter": "\\ec26",
+      "fontId": "codicon-fallback"
+    },
+    "git-stash-pop": {
+      "fontCharacter": "\\ec28",
+      "fontId": "codicon-fallback"
+    },
+    "git-stash-apply": {
+      "fontCharacter": "\\ec27",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request": {
+      "fontCharacter": "\\e02b",
+      "fontId": "vespra"
+    },
+    "git-pull-request-new-changes": {
+      "fontCharacter": "\\ec0c",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-go-to-changes": {
+      "fontCharacter": "\\ec0b",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-error": {
+      "fontCharacter": "\\ecc6",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-draft": {
+      "fontCharacter": "\\ebdb",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-done": {
+      "fontCharacter": "\\ec46",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-create": {
+      "fontCharacter": "\\ebbc",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-comment": {
+      "fontCharacter": "\\ecc5",
+      "fontId": "codicon-fallback"
+    },
+    "git-pull-request-closed": {
+      "fontCharacter": "\\ebda",
+      "fontId": "codicon-fallback"
+    },
+    "git-merge": {
+      "fontCharacter": "\\e029",
+      "fontId": "vespra"
+    },
+    "git-fetch": {
+      "fontCharacter": "\\ecb2",
+      "fontId": "codicon-fallback"
+    },
+    "git-compare": {
+      "fontCharacter": "\\e049",
+      "fontId": "vespra"
+    },
+    "git-commit": {
+      "fontCharacter": "\\e02a",
+      "fontId": "vespra"
+    },
+    "git-branch-staged-changes": {
+      "fontCharacter": "\\ec6d",
+      "fontId": "codicon-fallback"
+    },
+    "git-branch-conflicts": {
+      "fontCharacter": "\\ec6e",
+      "fontId": "codicon-fallback"
+    },
+    "git-branch-compact": {
+      "fontCharacter": "\\ec8e",
+      "fontId": "codicon-fallback"
+    },
+    "git-branch-changes": {
+      "fontCharacter": "\\ec6c",
+      "fontId": "codicon-fallback"
+    },
+    "gist": {
+      "fontCharacter": "\\eafb",
+      "fontId": "codicon-fallback"
+    },
+    "gist-secret": {
+      "fontCharacter": "\\eafa",
+      "fontId": "codicon-fallback"
+    },
+    "gift": {
+      "fontCharacter": "\\eaf9",
+      "fontId": "codicon-fallback"
+    },
+    "gear": {
+      "fontCharacter": "\\e038",
+      "fontId": "vespra"
+    },
+    "gear-compact": {
+      "fontCharacter": "\\ec8d",
+      "fontId": "codicon-fallback"
+    },
+    "game": {
+      "fontCharacter": "\\ec17",
+      "fontId": "codicon-fallback"
+    },
+    "forward": {
+      "fontCharacter": "\\ec73",
+      "fontId": "codicon-fallback"
+    },
+    "folder": {
+      "fontCharacter": "\\e01b",
+      "fontId": "vespra"
+    },
+    "folder-opened": {
+      "fontCharacter": "\\e01c",
+      "fontId": "vespra"
+    },
+    "folder-opened-compact": {
+      "fontCharacter": "\\ec8b",
+      "fontId": "codicon-fallback"
+    },
+    "folder-library": {
+      "fontCharacter": "\\e01b",
+      "fontId": "vespra"
+    },
+    "folder-compact": {
+      "fontCharacter": "\\ec8c",
+      "fontId": "codicon-fallback"
+    },
+    "folder-active": {
+      "fontCharacter": "\\eaf6",
+      "fontId": "codicon-fallback"
+    },
+    "fold": {
+      "fontCharacter": "\\eaf5",
+      "fontId": "codicon-fallback"
+    },
+    "fold-up": {
+      "fontCharacter": "\\eaf4",
+      "fontId": "codicon-fallback"
+    },
+    "fold-down": {
+      "fontCharacter": "\\eaf3",
+      "fontId": "codicon-fallback"
+    },
+    "flame": {
+      "fontCharacter": "\\eaf2",
+      "fontId": "codicon-fallback"
+    },
+    "flag": {
+      "fontCharacter": "\\ec3f",
+      "fontId": "codicon-fallback"
+    },
+    "fish4-very-sad": {
+      "fontCharacter": "\\ece3",
+      "fontId": "codicon-fallback"
+    },
+    "fish4-sad": {
+      "fontCharacter": "\\ece2",
+      "fontId": "codicon-fallback"
+    },
+    "fish4-neutral": {
+      "fontCharacter": "\\ece1",
+      "fontId": "codicon-fallback"
+    },
+    "fish4-happy": {
+      "fontCharacter": "\\ece0",
+      "fontId": "codicon-fallback"
+    },
+    "fish3-very-sad": {
+      "fontCharacter": "\\ecdf",
+      "fontId": "codicon-fallback"
+    },
+    "fish3-sad": {
+      "fontCharacter": "\\ecde",
+      "fontId": "codicon-fallback"
+    },
+    "fish3-neutral": {
+      "fontCharacter": "\\ecdd",
+      "fontId": "codicon-fallback"
+    },
+    "fish3-happy": {
+      "fontCharacter": "\\ecdc",
+      "fontId": "codicon-fallback"
+    },
+    "fish2-very-sad": {
+      "fontCharacter": "\\ecdb",
+      "fontId": "codicon-fallback"
+    },
+    "fish2-sad": {
+      "fontCharacter": "\\ecda",
+      "fontId": "codicon-fallback"
+    },
+    "fish2-neutral": {
+      "fontCharacter": "\\ecd9",
+      "fontId": "codicon-fallback"
+    },
+    "fish2-happy": {
+      "fontCharacter": "\\ecd8",
+      "fontId": "codicon-fallback"
+    },
+    "fish1-very-sad": {
+      "fontCharacter": "\\ecd7",
+      "fontId": "codicon-fallback"
+    },
+    "fish1-sad": {
+      "fontCharacter": "\\ecd6",
+      "fontId": "codicon-fallback"
+    },
+    "fish1-neutral": {
+      "fontCharacter": "\\ecd5",
+      "fontId": "codicon-fallback"
+    },
+    "fish1-happy": {
+      "fontCharacter": "\\ecd4",
+      "fontId": "codicon-fallback"
+    },
+    "filter": {
+      "fontCharacter": "\\e010",
+      "fontId": "vespra"
+    },
+    "filter-filled": {
+      "fontCharacter": "\\e010",
+      "fontId": "vespra"
+    },
+    "files": {
+      "fontCharacter": "\\e01e",
+      "fontId": "vespra"
+    },
+    "file-zip": {
+      "fontCharacter": "\\eaef",
+      "fontId": "codicon-fallback"
+    },
+    "file-text": {
+      "fontCharacter": "\\e018",
+      "fontId": "vespra"
+    },
+    "file-symlink-file": {
+      "fontCharacter": "\\eaee",
+      "fontId": "codicon-fallback"
+    },
+    "file-symlink-directory": {
+      "fontCharacter": "\\eaed",
+      "fontId": "codicon-fallback"
+    },
+    "file-submodule": {
+      "fontCharacter": "\\eaec",
+      "fontId": "codicon-fallback"
+    },
+    "file-pdf": {
+      "fontCharacter": "\\eaeb",
+      "fontId": "codicon-fallback"
+    },
+    "file-media": {
+      "fontCharacter": "\\e071",
+      "fontId": "vespra"
+    },
+    "file-media-compact": {
+      "fontCharacter": "\\ecb1",
+      "fontId": "codicon-fallback"
+    },
+    "file-code": {
+      "fontCharacter": "\\e01a",
+      "fontId": "vespra"
+    },
+    "file-binary": {
+      "fontCharacter": "\\eae8",
+      "fontId": "codicon-fallback"
+    },
+    "feedback": {
+      "fontCharacter": "\\e082",
+      "fontId": "vespra"
+    },
+    "eye": {
+      "fontCharacter": "\\e06b",
+      "fontId": "vespra"
+    },
+    "eye-closed": {
+      "fontCharacter": "\\e06c",
+      "fontId": "vespra"
+    },
+    "extensions": {
+      "fontCharacter": "\\e035",
+      "fontId": "vespra"
+    },
+    "extensions-large": {
+      "fontCharacter": "\\e035",
+      "fontId": "vespra"
+    },
+    "export": {
+      "fontCharacter": "\\ebac",
+      "fontId": "codicon-fallback"
+    },
+    "expand-all": {
+      "fontCharacter": "\\eb95",
+      "fontId": "codicon-fallback"
+    },
+    "exclude": {
+      "fontCharacter": "\\eae5",
+      "fontId": "codicon-fallback"
+    },
+    "error": {
+      "fontCharacter": "\\e06f",
+      "fontId": "vespra"
+    },
+    "error-small": {
+      "fontCharacter": "\\ebfb",
+      "fontId": "codicon-fallback"
+    },
+    "error-compact": {
+      "fontCharacter": "\\ec98",
+      "fontId": "codicon-fallback"
+    },
+    "eraser": {
+      "fontCharacter": "\\ec5d",
+      "fontId": "codicon-fallback"
+    },
+    "empty-window": {
+      "fontCharacter": "\\eae4",
+      "fontId": "codicon-fallback"
+    },
+    "ellipsis": {
+      "fontCharacter": "\\e00e",
+      "fontId": "vespra"
+    },
+    "editor-layout": {
+      "fontCharacter": "\\eae3",
+      "fontId": "codicon-fallback"
+    },
+    "edit": {
+      "fontCharacter": "\\e024",
+      "fontId": "vespra"
+    },
+    "edit-sparkle": {
+      "fontCharacter": "\\ec51",
+      "fontId": "codicon-fallback"
+    },
+    "edit-session": {
+      "fontCharacter": "\\ec36",
+      "fontId": "codicon-fallback"
+    },
+    "edit-compact": {
+      "fontCharacter": "\\ecb0",
+      "fontId": "codicon-fallback"
+    },
+    "edit-code": {
+      "fontCharacter": "\\ec68",
+      "fontId": "codicon-fallback"
+    },
+    "download": {
+      "fontCharacter": "\\ec74",
+      "fontId": "codicon-fallback"
+    },
+    "discard": {
+      "fontCharacter": "\\e013",
+      "fontId": "vespra"
+    },
+    "diff": {
+      "fontCharacter": "\\e02c",
+      "fontId": "vespra"
+    },
+    "diff-renamed": {
+      "fontCharacter": "\\eae0",
+      "fontId": "codicon-fallback"
+    },
+    "diff-removed": {
+      "fontCharacter": "\\eadf",
+      "fontId": "codicon-fallback"
+    },
+    "diff-multiple": {
+      "fontCharacter": "\\e02c",
+      "fontId": "vespra"
+    },
+    "diff-modified": {
+      "fontCharacter": "\\eade",
+      "fontId": "codicon-fallback"
+    },
+    "diff-ignored": {
+      "fontCharacter": "\\eadd",
+      "fontId": "codicon-fallback"
+    },
+    "diff-added": {
+      "fontCharacter": "\\eadc",
+      "fontId": "codicon-fallback"
+    },
+    "device-mobile": {
+      "fontCharacter": "\\eadb",
+      "fontId": "codicon-fallback"
+    },
+    "device-camera": {
+      "fontCharacter": "\\eada",
+      "fontId": "codicon-fallback"
+    },
+    "device-camera-video": {
+      "fontCharacter": "\\e073",
+      "fontId": "vespra"
+    },
+    "developer-tools": {
+      "fontCharacter": "\\ecbe",
+      "fontId": "codicon-fallback"
+    },
+    "desktop-download": {
+      "fontCharacter": "\\e020",
+      "fontId": "vespra"
+    },
+    "debug": {
+      "fontCharacter": "\\e031",
+      "fontId": "vespra"
+    },
+    "debug-stop": {
+      "fontCharacter": "\\e030",
+      "fontId": "vespra"
+    },
+    "debug-step-over": {
+      "fontCharacter": "\\e032",
+      "fontId": "vespra"
+    },
+    "debug-step-out": {
+      "fontCharacter": "\\ead5",
+      "fontId": "codicon-fallback"
+    },
+    "debug-step-into": {
+      "fontCharacter": "\\ead4",
+      "fontId": "codicon-fallback"
+    },
+    "debug-step-back": {
+      "fontCharacter": "\\eb8f",
+      "fontId": "codicon-fallback"
+    },
+    "debug-start": {
+      "fontCharacter": "\\ead3",
+      "fontId": "codicon-fallback"
+    },
+    "debug-stackframe": {
+      "fontCharacter": "\\eb8b",
+      "fontId": "codicon-fallback"
+    },
+    "debug-stackframe-active": {
+      "fontCharacter": "\\eb89",
+      "fontId": "codicon-fallback"
+    },
+    "debug-reverse-continue": {
+      "fontCharacter": "\\eb8e",
+      "fontId": "codicon-fallback"
+    },
+    "debug-restart": {
+      "fontCharacter": "\\e05a",
+      "fontId": "vespra"
+    },
+    "debug-restart-frame": {
+      "fontCharacter": "\\eb90",
+      "fontId": "codicon-fallback"
+    },
+    "debug-rerun": {
+      "fontCharacter": "\\ebc0",
+      "fontId": "codicon-fallback"
+    },
+    "debug-pause": {
+      "fontCharacter": "\\e02f",
+      "fontId": "vespra"
+    },
+    "debug-line-by-line": {
+      "fontCharacter": "\\ebd0",
+      "fontId": "codicon-fallback"
+    },
+    "debug-disconnect": {
+      "fontCharacter": "\\e081",
+      "fontId": "vespra"
+    },
+    "debug-disconnect-compact": {
+      "fontCharacter": "\\ecaf",
+      "fontId": "codicon-fallback"
+    },
+    "debug-coverage": {
+      "fontCharacter": "\\ebdd",
+      "fontId": "codicon-fallback"
+    },
+    "debug-continue": {
+      "fontCharacter": "\\eacf",
+      "fontId": "codicon-fallback"
+    },
+    "debug-continue-small": {
+      "fontCharacter": "\\ebe0",
+      "fontId": "codicon-fallback"
+    },
+    "debug-console": {
+      "fontCharacter": "\\eb9b",
+      "fontId": "codicon-fallback"
+    },
+    "debug-connected": {
+      "fontCharacter": "\\ec63",
+      "fontId": "codicon-fallback"
+    },
+    "debug-connected-compact": {
+      "fontCharacter": "\\ecae",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-unsupported": {
+      "fontCharacter": "\\eb8c",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-log": {
+      "fontCharacter": "\\eaab",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-log-unverified": {
+      "fontCharacter": "\\eaaa",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-function": {
+      "fontCharacter": "\\eb88",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-function-unverified": {
+      "fontCharacter": "\\eb87",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-data": {
+      "fontCharacter": "\\eaa9",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-data-unverified": {
+      "fontCharacter": "\\eaa8",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-conditional": {
+      "fontCharacter": "\\eaa7",
+      "fontId": "codicon-fallback"
+    },
+    "debug-breakpoint-conditional-unverified": {
+      "fontCharacter": "\\eaa6",
+      "fontId": "codicon-fallback"
+    },
+    "debug-alt": {
+      "fontCharacter": "\\e031",
+      "fontId": "vespra"
+    },
+    "debug-alt-small": {
+      "fontCharacter": "\\eba8",
+      "fontId": "codicon-fallback"
+    },
+    "debug-all": {
+      "fontCharacter": "\\ebdc",
+      "fontId": "codicon-fallback"
+    },
+    "database": {
+      "fontCharacter": "\\e04f",
+      "fontId": "vespra"
+    },
+    "dashboard": {
+      "fontCharacter": "\\e07c",
+      "fontId": "vespra"
+    },
+    "dash": {
+      "fontCharacter": "\\eacc",
+      "fontId": "codicon-fallback"
+    },
+    "cursor": {
+      "fontCharacter": "\\ec5c",
+      "fontId": "codicon-fallback"
+    },
+    "credit-card": {
+      "fontCharacter": "\\e062",
+      "fontId": "vespra"
+    },
+    "coverage": {
+      "fontCharacter": "\\ec2e",
+      "fontId": "codicon-fallback"
+    },
+    "copy": {
+      "fontCharacter": "\\e01e",
+      "fontId": "vespra"
+    },
+    "copilot": {
+      "fontCharacter": "\\ec1e",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-warning": {
+      "fontCharacter": "\\ec38",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-warning-large": {
+      "fontCharacter": "\\ec3b",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-unavailable": {
+      "fontCharacter": "\\ec42",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-success": {
+      "fontCharacter": "\\ec4e",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-snooze": {
+      "fontCharacter": "\\ec52",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-not-connected": {
+      "fontCharacter": "\\ec3e",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-large": {
+      "fontCharacter": "\\ec3a",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-in-progress": {
+      "fontCharacter": "\\ec4c",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-error": {
+      "fontCharacter": "\\ec4d",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-compact": {
+      "fontCharacter": "\\ec8a",
+      "fontId": "codicon-fallback"
+    },
+    "copilot-blocked": {
+      "fontCharacter": "\\ec3d",
+      "fontId": "codicon-fallback"
+    },
+    "compass": {
+      "fontCharacter": "\\ebd5",
+      "fontId": "codicon-fallback"
+    },
+    "compass-dot": {
+      "fontCharacter": "\\ebd6",
+      "fontId": "codicon-fallback"
+    },
+    "compass-active": {
+      "fontCharacter": "\\ebd7",
+      "fontId": "codicon-fallback"
+    },
+    "comment": {
+      "fontCharacter": "\\e04b",
+      "fontId": "vespra"
+    },
+    "comment-unresolved": {
+      "fontCharacter": "\\ec0a",
+      "fontId": "codicon-fallback"
+    },
+    "comment-unresolved-compact": {
+      "fontCharacter": "\\ecad",
+      "fontId": "codicon-fallback"
+    },
+    "comment-draft": {
+      "fontCharacter": "\\ec0e",
+      "fontId": "codicon-fallback"
+    },
+    "comment-discussion": {
+      "fontCharacter": "\\e04b",
+      "fontId": "vespra"
+    },
+    "comment-discussion-sparkle": {
+      "fontCharacter": "\\ec54",
+      "fontId": "codicon-fallback"
+    },
+    "comment-discussion-quote": {
+      "fontCharacter": "\\ec5b",
+      "fontId": "codicon-fallback"
+    },
+    "comment-compact": {
+      "fontCharacter": "\\ecac",
+      "fontId": "codicon-fallback"
+    },
+    "combine": {
+      "fontCharacter": "\\ebb6",
+      "fontId": "codicon-fallback"
+    },
+    "color-mode": {
+      "fontCharacter": "\\eac6",
+      "fontId": "codicon-fallback"
+    },
+    "collection": {
+      "fontCharacter": "\\ec57",
+      "fontId": "codicon-fallback"
+    },
+    "collection-small": {
+      "fontCharacter": "\\ec78",
+      "fontId": "codicon-fallback"
+    },
+    "collapse-all": {
+      "fontCharacter": "\\eac5",
+      "fontId": "codicon-fallback"
+    },
+    "collapse-all-compact": {
+      "fontCharacter": "\\ecab",
+      "fontId": "codicon-fallback"
+    },
+    "coffee": {
+      "fontCharacter": "\\ec15",
+      "fontId": "codicon-fallback"
+    },
+    "code": {
+      "fontCharacter": "\\e025",
+      "fontId": "vespra"
+    },
+    "code-review": {
+      "fontCharacter": "\\ec37",
+      "fontId": "codicon-fallback"
+    },
+    "code-oss": {
+      "fontCharacter": "\\ec2b",
+      "fontId": "codicon-fallback"
+    },
+    "cloud": {
+      "fontCharacter": "\\e03a",
+      "fontId": "vespra"
+    },
+    "cloud-upload": {
+      "fontCharacter": "\\e03e",
+      "fontId": "vespra"
+    },
+    "cloud-small": {
+      "fontCharacter": "\\ec7a",
+      "fontId": "codicon-fallback"
+    },
+    "cloud-download": {
+      "fontCharacter": "\\e020",
+      "fontId": "vespra"
+    },
+    "cloud-compact": {
+      "fontCharacter": "\\ecbf",
+      "fontId": "codicon-fallback"
+    },
+    "close": {
+      "fontCharacter": "\\e003",
+      "fontId": "vespra"
+    },
+    "close-compact": {
+      "fontCharacter": "\\ecaa",
+      "fontId": "codicon-fallback"
+    },
+    "close-all": {
+      "fontCharacter": "\\eac1",
+      "fontId": "codicon-fallback"
+    },
+    "clockface": {
+      "fontCharacter": "\\ec75",
+      "fontId": "codicon-fallback"
+    },
+    "clippy": {
+      "fontCharacter": "\\eac0",
+      "fontId": "codicon-fallback"
+    },
+    "clear-all": {
+      "fontCharacter": "\\eabf",
+      "fontId": "codicon-fallback"
+    },
+    "claude": {
+      "fontCharacter": "\\ec82",
+      "fontId": "codicon-fallback"
+    },
+    "circuit-board": {
+      "fontCharacter": "\\e046",
+      "fontId": "vespra"
+    },
+    "circle": {
+      "fontCharacter": "\\eabc",
+      "fontId": "codicon-fallback"
+    },
+    "circle-small": {
+      "fontCharacter": "\\ec07",
+      "fontId": "codicon-fallback"
+    },
+    "circle-small-filled": {
+      "fontCharacter": "\\eb8a",
+      "fontId": "codicon-fallback"
+    },
+    "circle-small-filled-compact": {
+      "fontCharacter": "\\eca9",
+      "fontId": "codicon-fallback"
+    },
+    "circle-slash": {
+      "fontCharacter": "\\e056",
+      "fontId": "vespra"
+    },
+    "circle-slash-compact": {
+      "fontCharacter": "\\ec89",
+      "fontId": "codicon-fallback"
+    },
+    "circle-large": {
+      "fontCharacter": "\\ebb5",
+      "fontId": "codicon-fallback"
+    },
+    "circle-large-filled": {
+      "fontCharacter": "\\ebb4",
+      "fontId": "codicon-fallback"
+    },
+    "circle-filled": {
+      "fontCharacter": "\\ea71",
+      "fontId": "codicon-fallback"
+    },
+    "circle-filled-compact": {
+      "fontCharacter": "\\eca8",
+      "fontId": "codicon-fallback"
+    },
+    "chrome-restore": {
+      "fontCharacter": "\\eabb",
+      "fontId": "codicon-fallback"
+    },
+    "chrome-minimize": {
+      "fontCharacter": "\\eaba",
+      "fontId": "codicon-fallback"
+    },
+    "chrome-maximize": {
+      "fontCharacter": "\\eab9",
+      "fontId": "codicon-fallback"
+    },
+    "chrome-close": {
+      "fontCharacter": "\\e003",
+      "fontId": "vespra"
+    },
+    "chip": {
+      "fontCharacter": "\\e046",
+      "fontId": "vespra"
+    },
+    "chevron-up": {
+      "fontCharacter": "\\e008",
+      "fontId": "vespra"
+    },
+    "chevron-up-compact": {
+      "fontCharacter": "\\eca7",
+      "fontId": "codicon-fallback"
+    },
+    "chevron-right": {
+      "fontCharacter": "\\e005",
+      "fontId": "vespra"
+    },
+    "chevron-right-compact": {
+      "fontCharacter": "\\eca6",
+      "fontId": "codicon-fallback"
+    },
+    "chevron-left": {
+      "fontCharacter": "\\e006",
+      "fontId": "vespra"
+    },
+    "chevron-left-compact": {
+      "fontCharacter": "\\eca5",
+      "fontId": "codicon-fallback"
+    },
+    "chevron-down": {
+      "fontCharacter": "\\e007",
+      "fontId": "vespra"
+    },
+    "chevron-down-compact": {
+      "fontCharacter": "\\eca4",
+      "fontId": "codicon-fallback"
+    },
+    "checklist": {
+      "fontCharacter": "\\e054",
+      "fontId": "vespra"
+    },
+    "checklist-compact": {
+      "fontCharacter": "\\eca3",
+      "fontId": "codicon-fallback"
+    },
+    "check": {
+      "fontCharacter": "\\e004",
+      "fontId": "vespra"
+    },
+    "check-compact": {
+      "fontCharacter": "\\eca2",
+      "fontId": "codicon-fallback"
+    },
+    "check-all": {
+      "fontCharacter": "\\e004",
+      "fontId": "vespra"
+    },
+    "chat-sparkle": {
+      "fontCharacter": "\\e04b",
+      "fontId": "vespra"
+    },
+    "chat-sparkle-warning": {
+      "fontCharacter": "\\ec55",
+      "fontId": "codicon-fallback"
+    },
+    "chat-sparkle-error": {
+      "fontCharacter": "\\ec56",
+      "fontId": "codicon-fallback"
+    },
+    "chat-import": {
+      "fontCharacter": "\\ec86",
+      "fontId": "codicon-fallback"
+    },
+    "chat-export": {
+      "fontCharacter": "\\ec87",
+      "fontId": "codicon-fallback"
+    },
+    "case-sensitive": {
+      "fontCharacter": "\\eab1",
+      "fontId": "codicon-fallback"
+    },
+    "call-outgoing": {
+      "fontCharacter": "\\eb93",
+      "fontId": "codicon-fallback"
+    },
+    "call-incoming": {
+      "fontCharacter": "\\eb92",
+      "fontId": "codicon-fallback"
+    },
+    "calendar": {
+      "fontCharacter": "\\e068",
+      "fontId": "vespra"
+    },
+    "build": {
+      "fontCharacter": "\\ec5a",
+      "fontId": "codicon-fallback"
+    },
+    "bug": {
+      "fontCharacter": "\\e031",
+      "fontId": "vespra"
+    },
+    "broadcast": {
+      "fontCharacter": "\\eaad",
+      "fontId": "codicon-fallback"
+    },
+    "briefcase": {
+      "fontCharacter": "\\eaac",
+      "fontId": "codicon-fallback"
+    },
+    "bracket-error": {
+      "fontCharacter": "\\ebe6",
+      "fontId": "codicon-fallback"
+    },
+    "bracket-dot": {
+      "fontCharacter": "\\ebe5",
+      "fontId": "codicon-fallback"
+    },
+    "bookmark": {
+      "fontCharacter": "\\e05b",
+      "fontId": "vespra"
+    },
+    "book": {
+      "fontCharacter": "\\e075",
+      "fontId": "vespra"
+    },
+    "bold": {
+      "fontCharacter": "\\eaa3",
+      "fontId": "codicon-fallback"
+    },
+    "blank": {
+      "fontCharacter": "\\ec03",
+      "fontId": "codicon-fallback"
+    },
+    "bell": {
+      "fontCharacter": "\\e066",
+      "fontId": "vespra"
+    },
+    "bell-slash": {
+      "fontCharacter": "\\ec08",
+      "fontId": "codicon-fallback"
+    },
+    "bell-slash-dot": {
+      "fontCharacter": "\\ec09",
+      "fontId": "codicon-fallback"
+    },
+    "bell-dot": {
+      "fontCharacter": "\\eb9a",
+      "fontId": "codicon-fallback"
+    },
+    "beaker": {
+      "fontCharacter": "\\e034",
+      "fontId": "vespra"
+    },
+    "beaker-stop": {
+      "fontCharacter": "\\ebe1",
+      "fontId": "codicon-fallback"
+    },
+    "beaker-compact": {
+      "fontCharacter": "\\eca1",
+      "fontId": "codicon-fallback"
+    },
+    "azure": {
+      "fontCharacter": "\\ebd8",
+      "fontId": "codicon-fallback"
+    },
+    "azure-devops": {
+      "fontCharacter": "\\ebe8",
+      "fontId": "codicon-fallback"
+    },
+    "attach": {
+      "fontCharacter": "\\ec34",
+      "fontId": "codicon-fallback"
+    },
+    "attach-compact": {
+      "fontCharacter": "\\eca0",
+      "fontId": "codicon-fallback"
+    },
+    "ask": {
+      "fontCharacter": "\\ec80",
+      "fontId": "codicon-fallback"
+    },
+    "ask-compact": {
+      "fontCharacter": "\\ecc1",
+      "fontId": "codicon-fallback"
+    },
+    "arrow-up": {
+      "fontCharacter": "\\e00b",
+      "fontId": "vespra"
+    },
+    "arrow-swap": {
+      "fontCharacter": "\\e053",
+      "fontId": "vespra"
+    },
+    "arrow-small-up": {
+      "fontCharacter": "\\e00b",
+      "fontId": "vespra"
+    },
+    "arrow-small-right": {
+      "fontCharacter": "\\e009",
+      "fontId": "vespra"
+    },
+    "arrow-small-left": {
+      "fontCharacter": "\\e00a",
+      "fontId": "vespra"
+    },
+    "arrow-small-down": {
+      "fontCharacter": "\\e00c",
+      "fontId": "vespra"
+    },
+    "arrow-right": {
+      "fontCharacter": "\\e009",
+      "fontId": "vespra"
+    },
+    "arrow-left": {
+      "fontCharacter": "\\e00a",
+      "fontId": "vespra"
+    },
+    "arrow-down": {
+      "fontCharacter": "\\e00c",
+      "fontId": "vespra"
+    },
+    "arrow-circle-up": {
+      "fontCharacter": "\\ebff",
+      "fontId": "codicon-fallback"
+    },
+    "arrow-circle-right": {
+      "fontCharacter": "\\ebfe",
+      "fontId": "codicon-fallback"
+    },
+    "arrow-circle-left": {
+      "fontCharacter": "\\ebfd",
+      "fontId": "codicon-fallback"
+    },
+    "arrow-circle-down": {
+      "fontCharacter": "\\ebfc",
+      "fontId": "codicon-fallback"
+    },
+    "arrow-both": {
+      "fontCharacter": "\\ea99",
+      "fontId": "codicon-fallback"
+    },
+    "archive": {
+      "fontCharacter": "\\e022",
+      "fontId": "vespra"
+    },
+    "agent": {
+      "fontCharacter": "\\e04a",
+      "fontId": "vespra"
+    },
+    "agent-compact": {
+      "fontCharacter": "\\ecc0",
+      "fontId": "codicon-fallback"
+    },
+    "add": {
+      "fontCharacter": "\\e001",
+      "fontId": "vespra"
+    },
+    "add-small": {
+      "fontCharacter": "\\ec7b",
+      "fontId": "codicon-fallback"
+    },
+    "activate-breakpoints": {
+      "fontCharacter": "\\ea97",
+      "fontId": "codicon-fallback"
+    },
+    "account": {
+      "fontCharacter": "\\e064",
+      "fontId": "vespra"
+    }
+  }
+}
