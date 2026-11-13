@@ -2,6 +2,8 @@
 
 A Project is the durable pack an agent session joins: name, workspace, instructions, knowledge files, and MCP enablement. It is stored in the user profile and, when the workspace is local, copied to `.vespra/project.json` so the same pack can later become a gateway agent profile.
 
+Continuing this work inside a Cursor Cloud Project (branches, Agents launch, verification): [Projects Cursor Project handoff](../handoffs/2026-11-13-projects-cursor-project.md).
+
 This is the Agents-window shape of the profile described in [the gateway plan](2026-10-25-vespra-gateway-plan.md). The gateway `/profile` endpoint is the sync target; this note does not build that service.
 
 ## What Phase 1 stores
