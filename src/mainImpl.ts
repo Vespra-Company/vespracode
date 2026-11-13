@@ -232,7 +232,7 @@ async function onReady() {
 			resolveNlsConfiguration()
 		]);
 
-		await startup(codeCachePath, nlsConfig);
+		await startup(codeCachePath, { ...nlsConfig, regionalLocale: app.getSystemLocale().toLowerCase() });
 	} catch (error) {
 		console.error(error);
 	}
@@ -370,15 +370,15 @@ function configureCommandlineSwitchesSync(cliArgs: NativeParsedArgs) {
 	// `EarlyEstablishGpuChannel` - Refs https://issues.chromium.org/issues/40208065
 	// `EstablishGpuChannelAsync` - Refs https://issues.chromium.org/issues/40208065
 	// `GlobalShortcutsPortal` - Enables Electron's `globalShortcut` (system-wide keybindings) on Linux Wayland via the XDG global shortcuts portal (no-op elsewhere)
+	// `UpdateCompositorMemoryPolicyOnScreenChange` - Recompute the compositor memory budget on display changes (https://chromium-review.googlesource.com/c/chromium/src/+/8594621)
 	const featuresToEnable =
-		`NetAdapterMaxBufSizeFeature:NetAdapterMaxBufSize/8192,DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync${process.platform === 'linux' ? ',GlobalShortcutsPortal' : ''},${app.commandLine.getSwitchValue('enable-features')}`;
+		`NetAdapterMaxBufSizeFeature:NetAdapterMaxBufSize/8192,DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,UpdateCompositorMemoryPolicyOnScreenChange${process.platform === 'linux' ? ',GlobalShortcutsPortal' : ''},${app.commandLine.getSwitchValue('enable-features')}`;
 	app.commandLine.appendSwitch('enable-features', featuresToEnable);
 
 	// Following features are disabled from the runtime:
 	// `CalculateNativeWinOcclusion` - Disable native window occlusion tracker (https://groups.google.com/a/chromium.org/g/embedder-dev/c/ZF3uHHyWLKw/m/VDN2hDXMAAAJ)
-	// `HideCursorWhileTyping` - Disable hiding the cursor while typing (https://chromium-review.googlesource.com/c/chromium/src/+/7916752)
 	const featuresToDisable =
-		`CalculateNativeWinOcclusion,HideCursorWhileTyping,${app.commandLine.getSwitchValue('disable-features')}`;
+		`CalculateNativeWinOcclusion,${app.commandLine.getSwitchValue('disable-features')}`;
 	app.commandLine.appendSwitch('disable-features', featuresToDisable);
 
 	// Blink features to configure.
@@ -469,6 +469,12 @@ function createDefaultArgvConfigSync(argvConfigPath: string): void {
 			'	// Use software rendering instead of hardware accelerated rendering.',
 			'	// This can help in cases where you see rendering issues in VS Code.',
 			'	// "disable-hardware-acceleration": true',
+			...(process.platform === 'linux' ? [
+				'',
+				'	// Prefer basic secret storage when no OS keyring is available (common on',
+				'	// headless / cloud Linux). Avoids the startup keyring dialog.',
+				'	"password-store": "basic"',
+			] : []),
 			'}'
 		];
 

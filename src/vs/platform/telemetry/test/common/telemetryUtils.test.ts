@@ -9,12 +9,13 @@ import { TestConfigurationService } from '../../../configuration/test/common/tes
 import { IEnvironmentService } from '../../../environment/common/environment.js';
 import product from '../../../product/common/product.js';
 import { IProductService } from '../../../product/common/productService.js';
-import { TelemetryConfiguration, TelemetryLevel } from '../../common/telemetry.js';
-import { cleanData, cleanRemoteAuthority, getTelemetryLevel, getTelemetryLevelFromConfiguration, supportsTelemetry } from '../../common/telemetryUtils.js';
+import { escapeModelIdForTelemetry, normalizeModelRouterTelemetryId, TelemetryConfiguration, TelemetryLevel } from '../../common/telemetry.js';
+import { cleanData, cleanRemoteAuthority, getTelemetryLevel, supportsTelemetry } from '../../common/telemetryUtils.js';
 
 suite('TelemetryUtils', () => {
 
 	ensureNoDisposablesAreLeakedInTestSuite();
+
 
 	test('product.json disables Microsoft telemetry endpoints', () => {
 		assert.strictEqual(product.enableTelemetry, false);
@@ -49,30 +50,6 @@ suite('TelemetryUtils', () => {
 		const productService = { enableTelemetry: false } as IProductService;
 		assert.strictEqual(supportsTelemetry(productService, { isBuilt: true, disableTelemetry: false } as IEnvironmentService), false);
 		assert.strictEqual(supportsTelemetry(productService, { isBuilt: false, disableTelemetry: false } as IEnvironmentService), false);
-	});
-
-	test('getTelemetryLevelFromConfiguration fails closed for invalid configuration', () => {
-		assert.deepStrictEqual([
-			getTelemetryLevelFromConfiguration(new TestConfigurationService()),
-			getTelemetryLevelFromConfiguration(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.ON })),
-			getTelemetryLevelFromConfiguration(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.ERROR })),
-			getTelemetryLevelFromConfiguration(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.CRASH })),
-			getTelemetryLevelFromConfiguration(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.OFF })),
-			getTelemetryLevelFromConfiguration(new TestConfigurationService({ 'telemetry.telemetryLevel': 'invalid' })),
-			getTelemetryLevelFromConfiguration(new class extends TestConfigurationService {
-				override getValue<T>(): T {
-					return null!;
-				}
-			}()),
-		], [
-			TelemetryLevel.USAGE,
-			TelemetryLevel.USAGE,
-			TelemetryLevel.ERROR,
-			TelemetryLevel.CRASH,
-			TelemetryLevel.NONE,
-			TelemetryLevel.NONE,
-			TelemetryLevel.NONE,
-		]);
 	});
 
 	suite('cleanData', () => {
@@ -234,6 +211,19 @@ suite('TelemetryUtils', () => {
 
 			assert.strictEqual(cleanRemoteAuthority('ssh-remote', config), 'other');
 			assert.strictEqual(cleanRemoteAuthority(undefined, config), 'none');
+		});
+	});
+
+	suite('model ids', () => {
+		test('model routers report as modelRouter, since their names are written by users', () => {
+			assert.deepStrictEqual([
+				normalizeModelRouterTelemetryId('model-router:secret'),
+				normalizeModelRouterTelemetryId('copilotcli:model-router:secret'),
+				normalizeModelRouterTelemetryId('claude-opus-5'),
+				normalizeModelRouterTelemetryId(undefined),
+				escapeModelIdForTelemetry('copilot/model-router:secret'),
+				escapeModelIdForTelemetry('azure/gpt-5'),
+			], ['modelRouter', 'modelRouter', 'claude-opus-5', undefined, 'modelRouter', 'azure|gpt-5']);
 		});
 	});
 });

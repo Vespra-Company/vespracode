@@ -20,13 +20,7 @@ export const enum AgentHostConfigKey {
 	 * TODO: revisit magic key in config; refine into a dedicated typed channel. https://github.com/microsoft/vscode/issues/313812
 	 */
 	DefaultShell = 'defaultShell',
-	/**
-	 * Experimentation flag for conditional Agent Host auth. When true, session
-	 * types that are usable without GitHub remain available to signed-out users
-	 * instead of forcing GitHub sign-in. The workbench forwards it here from the
-	 * `chat.agentHost.allowSignedOutWhenUsable` VS Code setting; when unset the
-	 * feature is dark (today's always-proxy behavior).
-	 */
+	/** Legacy wire key; remove once all supported hosts allow signed-out operation unconditionally. */
 	AllowSignedOutWhenUsable = 'allowSignedOutWhenUsable',
 	/**
 	 * Optional GitHub Enterprise base URI (e.g. `https://ghe.example.com` for a

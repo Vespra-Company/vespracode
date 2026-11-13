@@ -240,6 +240,24 @@ if (( ${#EXTRA_ARGS[@]} )); then
 	ARGS+=("${EXTRA_ARGS[@]}")
 fi
 
+# Headless Linux often has no OS keyring. Prefer basic password storage unless the
+# caller already set --password-store / --use-inmemory-secretstorage / --use-mock-keychain.
+if [[ "$(uname -s)" == "Linux" ]]; then
+	has_secret_override=0
+	for arg in "${ARGS[@]}"; do
+		case "$arg" in
+			--password-store|--password-store=*|--use-inmemory-secretstorage|--use-mock-keychain)
+				has_secret_override=1
+				break
+				;;
+		esac
+	done
+	if [[ "$has_secret_override" == "0" ]]; then
+		ARGS+=("--password-store=basic")
+		echo "[launch.sh] Linux: using --password-store=basic (no OS keyring)" >&2
+	fi
+fi
+
 LOG_FILE="$RUN_DIR/code.log"
 echo "[launch.sh] launching: $CODE_SH ${ARGS[*]}" >&2
 echo "[launch.sh] logs: $LOG_FILE" >&2
