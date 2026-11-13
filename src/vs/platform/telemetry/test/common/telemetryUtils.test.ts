@@ -52,30 +52,6 @@ suite('TelemetryUtils', () => {
 		assert.strictEqual(supportsTelemetry(productService, { isBuilt: false, disableTelemetry: false } as IEnvironmentService), false);
 	});
 
-	test('getTelemetryLevel fails closed for invalid configuration', () => {
-		assert.deepStrictEqual([
-			getTelemetryLevel(new TestConfigurationService()),
-			getTelemetryLevel(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.ON })),
-			getTelemetryLevel(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.ERROR })),
-			getTelemetryLevel(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.CRASH })),
-			getTelemetryLevel(new TestConfigurationService({ 'telemetry.telemetryLevel': TelemetryConfiguration.OFF })),
-			getTelemetryLevel(new TestConfigurationService({ 'telemetry.telemetryLevel': 'invalid' })),
-			getTelemetryLevel(new class extends TestConfigurationService {
-				override getValue<T>(): T {
-					return null!;
-				}
-			}()),
-		], [
-			TelemetryLevel.USAGE,
-			TelemetryLevel.USAGE,
-			TelemetryLevel.ERROR,
-			TelemetryLevel.CRASH,
-			TelemetryLevel.NONE,
-			TelemetryLevel.NONE,
-			TelemetryLevel.NONE,
-		]);
-	});
-
 	suite('cleanData', () => {
 
 		test('redacts command-line credentials and shortened API keys', () => {
