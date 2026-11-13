@@ -10,6 +10,10 @@ import { IModalEditorOptions, IModalEditorOptionsProvider } from '../../../../pl
 import { EditorInputCapabilities, IUntypedEditorInput } from '../../../common/editor.js';
 import { EditorInput } from '../../../common/editor/editorInput.js';
 
+export function isProjectHomeEditorInput(editor: unknown): editor is ProjectHomeEditorInput {
+	return editor instanceof ProjectHomeEditorInput;
+}
+
 export class ProjectHomeEditorInput extends EditorInput implements IModalEditorOptionsProvider {
 	static readonly ID = 'sessions.input.projectHome';
 

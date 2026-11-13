@@ -11,6 +11,7 @@ import { URI } from '../../../../base/common/uri.js';
 import { generateUuid } from '../../../../base/common/uuid.js';
 import { IFileService } from '../../../../platform/files/common/files.js';
 import { IStorageService, StorageScope, StorageTarget } from '../../../../platform/storage/common/storage.js';
+import { ITextFileService } from '../../../services/textfile/common/textfiles.js';
 import { IChatRequestVariableEntry } from '../../chat/common/attachments/chatVariableEntries.js';
 import { IEnablementModel } from '../../chat/common/enablement.js';
 import { applyProjectMcpEnablement, buildProjectContextEntries, projectContextCandidates } from './projectContext.js';
@@ -57,6 +58,7 @@ export class ProjectsService extends Disposable implements IProjectsService {
 	constructor(
 		@IStorageService private readonly storageService: IStorageService,
 		@IFileService private readonly fileService: IFileService,
+		@ITextFileService private readonly textFileService: ITextFileService,
 	) {
 		super();
 		this.load();
@@ -165,6 +167,71 @@ export class ProjectsService extends Disposable implements IProjectsService {
 		this._onDidChange.fire({ projectsChanged: false, activeChanged: false, membershipChanged: new Set([sessionId]) });
 	}
 
+	async addKnowledge(id: string): Promise<number> {
+		const project = this._projects.get(id);
+		const root = project?.workspaceUris[0];
+		if (!project || !root) {
+			return 0;
+		}
+		const knowledge = joinPath(root, PROJECT_KNOWLEDGE_DIR);
+		if (!project.knowledgeUris.some(uri => uri.toString() === knowledge.toString())) {
+			this._projects.set(id, { ...project, knowledgeUris: [...project.knowledgeUris, knowledge] });
+			this.save();
+			this._onDidChange.fire({ projectsChanged: true, activeChanged: false, membershipChanged: new Set() });
+		}
+		try {
+			await this.fileService.createFolder(knowledge);
+		} catch {
+			// The knowledge folder is best-effort on remote roots.
+		}
+		let saved = 0;
+		for (const model of this.textFileService.files.models) {
+			if (!model.isDirty() || model.resource.scheme !== root.scheme || !model.resource.path.startsWith(`${root.path}/`)) {
+				continue;
+			}
+			const name = model.resource.path.slice(root.path.length + 1).replace(/\//g, '-');
+			const target = joinPath(knowledge, name);
+			try {
+				const contents = await this.fileService.readFile(model.resource);
+				await this.fileService.writeFile(target, contents.value);
+				await model.revert({ force: true });
+				saved++;
+			} catch {
+				// A file that cannot be copied is skipped, not fatal.
+			}
+		}
+		return saved;
+	}
+
+	removeKnowledge(id: string, target: URI): void {
+		const project = this._projects.get(id);
+		if (!project) {
+			return;
+		}
+		const remaining = project.knowledgeUris.filter(uri => uri.toString() !== target.toString());
+		if (remaining.length === project.knowledgeUris.length) {
+			// The target may be a file inside a tracked knowledge folder: delete it from disk.
+			const parent = project.knowledgeUris.find(uri => target.toString().startsWith(`${uri.toString().replace(/\/$/, '')}/`));
+			if (parent) {
+				void this.fileService.del(target, { useTrash: true }).then(() => {
+					this._onDidChange.fire({ projectsChanged: true, activeChanged: false, membershipChanged: new Set() });
+				}).catch(() => { /* A file that cannot be deleted is left on disk. */ });
+			}
+			return;
+		}
+		this._projects.set(id, { ...project, knowledgeUris: remaining });
+		this.save();
+		void this.writeWorkspaceFiles(this._projects.get(id)!);
+		this._onDidChange.fire({ projectsChanged: true, activeChanged: false, membershipChanged: new Set() });
+	}
+	async listKnowledgeFiles(project: IVespraProject): Promise<URI[]> {
+		const files: URI[] = [];
+		for (const uri of project.knowledgeUris) {
+			await this.collectKnowledge(uri, files, Number.MAX_SAFE_INTEGER);
+		}
+		return files;
+	}
+
 	migratePlaceholderGroups(groups: readonly IPlaceholderGroupSnapshot[]): readonly IVespraProject[] {
 		const created: IVespraProject[] = [];
 		for (const migration of planPlaceholderGroupMigration(groups, this._migratedGroupIds)) {
@@ -243,8 +310,8 @@ export class ProjectsService extends Disposable implements IProjectsService {
 		}
 	}
 
-	private async collectKnowledge(resource: URI, into: URI[]): Promise<void> {
-		if (into.length >= 8) {
+	private async collectKnowledge(resource: URI, into: URI[], limit = 8): Promise<void> {
+		if (into.length >= limit) {
 			return;
 		}
 		try {
@@ -262,7 +329,7 @@ export class ProjectsService extends Disposable implements IProjectsService {
 					continue;
 				}
 				into.push(child.resource);
-				if (into.length >= 8) {
+				if (into.length >= limit) {
 					return;
 				}
 			}

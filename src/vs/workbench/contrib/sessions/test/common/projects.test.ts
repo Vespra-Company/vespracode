@@ -11,6 +11,7 @@ import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/tes
 import { FileOperationError, FileOperationResult, IFileService, IFileStat } from '../../../../../platform/files/common/files.js';
 import { InMemoryStorageService } from '../../../../../platform/storage/common/storage.js';
 import { ContributionEnablementState, IEnablementModel } from '../../../chat/common/enablement.js';
+import { ITextFileService } from '../../../../services/textfile/common/textfiles.js';
 import { ProjectsService } from '../../browser/projectsService.js';
 import { manifestToProject, parseProjectManifest, planPlaceholderGroupMigration, PROJECT_INSTRUCTIONS_PATH, PROJECT_KNOWLEDGE_DIR, serializeProjectManifest } from '../../common/projects.js';
 
@@ -64,7 +65,9 @@ suite('Vespra Projects', () => {
 	test('persists projects, membership, and workspace files', async () => {
 		const storage = store.add(new InMemoryStorageService());
 		const files = new MemoryFiles();
-		const service = store.add(new ProjectsService(storage, files.asService()));
+		const service = store.add(new ProjectsService(storage, files.asService(), {
+			files: { models: [] },
+		} as unknown as ITextFileService));
 		const workspace = URI.file('/work/app');
 
 		const project = await service.createProject('Relay', workspace);
@@ -90,7 +93,9 @@ suite('Vespra Projects', () => {
 		} as IEnablementModel);
 		assert.deepStrictEqual(enabled, ['github']);
 
-		const reloaded = store.add(new ProjectsService(storage, files.asService()));
+		const reloaded = store.add(new ProjectsService(storage, files.asService(), {
+			files: { models: [] },
+		} as unknown as ITextFileService));
 		assert.strictEqual(reloaded.getProject(project.id)?.name, 'Relay');
 		assert.deepStrictEqual(reloaded.getSessionIds(project.id), ['session-1']);
 
@@ -104,6 +109,13 @@ suite('Vespra Projects', () => {
 			{ id: 'g', name: 'Projects', sessionIds: [] },
 			{ id: 'c', name: 'Billing', parentId: 'g', sessionIds: ['s9'] },
 		]).length, 0);
+
+		const listed = await reloaded.listKnowledgeFiles(project);
+		assert.deepStrictEqual(listed.map(uri => uri.path), [`/work/app/${PROJECT_KNOWLEDGE_DIR}/notes.md`]);
+		reloaded.removeKnowledge(project.id, URI.file(`/work/app/${PROJECT_KNOWLEDGE_DIR}/notes.md`));
+		await new Promise(resolve => setTimeout(resolve, 20));
+		assert.deepStrictEqual(await reloaded.listKnowledgeFiles(reloaded.getProject(project.id)!), []);
+		assert.strictEqual(files.text(joinPath(workspace, `${PROJECT_KNOWLEDGE_DIR}/notes.md`)), undefined);
 	});
 });
 
@@ -141,6 +153,9 @@ class MemoryFiles {
 			},
 			async stat(resource: URI): Promise<IFileStat> {
 				return self.statOf(resource);
+			},
+			async del(resource: URI): Promise<void> {
+				self.files.delete(resource.toString());
 			},
 			async resolve(resource: URI): Promise<IFileStat> {
 				const stat = self.statOf(resource);

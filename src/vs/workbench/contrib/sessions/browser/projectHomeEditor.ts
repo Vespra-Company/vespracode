@@ -7,6 +7,7 @@ import './media/projectsSidebar.css';
 import * as dom from '../../../../base/browser/dom.js';
 import { CancellationToken } from '../../../../base/common/cancellation.js';
 import { DisposableStore } from '../../../../base/common/lifecycle.js';
+import { URI } from '../../../../base/common/uri.js';
 import { localize } from '../../../../nls.js';
 import { ICommandService } from '../../../../platform/commands/common/commands.js';
 import { ITelemetryService } from '../../../../platform/telemetry/common/telemetry.js';
@@ -16,9 +17,9 @@ import { EditorPane } from '../../../browser/parts/editor/editorPane.js';
 import { IEditorOptions } from '../../../../platform/editor/common/editor.js';
 import { IEditorOpenContext } from '../../../common/editor.js';
 import { IEditorGroup } from '../../../services/editor/common/editorGroupsService.js';
-import { NEW_CHAT_IN_PROJECT_COMMAND_ID } from './projectCommands.js';
+import { ADD_PROJECT_KNOWLEDGE_COMMAND_ID, DELETE_PROJECT_COMMAND_ID, NEW_CHAT_IN_PROJECT_COMMAND_ID, REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, RENAME_PROJECT_COMMAND_ID } from './projectCommands.js';
 import { ProjectHomeEditorInput } from './projectHomeEditorInput.js';
-import { IProjectsService } from '../common/projects.js';
+import { IProjectsService, IVespraProject } from '../common/projects.js';
 
 export class ProjectHomeEditor extends EditorPane {
 	static readonly ID = 'sessions.editor.projectHome';
@@ -68,9 +69,23 @@ export class ProjectHomeEditor extends EditorPane {
 			this.root.textContent = localize('project.missing', "This project is no longer available.");
 			return;
 		}
+		void this.renderProject(project);
+	}
 
-		const title = dom.append(this.root, dom.$('h1'));
+	private async renderProject(project: IVespraProject): Promise<void> {
+		if (!this.root) {
+			return;
+		}
+		const knowledge = await this.projectsService.listKnowledgeFiles(project);
+		if (!this.root || this.renderDisposables.isDisposed) {
+			return;
+		}
+		const heading = dom.append(this.root, dom.$('h1'));
+		const title = dom.append(heading, dom.$('span.name'));
 		title.textContent = project.name;
+		this.renderButton(heading, localize('project.rename', "Rename"), () => {
+			void this.commandService.executeCommand(RENAME_PROJECT_COMMAND_ID, project.id);
+		});
 		const summary = dom.append(this.root, dom.$('p'));
 		summary.textContent = localize('project.summary', "Sessions in this project share its workspace, instructions, and knowledge.");
 
@@ -87,14 +102,53 @@ export class ProjectHomeEditor extends EditorPane {
 		this.renderDisposables.add(dom.addDisposableListener(customizations, dom.EventType.CLICK, () => {
 			void this.commandService.executeCommand('aiCustomization.openManagementEditor');
 		}));
+		const deleteButton = dom.append(actions, dom.$('a.monaco-button.monaco-text-button'));
+		deleteButton.textContent = localize('project.delete', "Delete Project");
+		deleteButton.tabIndex = 0;
+		this.renderDisposables.add(dom.addDisposableListener(deleteButton, dom.EventType.CLICK, () => {
+			void this.commandService.executeCommand(DELETE_PROJECT_COMMAND_ID, project.id);
+		}));
 
 		this.renderList(localize('project.workspace', "Workspace"), project.workspaceUris.map(uri => uri.fsPath || uri.toString()));
 		this.renderList(localize('project.instructions', "Instructions"), [project.instructionsUri?.fsPath || project.instructionsUri?.toString() || localize('project.instructionsDefault', "AGENTS.md or .vespra/INSTRUCTIONS.md")]);
-		this.renderList(localize('project.knowledge', "Knowledge"), project.knowledgeUris.map(uri => uri.fsPath || uri.toString()));
+		this.renderKnowledge(project, knowledge);
 		this.renderList(localize('project.sessions', "Sessions"), this.projectsService.getSessionIds(project.id));
 		if (project.mcpServerIds.length > 0) {
 			this.renderList(localize('project.mcp', "MCP"), project.mcpServerIds);
 		}
+	}
+
+	private renderKnowledge(project: IVespraProject, files: readonly URI[]): void {
+		if (!this.root) {
+			return;
+		}
+		const section = dom.append(this.root, dom.$('section'));
+		const heading = dom.append(section, dom.$('h2'));
+		heading.textContent = localize('project.knowledge', "Knowledge");
+		this.renderButton(heading, localize('project.addKnowledge', "Add"), () => {
+			void this.commandService.executeCommand(ADD_PROJECT_KNOWLEDGE_COMMAND_ID, project.id);
+		});
+		const list = dom.append(section, dom.$('ul'));
+		if (files.length === 0) {
+			const empty = dom.append(list, dom.$('li'));
+			empty.textContent = localize('project.none', "None yet");
+			return;
+		}
+		for (const file of files) {
+			const row = dom.append(list, dom.$('li'));
+			const label = dom.append(row, dom.$('span'));
+			label.textContent = file.path.split('/').pop() ?? file.toString();
+			this.renderButton(row, localize('project.removeKnowledge', "Remove"), () => {
+				void this.commandService.executeCommand(REMOVE_PROJECT_KNOWLEDGE_COMMAND_ID, project.id, file.toString());
+			});
+		}
+	}
+
+	private renderButton(container: HTMLElement, label: string, run: () => void): void {
+		const button = dom.append(container, dom.$('button.vespra-project-action')) as HTMLButtonElement;
+		button.type = 'button';
+		button.textContent = label;
+		this.renderDisposables.add(dom.addDisposableListener(button, dom.EventType.CLICK, run));
 	}
 
 	private renderList(heading: string, items: readonly string[]): void {

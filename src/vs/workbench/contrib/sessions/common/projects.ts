@@ -77,6 +77,12 @@ export interface IProjectsService {
 	renameProject(id: string, name: string): void;
 	deleteProject(id: string): void;
 
+	/** Save every dirty file under the workspace into the knowledge folder. */
+	addKnowledge(id: string): Promise<number>;
+	removeKnowledge(id: string, uri: URI): void;
+	/** Existing files the project attaches, including what the knowledge folder holds. */
+	listKnowledgeFiles(project: IVespraProject): Promise<URI[]>;
+
 	getProjectOfSession(sessionId: string): IVespraProject | undefined;
 	getSessionIds(projectId: string): readonly string[];
 	assignSession(sessionId: string, projectId: string | undefined): void;

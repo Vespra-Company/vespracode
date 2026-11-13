@@ -100,5 +100,37 @@
 }
 
 .vespra-project-home li {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 	margin: 4px 0;
+}
+
+.vespra-project-home li > span {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.vespra-project-home h1,
+.vespra-project-home h2 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.vespra-project-home h1 .name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+button.vespra-project-action {
+	border: none;
+	background: transparent;
+	color: var(--vscode-textLink-foreground);
+	font-size: 12px;
+	padding: 0 4px;
+	cursor: pointer;
 }
