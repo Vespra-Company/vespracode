@@ -12,6 +12,8 @@ import { SessionHostService, FocusedSessionHostService } from '../../../../workb
 import { IChatHostOpenerService, ChatHostOpenerService } from '../../../../workbench/services/sessions/browser/chatHostOpener.js';
 import { ISessionsListModelService, SessionsListModelService } from '../../../../workbench/contrib/sessions/browser/sessionsListModelService.js';
 import { ISessionGroupsService, SessionGroupsService } from '../../../../workbench/contrib/sessions/browser/sessionGroupsService.js';
+import { IProjectsService } from '../../../../workbench/contrib/sessions/common/projects.js';
+import { ProjectsService } from '../../../../workbench/contrib/sessions/browser/projectsService.js';
 import { ISessionComparisonService } from '../../../../workbench/contrib/sessions/common/sessionComparison.js';
 import { SessionComparisonService } from '../../../../workbench/contrib/sessions/browser/sessionComparisonService.js';
 import { ISessionSectionOrderService, SessionSectionOrderService } from '../../../../workbench/services/sessions/browser/sessionSectionOrderService.js';
@@ -41,6 +43,7 @@ registerSingleton(ISessionHostService, SessionHostService, InstantiationType.Del
 registerSingleton(IFocusedSessionHostService, FocusedSessionHostService, InstantiationType.Delayed);
 registerSingleton(ISessionSectionOrderService, SessionSectionOrderService, InstantiationType.Delayed);
 registerSingleton(ISessionGroupsService, SessionGroupsService, InstantiationType.Delayed);
+registerSingleton(IProjectsService, ProjectsService, InstantiationType.Delayed);
 registerSingleton(ISessionsRecentWorkspacesService, SessionsRecentWorkspacesService, InstantiationType.Delayed);
 registerSingleton(ISessionComparisonService, SessionComparisonService, InstantiationType.Delayed);
 registerSingleton(IAgentHostFilterService, AgentHostFilterService, InstantiationType.Delayed);
