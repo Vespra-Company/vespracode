@@ -22,20 +22,20 @@ const SPACE_BEFORE_PUNCTUATION = /\s+([!?.,;:])/gu;
 function getDefaultWelcomePhrases(accountName: string | undefined): string[] {
 	return accountName
 		? [
+			localize('newSession.welcome.named.vespra', "Welcome to Vespra, {0}", accountName),
 			localize('newSession.welcome.named.building', "What are we building, {0}?", accountName),
 			// allow-any-unicode-next-line
 			localize('newSession.welcome.named.next', "What’s next, {0}?", accountName),
 			localize('newSession.welcome.named.start', "Where should we start, {0}?", accountName),
 			localize('newSession.welcome.named.ready', "Ready when you are, {0}", accountName),
-			localize('newSession.welcome.named.ship', "What should we ship, {0}?", accountName),
 		]
 		: [
+			localize('newSession.welcome.vespra', "Welcome to Vespra"),
 			localize('newSession.welcome.building', "What are we building?"),
 			// allow-any-unicode-next-line
 			localize('newSession.welcome.next', "What’s next?"),
 			localize('newSession.welcome.start', "Where should we start?"),
 			localize('newSession.welcome.ready', "Ready when you are"),
-			localize('newSession.welcome.ship', "What should we ship?"),
 		];
 }
 

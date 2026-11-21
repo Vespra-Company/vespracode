@@ -364,13 +364,28 @@
 	z-index: 1;
 }
 
+/* Soft focal glow behind the empty-session composer so first paint feels designed. */
+.sessions-chat-widget > .new-chat-widget-container {
+	background:
+		radial-gradient(
+			ellipse 70% 42% at 50% 32%,
+			color-mix(in srgb, var(--vscode-focusBorder) 14%, transparent),
+			transparent 72%
+		);
+}
+
+.monaco-workbench:is(.hc-black, .hc-light) .sessions-chat-widget > .new-chat-widget-container {
+	background: none;
+}
+
 .new-session-welcome-message {
 	align-self: center;
 	align-items: center;
 	display: flex;
-	gap: var(--vscode-spacing-size40);
+	flex-direction: column;
+	gap: var(--vscode-spacing-size200, 8px);
 	justify-content: center;
-	margin-bottom: var(--vscode-spacing-size400);
+	margin-bottom: var(--vscode-spacing-size600, 24px);
 	position: relative;
 	text-align: center;
 }
@@ -379,11 +394,22 @@
 	display: none;
 }
 
+.new-session-welcome-brand {
+	color: var(--vscode-descriptionForeground);
+	font-size: var(--vscode-fontSize-label1, 12px);
+	font-weight: var(--vscode-fontWeight-semiBold);
+	letter-spacing: 0.22em;
+	line-height: 1.2;
+	margin: 0;
+	text-transform: uppercase;
+}
+
 .new-session-welcome-message-title {
 	color: var(--vscode-foreground);
-	font-size: var(--vscode-fontSize-heading1);
+	font-size: calc(var(--vscode-fontSize-heading1) * 1.12);
 	font-weight: var(--vscode-fontWeight-semiBold);
-	line-height: 1.4;
+	letter-spacing: -0.025em;
+	line-height: 1.25;
 	margin: 0;
 }
 

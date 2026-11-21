@@ -83,7 +83,8 @@ export class AICustomizationShortcutsWidget extends Disposable {
 	) {
 		super();
 
-		this._collapsed = this.storageService.getBoolean(CUSTOMIZATIONS_COLLAPSED_STORAGE_KEY, StorageScope.PROFILE, false);
+		// Fresh profiles start collapsed so the Agents first paint stays calm.
+		this._collapsed = this.storageService.getBoolean(CUSTOMIZATIONS_COLLAPSED_STORAGE_KEY, StorageScope.PROFILE, true);
 
 		// Stable wrapper appended once to the parent. Re-renders replace the
 		// wrapper's children only, so the widget keeps its position relative

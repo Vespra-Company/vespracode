@@ -209,8 +209,8 @@ export class AgentHostSignedOutModelsNotificationContribution extends Disposable
 		return {
 			id: SIGNED_OUT_MODELS_NOTIFICATION_ID,
 			severity: ChatInputNotificationSeverity.Info,
-			message: localize('agentHost.signedOutModels.message', "Choose how you want to use Copilot."),
-			description: localize('agentHost.signedOutModels.description', "Sign in to use GitHub Copilot models, or add a model with your own API key."),
+			message: localize('agentHost.signedOutModels.message', "Connect a model to get started."),
+			description: localize('agentHost.signedOutModels.description', "Sign in with GitHub Copilot, or add a model with your own API key."),
 			actions: [
 				{
 					kind: ChatInputNotificationActionKind.Command,
