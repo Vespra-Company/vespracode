@@ -83,6 +83,8 @@ import { getAdditionalFolderContextId, getAdditionalRepositoryContextId } from '
 import { NewSessionBannerPriority, NewSessionBanners } from '../../common/newSessionBanners.js';
 import { COLLAPSED_SESSION_OPTIONS_SHOW_ICONS_SETTING, COMPARE_AGENTS_ENABLED_SETTING, COMPARE_AGENTS_OPEN_IN_GRID_SETTING, COMPARE_AGENTS_SHOW_PICKER_HINT_SETTING, ENVIRONMENT_PICKER_SETTING, NEW_SESSION_COMPOSER_OPTIONS_EXPANDED_SETTING, NEW_SESSION_WELCOME_MESSAGES_SETTING, NEW_SESSION_WELCOME_PHRASES_SETTING, WORKSPACE_OPT_OUT_SETTING } from '../../common/chatConstants.js';
 import { getNewSessionWelcomePhrases, INewSessionWelcomeMessagesConfiguration } from '../../common/welcomePhrases.js';
+import { IProjectsService } from '../../common/projects.js';
+import { IMcpService } from '../../../mcp/common/mcpTypes.js';
 import { ICommandService } from '../../../../../platform/commands/common/commands.js';
 import { getSessionComparisonWorkspaceError, ISessionComparisonHarness, ISessionComparisonService } from '../../common/sessionComparison.js';
 import { OPEN_SESSION_COMPARISON_COMMAND_ID } from '../../common/sessionComparisonConstants.js';
@@ -2413,6 +2415,44 @@ export class NewChatWidget extends Disposable {
 		}
 	}
 
+	/**
+	 * Joins the active Relay Context: instructions, knowledge files, MCP enablement,
+	 * and session membership. Missing services are ignored so unit tests that do not
+	 * register Projects keep working.
+	 */
+	private async _attachProjectContext(session: ISession, requestContext: Map<string, IChatRequestVariableEntry>): Promise<void> {
+		try {
+			await this.instantiationService.invokeFunction(async accessor => {
+				const projects = accessor.get(IProjectsService);
+				let enablement: IMcpService['enablementModel'] | undefined;
+				try {
+					enablement = accessor.get(IMcpService).enablementModel;
+				} catch {
+					enablement = undefined;
+				}
+				const project = projects.getProjectOfSession(session.sessionId) ?? projects.getActiveProject();
+				if (!project) {
+					return;
+				}
+				projects.assignSession(session.sessionId, project.id);
+				const root = project.workspaceUris[0];
+				if (root && !this._workspacePicker.selectedFolderUri) {
+					this._workspacePicker.setSelectedWorkspace(root, { fireEvent: false, origin: WorkspaceSelectionOrigin.SessionSync });
+				}
+				for (const entry of await projects.resolveContextEntries(project)) {
+					if (!requestContext.has(entry.id)) {
+						requestContext.set(entry.id, entry);
+					}
+				}
+				if (enablement) {
+					projects.applyMcp(project, enablement);
+				}
+			});
+		} catch {
+			// Projects are optional for composers constructed without the service.
+		}
+	}
+
 	private async _send(query: string, attachedContext?: IChatRequestVariableEntry[], background?: boolean, userInteraction?: NewChatUserInteraction): Promise<boolean> {
 		background = this._backgroundSend || background;
 		// A composer of a host of its own, such as a chat window's, shows the status of its background sends.
@@ -2450,6 +2490,7 @@ export class NewChatWidget extends Disposable {
 				requestContext.set(context.id, context);
 			}
 		}
+		await this._attachProjectContext(session, requestContext);
 
 		if (this._comparisonSelection.enabled.get()) {
 			if (this._draftHost) {
