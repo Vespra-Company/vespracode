@@ -44,6 +44,13 @@ suite('WorkbenchThemeService', () => {
 				['Dark Modern', 'Dark 2026', 'Some Custom Theme', '']
 			);
 		});
+
+		test('migrates Relay Refined kit IDs to permanent Relay themes', () => {
+			assert.deepStrictEqual(
+				['Vespra Relay Refined Dark', 'Vespra Relay Refined Light', 'Vespra Relay Refined Contrast'].map(migrateThemeSettingsId),
+				[ThemeSettingDefaults.COLOR_THEME_DARK, ThemeSettingDefaults.COLOR_THEME_LIGHT, ThemeSettingDefaults.COLOR_THEME_HC_DARK]
+			);
+		});
 	});
 
 	test('restores only for preferred color scheme changes', async () => {

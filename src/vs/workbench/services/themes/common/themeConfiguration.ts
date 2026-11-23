@@ -114,8 +114,8 @@ const productIconThemeSettingSchema: IConfigurationPropertySchema = {
 	default: ThemeSettingDefaults.PRODUCT_ICON_THEME,
 	description: nls.localize('productIconTheme', "Specifies the product icon theme used."),
 	enum: [ThemeSettingDefaults.PRODUCT_ICON_THEME],
-	enumItemLabels: [nls.localize('defaultProductIconThemeLabel', 'Default')],
-	enumDescriptions: [nls.localize('defaultProductIconThemeDesc', 'Default')],
+	enumItemLabels: [nls.localize('defaultProductIconThemeLabel', 'Vespra Relay')],
+	enumDescriptions: [nls.localize('defaultProductIconThemeDesc', 'Vespra Relay product icons')],
 	errorMessage: nls.localize('productIconThemeError', "Product icon theme is unknown or not installed.")
 };
 

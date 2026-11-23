@@ -1,0 +1,62 @@
+{
+  "name": "theme-vespra-relay",
+  "displayName": "Vespra Relay",
+  "description": "Vespra Relay color, file, and product icon themes — the permanent product chrome for Vespra Code.",
+  "version": "1.1.0",
+  "publisher": "vespra",
+  "license": "MIT",
+  "engines": {
+    "vscode": "*"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "vespra",
+    "relay",
+    "theme",
+    "icons",
+    "agents"
+  ],
+  "icon": "icon.png",
+  "contributes": {
+    "themes": [
+      {
+        "id": "Vespra Relay Dark",
+        "label": "Vespra Relay Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/relay-dark-color-theme.json"
+      },
+      {
+        "id": "Vespra Relay Light",
+        "label": "Vespra Relay Light",
+        "uiTheme": "vs",
+        "path": "./themes/relay-light-color-theme.json"
+      },
+      {
+        "id": "Vespra Relay Contrast",
+        "label": "Vespra Relay Contrast",
+        "uiTheme": "hc-black",
+        "path": "./themes/relay-contrast-color-theme.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "vespra-relay-files",
+        "label": "Vespra Relay Files",
+        "path": "./themes/relay-file-icon-theme.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "vespra-relay-product",
+        "label": "Vespra Relay Product",
+        "path": "./themes/relay-product-icon-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vespra-company/vespracode.git"
+  }
+}
